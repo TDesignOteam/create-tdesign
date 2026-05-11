@@ -1,7 +1,65 @@
 # create-tdesign
 
-Fresh start.
+快速创建 TDesign 项目模板的 CLI，交互形态对齐 `create-vite`，默认使用 `pnpm`。
 
-## Status
+## Templates
 
-This repository has been cleared and reinitialized with a new Git history.
+当前已支持 12 个 TypeScript 模板：
+
+- `vue-vite`
+- `vue-rspack`
+- `react-vite`
+- `react-rspack`
+- `mobile-vue-vite`
+- `mobile-vue-rspack`
+- `mobile-react-vite`
+- `mobile-react-rspack`
+- `vue-chat-vite`
+- `vue-chat-rspack`
+- `react-chat-vite`
+- `react-chat-rspack`
+
+模板源码统一放在 `templates/` 目录下。
+
+## Usage
+
+```bash
+pnpm create tdesign my-app
+```
+
+直接指定模板：
+
+```bash
+pnpm create tdesign my-app --template vue-vite
+pnpm create tdesign my-app --template react-rspack
+```
+
+按 UI 和打包工具组合指定：
+
+```bash
+pnpm create tdesign my-app --ui vue --bundler vite
+pnpm create tdesign my-app --ui react --bundler rspack
+```
+
+## Options
+
+```text
+-t, --template NAME
+    --ui NAME
+    --bundler NAME
+-f, --force
+-y, --yes
+-h, --help
+```
+
+## Notes
+
+`chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在 `App.vue` 或 `App.tsx` 里补充 `chatServiceConfig`。
+
+## Development
+
+```bash
+pnpm install
+pnpm build
+pnpm typecheck
+```
