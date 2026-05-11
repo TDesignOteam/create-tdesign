@@ -1,6 +1,6 @@
 # create-tdesign
 
-快速创建 TDesign 项目模板的 CLI，交互形态对齐 `create-vite`，默认使用 `pnpm`。
+快速创建 TDesign 项目模板的 CLI，交互形态对齐 `create-vite`，支持选择 `npm`、`pnpm`、`bun`、`yarn`。
 
 ## Templates
 
@@ -41,12 +41,21 @@ pnpm create tdesign my-app --ui vue --bundler vite
 pnpm create tdesign my-app --ui react --bundler rspack
 ```
 
+指定包管理器：
+
+```bash
+pnpm create tdesign my-app --template vue-vite --package-manager npm
+pnpm create tdesign my-app --template react-chat-rspack --pm bun
+```
+
 ## Options
 
 ```text
 -t, --template NAME
     --ui NAME
     --bundler NAME
+    --package-manager NAME
+    --pm NAME
 -f, --force
 -y, --yes
 -h, --help

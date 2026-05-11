@@ -16,6 +16,15 @@ import {
 
 const cwd = process.cwd()
 const defaultTargetDir = 'tdesign-app'
+type PackageManager = 'npm' | 'pnpm' | 'bun' | 'yarn'
+
+const PACKAGE_MANAGER_OPTIONS: Array<{ value: PackageManager; label: string }> = [
+  { value: 'npm', label: 'npm' },
+  { value: 'pnpm', label: 'pnpm' },
+  { value: 'bun', label: 'bun' },
+  { value: 'yarn', label: 'yarn' },
+]
+
 const renameFiles: Record<string, string | undefined> = {
   _gitignore: '.gitignore',
 }
@@ -27,15 +36,17 @@ const argv = mri<{
   help?: boolean
   force?: boolean
   yes?: boolean
+  'package-manager'?: string
 }>(process.argv.slice(2), {
   alias: {
     h: 'help',
     t: 'template',
     f: 'force',
     y: 'yes',
+    pm: 'package-manager',
   },
   boolean: ['help', 'force', 'yes'],
-  string: ['template', 'ui', 'bundler'],
+  string: ['template', 'ui', 'bundler', 'package-manager'],
 })
 
 const helpMessage = `Usage: create-tdesign [OPTION]... [DIRECTORY]
@@ -44,8 +55,10 @@ Scaffold a TDesign project with TypeScript.
 
 Options:
   -t, --template NAME       use a specific template
-      --ui NAME             choose a UI framework (vue, react)
+      --ui NAME             choose a UI framework
       --bundler NAME        choose a bundler (vite, rspack)
+      --package-manager     choose a package manager (npm, pnpm, bun, yarn)
+      --pm NAME             alias of --package-manager
   -f, --force               remove existing files in the target directory
   -y, --yes                 skip prompts when possible
   -h, --help                display this help message
@@ -87,6 +100,12 @@ async function init() {
     return
   }
 
+  const packageManager = await resolvePackageManager(interactive)
+  if (!packageManager) {
+    cancel()
+    return
+  }
+
   const root = path.resolve(cwd, targetDir)
   fs.mkdirSync(root, { recursive: true })
   prompts.log.step(`Scaffolding ${template.display} in ${root}`)
@@ -99,7 +118,7 @@ async function init() {
     templateName: template.display,
   })
 
-  prompts.outro(renderDoneMessage(root))
+  prompts.outro(renderDoneMessage(root, packageManager))
 }
 
 async function resolveTargetDir(interactive: boolean) {
@@ -247,6 +266,32 @@ async function resolveTemplate(interactive: boolean) {
   return findTemplateByParts(ui as UiFramework, bundler as Bundler)
 }
 
+async function resolvePackageManager(interactive: boolean) {
+  if (argv['package-manager']) {
+    return normalizePackageManager(argv['package-manager'])
+  }
+
+  const detectedPackageManager = detectCurrentPackageManager()
+
+  if (!interactive) {
+    return detectedPackageManager ?? 'pnpm'
+  }
+
+  const packageManager = await prompts.select({
+    message: 'Select a package manager:',
+    options: orderPackageManagerOptions(detectedPackageManager).map((option) => ({
+      label: option.label,
+      value: option.value,
+    })),
+  })
+
+  if (prompts.isCancel(packageManager)) {
+    return undefined
+  }
+
+  return packageManager as PackageManager
+}
+
 function scaffoldTemplate(
   templateDir: string,
   root: string,
@@ -277,7 +322,7 @@ function applyPlaceholders(content: string, context: Record<string, string>) {
   }, content)
 }
 
-function renderDoneMessage(root: string) {
+function renderDoneMessage(root: string, packageManager: PackageManager) {
   const relativeRoot = path.relative(cwd, root)
   const cdTarget = relativeRoot && !relativeRoot.startsWith('..') ? relativeRoot : root
   let message = 'Done. Next steps:\n'
@@ -286,8 +331,8 @@ function renderDoneMessage(root: string) {
     message += `\n  cd ${cdTarget.includes(' ') ? `"${cdTarget}"` : cdTarget}`
   }
 
-  message += '\n  pnpm install'
-  message += '\n  pnpm dev'
+  message += `\n  ${getInstallCommand(packageManager)}`
+  message += `\n  ${getRunCommand(packageManager, 'dev')}`
 
   return message
 }
@@ -297,6 +342,17 @@ function renderTemplateHelp() {
     const color = template.ui.includes('react') ? pc.cyan : pc.green
     return `  ${color(template.id.padEnd(20))} ${template.description}`
   }).join('\n')
+}
+
+function orderPackageManagerOptions(selected?: PackageManager) {
+  if (!selected) {
+    return PACKAGE_MANAGER_OPTIONS
+  }
+
+  const preferred = PACKAGE_MANAGER_OPTIONS.find((option) => option.value === selected)
+  const rest = PACKAGE_MANAGER_OPTIONS.filter((option) => option.value !== selected)
+
+  return preferred ? [preferred, ...rest] : PACKAGE_MANAGER_OPTIONS
 }
 
 function formatTargetDir(targetDir: string) {
@@ -349,6 +405,48 @@ function normalizeBundler(value: string): Bundler {
     return value
   }
   fail(`Unsupported bundler "${value}".`)
+}
+
+function normalizePackageManager(value: string): PackageManager {
+  const match = PACKAGE_MANAGER_OPTIONS.find((option) => option.value === value)
+  if (match) {
+    return match.value
+  }
+  fail(`Unsupported package manager "${value}".`)
+}
+
+function detectCurrentPackageManager() {
+  const userAgent = process.env.npm_config_user_agent
+  if (!userAgent) {
+    return undefined
+  }
+
+  const packageManager = userAgent.split(' ')[0]?.split('/')[0]
+  if (!packageManager) {
+    return undefined
+  }
+
+  return PACKAGE_MANAGER_OPTIONS.find((option) => option.value === packageManager)?.value
+}
+
+function getInstallCommand(packageManager: PackageManager) {
+  if (packageManager === 'yarn') {
+    return 'yarn'
+  }
+
+  return `${packageManager} install`
+}
+
+function getRunCommand(packageManager: PackageManager, script: string) {
+  switch (packageManager) {
+    case 'npm':
+      return `npm run ${script}`
+    case 'pnpm':
+    case 'yarn':
+      return `${packageManager} ${script}`
+    case 'bun':
+      return `bun run ${script}`
+  }
 }
 
 function fail(message: string): never {
