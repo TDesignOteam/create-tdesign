@@ -288,15 +288,16 @@ async function resolveTemplate(interactive: boolean) {
   const vueTemplateStyle = isVueRelatedUi(normalizedUi)
     ? await resolveVueTemplateStyle()
     : undefined
-  const importMode = isVueImportModeSupportedUi(normalizedUi)
-    ? await resolveVueImportMode()
-    : undefined
 
   if (isVueRelatedUi(normalizedUi) && !vueTemplateStyle) {
     return undefined
   }
 
-  if (isVueImportModeSupportedUi(normalizedUi) && !importMode) {
+  const importMode = isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc'
+    ? await resolveVueImportMode()
+    : undefined
+
+  if (isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc' && !importMode) {
     return undefined
   }
 

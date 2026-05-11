@@ -4,7 +4,7 @@
 
 ## Templates
 
-当前已支持 30 个 TypeScript 模板：
+当前已支持 24 个 TypeScript 模板：
 
 ### Vue SFC
 
@@ -17,8 +17,6 @@
 
 - `vue-tsx-vite`
 - `vue-tsx-rspack`
-- `vue-tsx-vite-on-demand`
-- `vue-tsx-rspack-on-demand`
 
 ### Mobile Vue SFC
 
@@ -31,10 +29,8 @@
 
 - `mobile-vue-tsx-vite`
 - `mobile-vue-tsx-rspack`
-- `mobile-vue-tsx-vite-on-demand`
-- `mobile-vue-tsx-rspack-on-demand`
 
-### Vue Chat
+### Vue Chat SFC
 
 - `vue-chat-vite`
 - `vue-chat-rspack`
@@ -45,8 +41,6 @@
 
 - `vue-chat-tsx-vite`
 - `vue-chat-tsx-rspack`
-- `vue-chat-tsx-vite-on-demand`
-- `vue-chat-tsx-rspack-on-demand`
 
 ### React
 
@@ -106,8 +100,8 @@ pnpm create tdesign my-app --template react-chat-rspack --pm bun
 ## Notes
 
 - `chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在 `App.vue` 或 `App.tsx` 里补充 `chatServiceConfig`。
-- Vue / Mobile Vue / Vue Chat 模板支持 SFC 和 TSX 两种风格，交互时也会提示选择 `Full` 或 `On-demand`。
-- `--import-mode` 对所有 Vue 相关模板生效。
+- Vue / Mobile Vue / Vue Chat 的 SFC 模板支持 `Full` 和 `On-demand` 两种引入模式。
+- TSX 模板不支持 `--import-mode on-demand`，`unplugin-vue-components` 仅对 SFC `<template>` 生效。
 - `mobile-vue` 模板在 pnpm v11+ 环境下首次安装会自动放行 `vue-demi` 的构建脚本。
 
 ## Development

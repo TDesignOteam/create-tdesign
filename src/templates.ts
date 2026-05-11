@@ -12,32 +12,26 @@ export type TemplateId =
   | 'vue-vite'
   | 'vue-vite-on-demand'
   | 'vue-tsx-vite'
-  | 'vue-tsx-vite-on-demand'
   | 'react-vite'
   | 'vue-rspack'
   | 'vue-rspack-on-demand'
   | 'vue-tsx-rspack'
-  | 'vue-tsx-rspack-on-demand'
   | 'react-rspack'
   | 'mobile-vue-vite'
   | 'mobile-vue-vite-on-demand'
   | 'mobile-vue-tsx-vite'
-  | 'mobile-vue-tsx-vite-on-demand'
   | 'mobile-react-vite'
   | 'mobile-vue-rspack'
   | 'mobile-vue-rspack-on-demand'
   | 'mobile-vue-tsx-rspack'
-  | 'mobile-vue-tsx-rspack-on-demand'
   | 'mobile-react-rspack'
   | 'vue-chat-vite'
   | 'vue-chat-vite-on-demand'
   | 'vue-chat-tsx-vite'
-  | 'vue-chat-tsx-vite-on-demand'
   | 'react-chat-vite'
   | 'vue-chat-rspack'
   | 'vue-chat-rspack-on-demand'
   | 'vue-chat-tsx-rspack'
-  | 'vue-chat-tsx-rspack-on-demand'
   | 'react-chat-rspack'
 
 export interface TemplateMeta {
@@ -71,21 +65,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'vue-tsx-vite',
-    importMode: 'full',
     ui: 'vue',
     bundler: 'vite',
     vueTemplateStyle: 'tsx',
     display: 'Vue + TSX + Vite',
     description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next',
-  },
-  {
-    id: 'vue-tsx-vite-on-demand',
-    importMode: 'on-demand',
-    ui: 'vue',
-    bundler: 'vite',
-    vueTemplateStyle: 'tsx',
-    display: 'Vue + TSX + Vite (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next on-demand',
   },
   {
     id: 'react-vite',
@@ -114,21 +98,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'vue-tsx-rspack',
-    importMode: 'full',
     ui: 'vue',
     bundler: 'rspack',
     vueTemplateStyle: 'tsx',
     display: 'Vue + TSX + Rspack',
     description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next',
-  },
-  {
-    id: 'vue-tsx-rspack-on-demand',
-    importMode: 'on-demand',
-    ui: 'vue',
-    bundler: 'rspack',
-    vueTemplateStyle: 'tsx',
-    display: 'Vue + TSX + Rspack (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next on-demand',
   },
   {
     id: 'react-rspack',
@@ -157,21 +131,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'mobile-vue-tsx-vite',
-    importMode: 'full',
     ui: 'mobile-vue',
     bundler: 'vite',
     vueTemplateStyle: 'tsx',
     display: 'Mobile Vue + TSX + Vite',
     description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue',
-  },
-  {
-    id: 'mobile-vue-tsx-vite-on-demand',
-    importMode: 'on-demand',
-    ui: 'mobile-vue',
-    bundler: 'vite',
-    vueTemplateStyle: 'tsx',
-    display: 'Mobile Vue + TSX + Vite (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue on-demand',
   },
   {
     id: 'mobile-react-vite',
@@ -200,21 +164,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'mobile-vue-tsx-rspack',
-    importMode: 'full',
     ui: 'mobile-vue',
     bundler: 'rspack',
     vueTemplateStyle: 'tsx',
     display: 'Mobile Vue + TSX + Rspack',
     description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue',
-  },
-  {
-    id: 'mobile-vue-tsx-rspack-on-demand',
-    importMode: 'on-demand',
-    ui: 'mobile-vue',
-    bundler: 'rspack',
-    vueTemplateStyle: 'tsx',
-    display: 'Mobile Vue + TSX + Rspack (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue on-demand',
   },
   {
     id: 'mobile-react-rspack',
@@ -243,21 +197,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'vue-chat-tsx-vite',
-    importMode: 'full',
     ui: 'vue-chat',
     bundler: 'vite',
     vueTemplateStyle: 'tsx',
     display: 'Vue Chat + TSX + Vite',
     description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat',
-  },
-  {
-    id: 'vue-chat-tsx-vite-on-demand',
-    importMode: 'on-demand',
-    ui: 'vue-chat',
-    bundler: 'vite',
-    vueTemplateStyle: 'tsx',
-    display: 'Vue Chat + TSX + Vite (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat on-demand',
   },
   {
     id: 'react-chat-vite',
@@ -286,21 +230,11 @@ export const TEMPLATES: TemplateMeta[] = [
   },
   {
     id: 'vue-chat-tsx-rspack',
-    importMode: 'full',
     ui: 'vue-chat',
     bundler: 'rspack',
     vueTemplateStyle: 'tsx',
     display: 'Vue Chat + TSX + Rspack',
     description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat',
-  },
-  {
-    id: 'vue-chat-tsx-rspack-on-demand',
-    importMode: 'on-demand',
-    ui: 'vue-chat',
-    bundler: 'rspack',
-    vueTemplateStyle: 'tsx',
-    display: 'Vue Chat + TSX + Rspack (On-demand)',
-    description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat on-demand',
   },
   {
     id: 'react-chat-rspack',
