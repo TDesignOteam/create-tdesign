@@ -21,4 +21,4 @@ jobs:
 
       - run: pnpm build
 
-      - run: pnpm dlx pkg-pr-new publish --bin --packageManager=npm,pnpm,yarn,bun
+      - run: pnpm dlx pkg-pr-new publish --bin --packageManager=npm,pnpm,bun
