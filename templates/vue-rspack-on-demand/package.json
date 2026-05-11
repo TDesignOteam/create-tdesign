@@ -1,0 +1,28 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "rspack dev",
+    "build": "vue-tsc --noEmit && rspack build",
+    "preview": "rspack preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "tdesign-vue-next": "^1.19.2",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@types/node": "^25.6.2",
+    "@rspack/cli": "^2.0.2",
+    "@rspack/core": "^2.0.2",
+    "@rspack/dev-server": "^2.0.1",
+    "rspack-vue-loader": "^17.5.0",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.2.8",
+    "@tdesign-vue-next/auto-import-resolver": "^0.1.6",
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^32.0.0"
+  }
+}

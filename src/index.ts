@@ -11,6 +11,7 @@ import {
   findTemplateById,
   findTemplateByParts,
   type Bundler,
+  type TemplateImportMode,
   type UiFramework,
   type VueTemplateStyle,
 } from './templates.js'
@@ -21,6 +22,14 @@ type PackageManager = 'npm' | 'pnpm' | 'bun' | 'yarn'
 const VUE_TEMPLATE_STYLE_OPTIONS: Array<{ value: VueTemplateStyle; label: string }> = [
   { value: 'sfc', label: 'SFC (Recommended)' },
   { value: 'tsx', label: 'TSX' },
+]
+
+const VUE_TEMPLATE_IMPORT_MODE_OPTIONS: Array<{
+  value: TemplateImportMode
+  label: string
+}> = [
+  { value: 'full', label: 'Full (Recommended)' },
+  { value: 'on-demand', label: 'On-demand' },
 ]
 
 const PACKAGE_MANAGER_OPTIONS: Array<{ value: PackageManager; label: string }> = [
@@ -38,6 +47,7 @@ const argv = mri<{
   template?: string
   ui?: string
   bundler?: string
+  'import-mode'?: string
   help?: boolean
   force?: boolean
   yes?: boolean
@@ -51,7 +61,7 @@ const argv = mri<{
     pm: 'package-manager',
   },
   boolean: ['help', 'force', 'yes'],
-  string: ['template', 'ui', 'bundler', 'package-manager'],
+  string: ['template', 'ui', 'bundler', 'import-mode', 'package-manager'],
 })
 
 const helpMessage = `Usage: create-tdesign [OPTION]... [DIRECTORY]
@@ -62,6 +72,7 @@ Options:
   -t, --template NAME       use a specific template
       --ui NAME             choose a UI framework
       --bundler NAME        choose a bundler (vite, rspack)
+      --import-mode NAME    choose a Vue import mode (full, on-demand)
       --package-manager     choose a package manager (npm, pnpm, bun, yarn)
       --pm NAME             alias of --package-manager
   -f, --force               remove existing files in the target directory
@@ -231,8 +242,11 @@ async function resolveTemplate(interactive: boolean) {
     const ui = normalizeUi(argv.ui)
     const bundler = normalizeBundler(argv.bundler)
     const vueTemplateStyle = isVueRelatedUi(ui) ? 'sfc' : undefined
+    const importMode = isVueImportModeSupportedUi(ui) && argv['import-mode']
+      ? normalizeImportMode(argv['import-mode'])
+      : undefined
 
-    const template = findTemplateByParts(ui, bundler, vueTemplateStyle)
+    const template = findTemplateByParts(ui, bundler, vueTemplateStyle, importMode)
 
     if (template) {
       return template
@@ -274,12 +288,19 @@ async function resolveTemplate(interactive: boolean) {
   const vueTemplateStyle = isVueRelatedUi(normalizedUi)
     ? await resolveVueTemplateStyle()
     : undefined
+  const importMode = isVueImportModeSupportedUi(normalizedUi)
+    ? await resolveVueImportMode()
+    : undefined
 
   if (isVueRelatedUi(normalizedUi) && !vueTemplateStyle) {
     return undefined
   }
 
-  return findTemplateByParts(normalizedUi, normalizedBundler, vueTemplateStyle)
+  if (isVueImportModeSupportedUi(normalizedUi) && !importMode) {
+    return undefined
+  }
+
+  return findTemplateByParts(normalizedUi, normalizedBundler, vueTemplateStyle, importMode)
 }
 
 async function resolveVueTemplateStyle() {
@@ -296,6 +317,22 @@ async function resolveVueTemplateStyle() {
   }
 
   return vueTemplateStyle as VueTemplateStyle
+}
+
+async function resolveVueImportMode() {
+  const vueImportMode = await prompts.select({
+    message: 'Select a Vue import mode:',
+    options: VUE_TEMPLATE_IMPORT_MODE_OPTIONS.map((option) => ({
+      label: option.label,
+      value: option.value,
+    })),
+  })
+
+  if (prompts.isCancel(vueImportMode)) {
+    return undefined
+  }
+
+  return vueImportMode as TemplateImportMode
 }
 
 async function resolvePackageManager(interactive: boolean) {
@@ -370,9 +407,11 @@ function renderDoneMessage(root: string, packageManager: PackageManager) {
 }
 
 function renderTemplateHelp() {
+  const width = Math.max(...TEMPLATES.map((template) => template.id.length)) + 2
+
   return TEMPLATES.map((template) => {
     const color = template.ui.includes('react') ? pc.cyan : pc.green
-    return `  ${color(template.id.padEnd(20))} ${template.description}`
+    return `  ${color(template.id.padEnd(width))} ${template.description}`
   }).join('\n')
 }
 
@@ -436,11 +475,22 @@ function isVueRelatedUi(value: UiFramework) {
   return value === 'vue' || value === 'mobile-vue' || value === 'vue-chat'
 }
 
+function isVueImportModeSupportedUi(value: UiFramework) {
+  return value === 'vue' || value === 'mobile-vue' || value === 'vue-chat'
+}
+
 function normalizeBundler(value: string): Bundler {
   if (value === 'vite' || value === 'rspack') {
     return value
   }
   fail(`Unsupported bundler "${value}".`)
+}
+
+function normalizeImportMode(value: string): TemplateImportMode {
+  if (value === 'full' || value === 'on-demand') {
+    return value
+  }
+  fail(`Unsupported import mode "${value}".`)
 }
 
 function normalizePackageManager(value: string): PackageManager {
