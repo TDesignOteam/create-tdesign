@@ -4,18 +4,32 @@
 
 ## Templates
 
-当前已支持 12 个 TypeScript 模板：
+当前已支持 18 个 TypeScript 模板：
+
+### Vue SFC
 
 - `vue-vite`
 - `vue-rspack`
-- `react-vite`
-- `react-rspack`
 - `mobile-vue-vite`
 - `mobile-vue-rspack`
-- `mobile-react-vite`
-- `mobile-react-rspack`
 - `vue-chat-vite`
 - `vue-chat-rspack`
+
+### Vue TSX
+
+- `vue-tsx-vite`
+- `vue-tsx-rspack`
+- `mobile-vue-tsx-vite`
+- `mobile-vue-tsx-rspack`
+- `vue-chat-tsx-vite`
+- `vue-chat-tsx-rspack`
+
+### React
+
+- `react-vite`
+- `react-rspack`
+- `mobile-react-vite`
+- `mobile-react-rspack`
 - `react-chat-vite`
 - `react-chat-rspack`
 
@@ -31,7 +45,8 @@ pnpm create tdesign my-app
 
 ```bash
 pnpm create tdesign my-app --template vue-vite
-pnpm create tdesign my-app --template react-rspack
+pnpm create tdesign my-app --template vue-tsx-rspack
+pnpm create tdesign my-app --template react-chat-rspack
 ```
 
 按 UI 和打包工具组合指定：
@@ -63,7 +78,9 @@ pnpm create tdesign my-app --template react-chat-rspack --pm bun
 
 ## Notes
 
-`chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在 `App.vue` 或 `App.tsx` 里补充 `chatServiceConfig`。
+- `chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在 `App.vue` 或 `App.tsx` 里补充 `chatServiceConfig`。
+- Vue 相关模板支持 SFC 和 TSX 两种风格，交互时会提示选择。
+- `mobile-vue` 模板在 pnpm v11+ 环境下首次安装会自动放行 `vue-demi` 的构建脚本。
 
 ## Development
 

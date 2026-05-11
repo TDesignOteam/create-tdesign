@@ -6,24 +6,32 @@ export type UiFramework =
   | 'vue-chat'
   | 'react-chat'
 export type Bundler = 'vite' | 'rspack'
+export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateId =
   | 'vue-vite'
+  | 'vue-tsx-vite'
   | 'react-vite'
   | 'vue-rspack'
+  | 'vue-tsx-rspack'
   | 'react-rspack'
   | 'mobile-vue-vite'
+  | 'mobile-vue-tsx-vite'
   | 'mobile-react-vite'
   | 'mobile-vue-rspack'
+  | 'mobile-vue-tsx-rspack'
   | 'mobile-react-rspack'
   | 'vue-chat-vite'
+  | 'vue-chat-tsx-vite'
   | 'react-chat-vite'
   | 'vue-chat-rspack'
+  | 'vue-chat-tsx-rspack'
   | 'react-chat-rspack'
 
 export interface TemplateMeta {
   id: TemplateId
   ui: UiFramework
   bundler: Bundler
+  vueTemplateStyle?: VueTemplateStyle
   display: string
   description: string
 }
@@ -33,8 +41,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'vue-vite',
     ui: 'vue',
     bundler: 'vite',
+    vueTemplateStyle: 'sfc',
     display: 'Vue + Vite',
     description: 'Vue 3 + TypeScript + tdesign-vue-next',
+  },
+  {
+    id: 'vue-tsx-vite',
+    ui: 'vue',
+    bundler: 'vite',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue + TSX + Vite',
+    description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next',
   },
   {
     id: 'react-vite',
@@ -47,8 +64,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'vue-rspack',
     ui: 'vue',
     bundler: 'rspack',
+    vueTemplateStyle: 'sfc',
     display: 'Vue + Rspack',
     description: 'Vue 3 + TypeScript + tdesign-vue-next',
+  },
+  {
+    id: 'vue-tsx-rspack',
+    ui: 'vue',
+    bundler: 'rspack',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue + TSX + Rspack',
+    description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next',
   },
   {
     id: 'react-rspack',
@@ -61,8 +87,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'mobile-vue-vite',
     ui: 'mobile-vue',
     bundler: 'vite',
+    vueTemplateStyle: 'sfc',
     display: 'Mobile Vue + Vite',
     description: 'Vue 3 + TypeScript + tdesign-mobile-vue',
+  },
+  {
+    id: 'mobile-vue-tsx-vite',
+    ui: 'mobile-vue',
+    bundler: 'vite',
+    vueTemplateStyle: 'tsx',
+    display: 'Mobile Vue + TSX + Vite',
+    description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue',
   },
   {
     id: 'mobile-react-vite',
@@ -75,8 +110,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'mobile-vue-rspack',
     ui: 'mobile-vue',
     bundler: 'rspack',
+    vueTemplateStyle: 'sfc',
     display: 'Mobile Vue + Rspack',
     description: 'Vue 3 + TypeScript + tdesign-mobile-vue',
+  },
+  {
+    id: 'mobile-vue-tsx-rspack',
+    ui: 'mobile-vue',
+    bundler: 'rspack',
+    vueTemplateStyle: 'tsx',
+    display: 'Mobile Vue + TSX + Rspack',
+    description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue',
   },
   {
     id: 'mobile-react-rspack',
@@ -89,8 +133,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'vue-chat-vite',
     ui: 'vue-chat',
     bundler: 'vite',
+    vueTemplateStyle: 'sfc',
     display: 'Vue Chat + Vite',
     description: 'Vue 3 + TypeScript + @tdesign-vue-next/chat',
+  },
+  {
+    id: 'vue-chat-tsx-vite',
+    ui: 'vue-chat',
+    bundler: 'vite',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue Chat + TSX + Vite',
+    description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat',
   },
   {
     id: 'react-chat-vite',
@@ -103,8 +156,17 @@ export const TEMPLATES: TemplateMeta[] = [
     id: 'vue-chat-rspack',
     ui: 'vue-chat',
     bundler: 'rspack',
+    vueTemplateStyle: 'sfc',
     display: 'Vue Chat + Rspack',
     description: 'Vue 3 + TypeScript + @tdesign-vue-next/chat',
+  },
+  {
+    id: 'vue-chat-tsx-rspack',
+    ui: 'vue-chat',
+    bundler: 'rspack',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue Chat + TSX + Rspack',
+    description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat',
   },
   {
     id: 'react-chat-rspack',
@@ -136,6 +198,12 @@ export function findTemplateById(templateId: string): TemplateMeta | undefined {
 export function findTemplateByParts(
   ui: UiFramework,
   bundler: Bundler,
+  vueTemplateStyle?: VueTemplateStyle,
 ): TemplateMeta | undefined {
-  return TEMPLATES.find((template) => template.ui === ui && template.bundler === bundler)
+  return TEMPLATES.find(
+    (template) =>
+      template.ui === ui &&
+      template.bundler === bundler &&
+      template.vueTemplateStyle === vueTemplateStyle,
+  )
 }

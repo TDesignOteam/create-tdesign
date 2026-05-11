@@ -12,11 +12,16 @@ import {
   findTemplateByParts,
   type Bundler,
   type UiFramework,
+  type VueTemplateStyle,
 } from './templates.js'
 
 const cwd = process.cwd()
 const defaultTargetDir = 'tdesign-app'
 type PackageManager = 'npm' | 'pnpm' | 'bun' | 'yarn'
+const VUE_TEMPLATE_STYLE_OPTIONS: Array<{ value: VueTemplateStyle; label: string }> = [
+  { value: 'sfc', label: 'SFC (Recommended)' },
+  { value: 'tsx', label: 'TSX' },
+]
 
 const PACKAGE_MANAGER_OPTIONS: Array<{ value: PackageManager; label: string }> = [
   { value: 'npm', label: 'npm' },
@@ -223,10 +228,11 @@ async function resolveTemplate(interactive: boolean) {
       fail('Both --ui and --bundler are required when selecting a template by parts.')
     }
 
-    const template = findTemplateByParts(
-      normalizeUi(argv.ui),
-      normalizeBundler(argv.bundler),
-    )
+    const ui = normalizeUi(argv.ui)
+    const bundler = normalizeBundler(argv.bundler)
+    const vueTemplateStyle = isVueRelatedUi(ui) ? 'sfc' : undefined
+
+    const template = findTemplateByParts(ui, bundler, vueTemplateStyle)
 
     if (template) {
       return template
@@ -263,7 +269,33 @@ async function resolveTemplate(interactive: boolean) {
     return undefined
   }
 
-  return findTemplateByParts(ui as UiFramework, bundler as Bundler)
+  const normalizedUi = ui as UiFramework
+  const normalizedBundler = bundler as Bundler
+  const vueTemplateStyle = isVueRelatedUi(normalizedUi)
+    ? await resolveVueTemplateStyle()
+    : undefined
+
+  if (isVueRelatedUi(normalizedUi) && !vueTemplateStyle) {
+    return undefined
+  }
+
+  return findTemplateByParts(normalizedUi, normalizedBundler, vueTemplateStyle)
+}
+
+async function resolveVueTemplateStyle() {
+  const vueTemplateStyle = await prompts.select({
+    message: 'Select a Vue component style:',
+    options: VUE_TEMPLATE_STYLE_OPTIONS.map((option) => ({
+      label: option.label,
+      value: option.value,
+    })),
+  })
+
+  if (prompts.isCancel(vueTemplateStyle)) {
+    return undefined
+  }
+
+  return vueTemplateStyle as VueTemplateStyle
 }
 
 async function resolvePackageManager(interactive: boolean) {
@@ -398,6 +430,10 @@ function normalizeUi(value: string): UiFramework {
     return match.value
   }
   fail(`Unsupported UI framework "${value}".`)
+}
+
+function isVueRelatedUi(value: UiFramework) {
+  return value === 'vue' || value === 'mobile-vue' || value === 'vue-chat'
 }
 
 function normalizeBundler(value: string): Bundler {
