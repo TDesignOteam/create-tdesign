@@ -30,7 +30,7 @@ jobs:
             const dirs = fs.readdirSync('templates');
             execSync('mkdir examples && cd examples', { stdio: 'inherit' });
             dirs.forEach(name => {
-              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'examples' });
+              execSync(`node ../dist/index.js ${name} --template ${name} --pm npm`, { stdio: 'inherit', cwd: 'examples' });
             });
 
       - run: pnpm dlx pkg-pr-new publish --bin --packageManager=npm,pnpm,bun --template './examples/*'
