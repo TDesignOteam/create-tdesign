@@ -490,7 +490,7 @@ function isVueImportModeSupportedUi(value: UiFramework) {
 }
 
 function normalizeBundler(value: string): Bundler {
-  if (value === 'vite' || value === 'rspack') {
+  if (value === 'vite' || value === 'rspack' || value === 'vite-plus') {
     return value
   }
   fail(`Unsupported bundler "${value}".`)

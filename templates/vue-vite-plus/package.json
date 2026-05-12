@@ -1,0 +1,27 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vp dev",
+    "build": "vue-tsc --noEmit && vp build",
+    "preview": "vp preview",
+    "typecheck": "vue-tsc --noEmit",
+    "check": "vp check",
+    "lint": "vp lint",
+    "fmt": "vp fmt",
+    "test": "vp test"
+  },
+  "dependencies": {
+    "tdesign-icons-vue-next": "^0.4.4",
+    "tdesign-vue-next": "^1.19.2",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "^6.0.3",
+    "vite-plus": "latest",
+    "vue-tsc": "^3.2.8"
+  }
+}
