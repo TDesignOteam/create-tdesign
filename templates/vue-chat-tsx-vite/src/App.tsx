@@ -1,5 +1,6 @@
 import { defineComponent } from 'vue'
 import { Chatbot } from '@tdesign-vue-next/chat'
+import { ChatBubbleIcon } from 'tdesign-icons-vue-next'
 
 const sections = [
   {
@@ -21,7 +22,10 @@ export default defineComponent(() => {
     <main class="page-shell">
       <section class="content-grid">
         <aside class="intro-panel">
-          <p class="eyebrow">__TEMPLATENAME__</p>
+          <p class="eyebrow">
+            <ChatBubbleIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+            __TEMPLATENAME__
+          </p>
           <div class="hero-copy">
             <h1 class="hero-title">AI Chat Starter</h1>
             <p class="hero-intro">

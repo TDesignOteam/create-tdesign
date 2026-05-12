@@ -55,7 +55,7 @@ export default defineConfig({
       resolvers: [TDesignResolver({ library: 'vue-next' })],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'vue-next' })],
+      resolvers: [TDesignResolver({ library: 'vue-next', resolveIcons: true })],
     }),
   ],
 })

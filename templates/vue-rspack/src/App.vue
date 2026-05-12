@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { AppIcon } from 'tdesign-icons-vue-next'
+
 const sections = [
   {
     title: 'Starter stack',
@@ -20,7 +22,10 @@ const sections = [
     <section class="hero-grid">
       <t-card class="hero-card" :bordered="false">
         <t-space direction="vertical" size="20px">
-          <p class="eyebrow">__TEMPLATENAME__</p>
+          <p class="eyebrow">
+            <AppIcon style="margin-right: 6px; vertical-align: middle" />
+            __TEMPLATENAME__
+          </p>
           <div class="hero-copy">
             <h1 class="hero-title">Create TDesign</h1>
             <p class="hero-intro">

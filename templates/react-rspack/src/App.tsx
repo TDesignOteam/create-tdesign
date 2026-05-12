@@ -1,4 +1,5 @@
 import { Button, Card, Space } from 'tdesign-react'
+import { AppIcon } from 'tdesign-icons-react'
 
 const sections = [
   {
@@ -21,7 +22,10 @@ export default function App() {
       <section className="hero-grid">
         <Card className="hero-card" bordered={false}>
           <Space direction="vertical" size={20}>
-            <p className="eyebrow">__TEMPLATENAME__</p>
+            <p className="eyebrow">
+              <AppIcon style={{ marginRight: '6px', verticalAlign: 'middle' }} />
+              __TEMPLATENAME__
+            </p>
             <div className="hero-copy">
               <h1 className="hero-title">Create TDesign</h1>
               <p className="hero-intro">

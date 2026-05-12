@@ -1,4 +1,5 @@
 import { Button, Cell, CellGroup } from 'tdesign-mobile-react'
+import { AppIcon } from 'tdesign-icons-react'
 
 const sections = [
   {
@@ -19,7 +20,10 @@ export default function App() {
   return (
     <main className="page-shell">
       <section className="hero">
-        <p className="eyebrow">__TEMPLATENAME__</p>
+        <p className="eyebrow">
+          <AppIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+          __TEMPLATENAME__
+        </p>
         <div className="hero-copy">
           <h1 className="hero-title">Mobile TDesign Starter</h1>
           <p className="hero-intro">

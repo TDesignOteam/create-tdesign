@@ -19,7 +19,10 @@ const sections = [
   <main class="page-shell">
     <section class="content-grid">
       <aside class="intro-panel">
-        <p class="eyebrow">__TEMPLATENAME__</p>
+        <p class="eyebrow">
+          <chat-bubble-icon style="margin-right: 8px; vertical-align: middle" />
+          __TEMPLATENAME__
+        </p>
         <div class="hero-copy">
           <h1 class="hero-title">AI Chat Starter</h1>
           <p class="hero-intro">

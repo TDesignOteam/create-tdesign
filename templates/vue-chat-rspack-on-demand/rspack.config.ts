@@ -65,7 +65,7 @@ export default defineConfig({
       resolvers: [TDesignResolver({ library: 'chat' })],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'chat' })],
+      resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],
     }),
   ],
 })

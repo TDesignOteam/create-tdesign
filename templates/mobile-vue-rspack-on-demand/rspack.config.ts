@@ -55,7 +55,7 @@ export default defineConfig({
       resolvers: [TDesignResolver({ library: 'mobile-vue' })],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'mobile-vue' })],
+      resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
     }),
   ],
 })

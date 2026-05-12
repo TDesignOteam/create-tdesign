@@ -1,4 +1,5 @@
 import { ChatBot } from '@tdesign-react/chat'
+import { ChatBubbleIcon } from 'tdesign-icons-react'
 
 const sections = [
   {
@@ -20,7 +21,10 @@ export default function App() {
     <main className="page-shell">
       <section className="content-grid">
         <aside className="intro-panel">
-          <p className="eyebrow">__TEMPLATENAME__</p>
+          <p className="eyebrow">
+            <ChatBubbleIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+            __TEMPLATENAME__
+          </p>
           <div className="hero-copy">
             <h1 className="hero-title">AI Chat Starter</h1>
             <p className="hero-intro">

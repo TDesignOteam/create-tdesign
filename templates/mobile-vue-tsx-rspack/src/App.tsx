@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { AppIcon } from 'tdesign-icons-vue-next'
 import {
   Button as TButton,
   Cell as TCell,
@@ -24,7 +25,10 @@ export default defineComponent(() => {
   return () => (
     <main class="page-shell">
       <section class="hero">
-        <p class="eyebrow">__TEMPLATENAME__</p>
+        <p class="eyebrow">
+          <AppIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+          __TEMPLATENAME__
+        </p>
         <div class="hero-copy">
           <h1 class="hero-title">Mobile TDesign Starter</h1>
           <p class="hero-intro">
