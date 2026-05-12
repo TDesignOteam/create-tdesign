@@ -8,16 +8,16 @@ import {
 
 const sections = [
   {
-    title: 'Mobile-ready starter',
+    title: 'Starter stack',
     description: 'Built with Vue 3, TSX, TypeScript, and TDesign Mobile Vue.',
   },
   {
-    title: 'Fast local loop',
+    title: 'Build workflow',
     description: 'Use Rspack for quick rebuilds and production output.',
   },
   {
-    title: 'Clean foundation',
-    description: 'Start from a minimal app shell and shape the product quickly.',
+    title: 'Next step',
+    description: 'Open src/App.tsx and start shaping __PROJECTNAME__.',
   },
 ]
 
@@ -29,30 +29,35 @@ export default defineComponent(() => {
           <AppIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
           __TEMPLATENAME__
         </p>
-        <h1>Mobile TDesign Starter</h1>
-        <p class="intro">
-          __PROJECTNAME__ is ready for a fast mobile web prototype with Vue, TSX,
-          and TDesign Mobile.
-        </p>
+        <div class="hero-copy">
+          <h1 class="hero-title">Mobile TDesign Starter</h1>
+          <p class="hero-intro">
+            __PROJECTNAME__ is ready for a fast mobile web prototype with Vue, TSX,
+            and TDesign Mobile.
+          </p>
+        </div>
       </section>
 
-      <TCellGroup theme="card">
-        {sections.map((item) => (
-          <TCell
-            key={item.title}
-            title={item.title}
-            description={item.description}
-            arrow
-          />
-        ))}
-      </TCellGroup>
+      <section class="section-block">
+        <p class="section-heading">Getting started</p>
+        <TCellGroup theme="card">
+          {sections.map((item) => (
+            <TCell
+              key={item.title}
+              title={item.title}
+              description={item.description}
+              arrow
+            />
+          ))}
+        </TCellGroup>
+      </section>
 
       <section class="actions">
         <TButton theme="primary" size="large" block>
           Run pnpm dev
         </TButton>
         <TButton variant="outline" size="large" block>
-          Start Editing
+          Open src/App.tsx
         </TButton>
       </section>
     </main>

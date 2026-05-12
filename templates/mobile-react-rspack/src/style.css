@@ -44,21 +44,37 @@ body {
   opacity: 0.82;
 }
 
-h1 {
+.hero-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.hero-title {
   margin: 0;
   font-size: 32px;
   line-height: 1.05;
 }
 
-.intro {
-  margin: 14px 0 0;
+.hero-intro {
+  margin: 0;
   font-size: 15px;
   line-height: 1.65;
   opacity: 0.92;
 }
 
-.feature-group {
+.section-block {
   margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.section-heading {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .actions {

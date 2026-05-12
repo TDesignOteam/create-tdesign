@@ -3,16 +3,16 @@ import { AppIcon } from 'tdesign-icons-react'
 
 const sections = [
   {
-    title: 'Mobile-ready starter',
+    title: 'Starter stack',
     description: 'Built with React, TypeScript, and TDesign Mobile React.',
   },
   {
-    title: 'Fast local loop',
-    description: 'Use Vite for instant dev startup and production builds.',
+    title: 'Build workflow',
+    description: 'Use Vite for instant local startup and production builds.',
   },
   {
-    title: 'Clean foundation',
-    description: 'Start from a minimal app shell and shape the product quickly.',
+    title: 'Next step',
+    description: 'Open src/App.tsx and start shaping __PROJECTNAME__.',
   },
 ]
 
@@ -24,14 +24,17 @@ export default function App() {
           <AppIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
           __TEMPLATENAME__
         </p>
-        <h1>Mobile TDesign Starter</h1>
-        <p className="intro">
-          __PROJECTNAME__ is ready for a fast mobile web prototype with React and
-          TDesign Mobile.
-        </p>
+        <div className="hero-copy">
+          <h1 className="hero-title">Mobile TDesign Starter</h1>
+          <p className="hero-intro">
+            __PROJECTNAME__ is ready for a fast mobile web prototype with React and
+            TDesign Mobile.
+          </p>
+        </div>
       </section>
 
-      <div className="feature-group">
+      <section className="section-block">
+        <p className="section-heading">Getting started</p>
         <CellGroup theme="card">
           {sections.map((item) => (
             <Cell
@@ -42,14 +45,14 @@ export default function App() {
             />
           ))}
         </CellGroup>
-      </div>
+      </section>
 
       <section className="actions">
         <Button theme="primary" size="large" block>
           Run pnpm dev
         </Button>
         <Button variant="outline" size="large" block>
-          Start Editing
+          Open src/App.tsx
         </Button>
       </section>
     </main>

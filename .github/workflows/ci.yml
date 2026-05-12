@@ -1,7 +1,12 @@
 name: ci
 on:
-  push:
+  push: 
+    branches: [main]
   pull_request:
+
+concurrency:
+  group: ${{ github.workflow }}-${{ github.event.pull_request.number || github.ref }}
+  cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
   build:
@@ -27,31 +32,15 @@ jobs:
       - run: pnpm build
 
       - name: test templates
-        run: |
-          mkdir tests && cd tests
-          node ../dist/index.js vue-vite --template vue-vite
-          node ../dist/index.js vue-vite-on-demand --template vue-vite-on-demand
-          node ../dist/index.js vue-rspack --template vue-rspack
-          node ../dist/index.js vue-rspack-on-demand --template vue-rspack-on-demand
-          node ../dist/index.js vue-tsx-vite --template vue-tsx-vite
-          node ../dist/index.js vue-tsx-rspack --template vue-tsx-rspack
-          node ../dist/index.js react-vite --template react-vite
-          node ../dist/index.js react-rspack --template react-rspack
-          node ../dist/index.js react-chat-vite --template react-chat-vite
-          node ../dist/index.js react-chat-rspack --template react-chat-rspack
-          node ../dist/index.js vue-chat-vite --template vue-chat-vite
-          node ../dist/index.js vue-chat-rspack --template vue-chat-rspack
-          node ../dist/index.js vue-chat-vite-on-demand --template vue-chat-vite-on-demand
-          node ../dist/index.js vue-chat-rspack-on-demand --template vue-chat-rspack-on-demand
-          node ../dist/index.js vue-chat-tsx-vite --template vue-chat-tsx-vite
-          node ../dist/index.js vue-chat-tsx-rspack --template vue-chat-tsx-rspack
-          node ../dist/index.js mobile-vue-vite --template mobile-vue-vite
-          node ../dist/index.js mobile-vue-rspack --template mobile-vue-rspack
-          node ../dist/index.js mobile-vue-vite-on-demand --template mobile-vue-vite-on-demand
-          node ../dist/index.js mobile-vue-rspack-on-demand --template mobile-vue-rspack-on-demand
-          node ../dist/index.js mobile-vue-tsx-vite --template mobile-vue-tsx-vite
-          node ../dist/index.js mobile-vue-tsx-rspack --template mobile-vue-tsx-rspack
-          node ../dist/index.js mobile-react-vite --template mobile-react-vite
-          node ../dist/index.js mobile-react-rspack --template mobile-react-rspack
-          pnpm -r install
-          pnpm -r build
+        uses: actions/github-script@v7
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates');
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });

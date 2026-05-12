@@ -1,16 +1,16 @@
 <script setup lang="ts">
 const sections = [
   {
-    title: 'Mobile-ready starter',
+    title: 'Starter stack',
     description: 'Built with Vue 3, TypeScript, and TDesign Mobile Vue.',
   },
   {
-    title: 'Fast local loop',
-    description: 'Use Vite for instant dev startup and production builds.',
+    title: 'Build workflow',
+    description: 'Use Vite for instant local startup and production builds.',
   },
   {
-    title: 'Clean foundation',
-    description: 'Start from a minimal app shell and shape the product quickly.',
+    title: 'Next step',
+    description: 'Open src/App.vue and start shaping __PROJECTNAME__.',
   },
 ]
 </script>
@@ -22,26 +22,31 @@ const sections = [
         <app-icon style="margin-right: 8px; vertical-align: middle" />
         __TEMPLATENAME__
       </p>
-      <h1>Mobile TDesign Starter</h1>
-      <p class="intro">
-        __PROJECTNAME__ is ready for a fast mobile web prototype with Vue 3 and
-        TDesign Mobile.
-      </p>
+      <div class="hero-copy">
+        <h1 class="hero-title">Mobile TDesign Starter</h1>
+        <p class="hero-intro">
+          __PROJECTNAME__ is ready for a fast mobile web prototype with Vue 3 and
+          TDesign Mobile.
+        </p>
+      </div>
     </section>
 
-    <t-cell-group theme="card">
-      <t-cell
-        v-for="item in sections"
-        :key="item.title"
-        :title="item.title"
-        :description="item.description"
-        arrow
-      />
-    </t-cell-group>
+    <section class="section-block">
+      <p class="section-heading">Getting started</p>
+      <t-cell-group theme="card">
+        <t-cell
+          v-for="item in sections"
+          :key="item.title"
+          :title="item.title"
+          :description="item.description"
+          arrow
+        />
+      </t-cell-group>
+    </section>
 
     <section class="actions">
       <t-button theme="primary" size="large" block>Run pnpm dev</t-button>
-      <t-button variant="outline" size="large" block>Start Editing</t-button>
+      <t-button variant="outline" size="large" block>Open src/App.vue</t-button>
     </section>
   </main>
 </template>
@@ -73,17 +78,37 @@ const sections = [
   opacity: 0.82;
 }
 
-h1 {
+.hero-copy {
+  display: grid;
+  gap: 14px;
+}
+
+.hero-title {
   margin: 0;
   font-size: 32px;
   line-height: 1.05;
 }
 
-.intro {
-  margin: 14px 0 0;
+.hero-intro {
+  margin: 0;
   font-size: 15px;
   line-height: 1.65;
   opacity: 0.92;
+}
+
+.section-block {
+  margin-top: 20px;
+  display: grid;
+  gap: 12px;
+}
+
+.section-heading {
+  margin: 0;
+  color: #1d4ed8;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
 .actions {

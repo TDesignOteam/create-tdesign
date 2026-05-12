@@ -4,13 +4,21 @@ import {
   Button as TButton,
   Card as TCard,
   Space as TSpace,
-  Tag as TTag,
 } from 'tdesign-vue-next'
 
-const highlights = [
-  'Vue 3 + TSX + TypeScript',
-  'Vite dev/build pipeline',
-  'TDesign desktop components',
+const sections = [
+  {
+    title: 'Starter stack',
+    description: 'Built with Vue 3, TSX, TypeScript, and TDesign desktop components.',
+  },
+  {
+    title: 'Build workflow',
+    description: 'Use Vite for instant local startup and production builds.',
+  },
+  {
+    title: 'Next step',
+    description: 'Open src/App.tsx and start shaping __PROJECTNAME__.',
+  },
 ]
 
 export default defineComponent(() => {
@@ -18,36 +26,37 @@ export default defineComponent(() => {
     <main class="page-shell">
       <section class="hero-grid">
         <TCard class="hero-card" bordered={false}>
-          <TSpace direction="vertical" size="16px">
-            <TTag theme="primary" variant="light">
+          <TSpace direction="vertical" size="20px">
+            <p class="eyebrow">
               <AppIcon style={{ marginRight: '6px', verticalAlign: 'middle' }} />
               __TEMPLATENAME__
-            </TTag>
-            <div>
-              <h1>Create TDesign</h1>
-              <p>
+            </p>
+            <div class="hero-copy">
+              <h1 class="hero-title">Create TDesign</h1>
+              <p class="hero-intro">
                 Your __PROJECTNAME__ project is ready. Start building with Vue,
                 TSX, TypeScript, and TDesign.
               </p>
             </div>
-            <TSpace>
-              <TButton theme="primary">Open Docs</TButton>
-              <TButton variant="outline">Start Editing</TButton>
-            </TSpace>
+            <div class="action-row">
+              <TButton theme="primary">Run pnpm dev</TButton>
+              <TButton variant="outline">Open src/App.tsx</TButton>
+            </div>
           </TSpace>
         </TCard>
 
-        <TCard title="What is included" class="panel-card">
-          <TSpace direction="vertical" size="12px">
-            {highlights.map((item) => (
-              <div key={item} class="feature-row">
-                <TTag theme="success" variant="light">
-                  Ready
-                </TTag>
-                <span>{item}</span>
-              </div>
-            ))}
-          </TSpace>
+        <TCard class="panel-card">
+          <div class="section-block">
+            <p class="section-heading">Getting started</p>
+            <div class="section-list">
+              {sections.map((item) => (
+                <div key={item.title} class="section-row">
+                  <span class="section-row-title">{item.title}</span>
+                  <p class="section-row-description">{item.description}</p>
+                </div>
+              ))}
+            </div>
+          </div>
         </TCard>
       </section>
     </main>

@@ -1,10 +1,19 @@
 <script setup lang="ts">
 import { AppIcon } from 'tdesign-icons-vue-next'
 
-const highlights = [
-  'Vue 3 + TypeScript',
-  'Rspack dev/build pipeline',
-  'TDesign desktop components',
+const sections = [
+  {
+    title: 'Starter stack',
+    description: 'Built with Vue 3, TypeScript, and TDesign desktop components.',
+  },
+  {
+    title: 'Build workflow',
+    description: 'Use Rspack for quick rebuilds and production output.',
+  },
+  {
+    title: 'Next step',
+    description: 'Open src/App.vue and start shaping __PROJECTNAME__.',
+  },
 ]
 </script>
 
@@ -12,32 +21,35 @@ const highlights = [
   <main class="page-shell">
     <section class="hero-grid">
       <t-card class="hero-card" :bordered="false">
-        <t-space direction="vertical" size="16px">
-          <t-tag theme="primary" variant="light">
+        <t-space direction="vertical" size="20px">
+          <p class="eyebrow">
             <AppIcon style="margin-right: 6px; vertical-align: middle" />
             __TEMPLATENAME__
-          </t-tag>
-          <div>
-            <h1>Create TDesign</h1>
-            <p>
+          </p>
+          <div class="hero-copy">
+            <h1 class="hero-title">Create TDesign</h1>
+            <p class="hero-intro">
               Your __PROJECTNAME__ project is ready. Start building with Vue 3,
               TypeScript, and TDesign.
             </p>
           </div>
-          <t-space>
-            <t-button theme="primary">Open Docs</t-button>
-            <t-button variant="outline">Start Editing</t-button>
-          </t-space>
+          <div class="action-row">
+            <t-button theme="primary">Run pnpm dev</t-button>
+            <t-button variant="outline">Open src/App.vue</t-button>
+          </div>
         </t-space>
       </t-card>
 
-      <t-card title="What is included" class="panel-card">
-        <t-space direction="vertical" size="12px">
-          <div v-for="item in highlights" :key="item" class="feature-row">
-            <t-tag theme="success" variant="light">Ready</t-tag>
-            <span>{{ item }}</span>
+      <t-card class="panel-card">
+        <div class="section-block">
+          <p class="section-heading">Getting started</p>
+          <div class="section-list">
+            <div v-for="item in sections" :key="item.title" class="section-row">
+              <span class="section-row-title">{{ item.title }}</span>
+              <p class="section-row-description">{{ item.description }}</p>
+            </div>
           </div>
-        </t-space>
+        </div>
       </t-card>
     </section>
   </main>
@@ -65,13 +77,28 @@ const highlights = [
   box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
 }
 
-h1 {
-  margin: 0 0 12px;
+.eyebrow,
+.section-heading {
+  margin: 0;
+  color: #315efb;
+  font-size: 12px;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.hero-copy {
+  display: grid;
+  gap: 12px;
+}
+
+.hero-title {
+  margin: 0;
   font-size: clamp(32px, 5vw, 52px);
   line-height: 1.05;
 }
 
-p {
+.hero-intro {
   margin: 0;
   max-width: 56ch;
   color: #52606d;
@@ -79,10 +106,38 @@ p {
   line-height: 1.7;
 }
 
-.feature-row {
+.action-row {
   display: flex;
-  align-items: center;
   gap: 12px;
+  flex-wrap: wrap;
+}
+
+.section-block {
+  display: grid;
+  gap: 20px;
+}
+
+.section-list {
+  display: grid;
+  gap: 16px;
+}
+
+.section-row {
+  display: grid;
+  gap: 6px;
+}
+
+.section-row-title {
+  font-size: 18px;
+  font-weight: 600;
+  line-height: 1.4;
+}
+
+.section-row-description {
+  margin: 0;
+  color: #52606d;
+  font-size: 15px;
+  line-height: 1.65;
 }
 
 @media (min-width: 860px) {
