@@ -6,11 +6,11 @@ const sections = [
   },
   {
     title: 'Build workflow',
-    description: 'Use Rspack for quick rebuilds and production output.',
+    description: 'Use Vite for instant local startup and production builds.',
   },
   {
     title: 'Next step',
-    description: 'Open src/App.vue and start shaping __PROJECTNAME__.',
+    description: 'Open src/App.vue and start shaping mobile-vue-vite.',
   },
 ]
 </script>
@@ -18,11 +18,11 @@ const sections = [
 <template>
   <main class="page-shell">
     <section class="hero">
-      <p class="eyebrow">__TEMPLATENAME__</p>
+      <p class="eyebrow">Mobile Vue + Vite</p>
       <div class="hero-copy">
         <h1 class="hero-title">Mobile TDesign Starter</h1>
         <p class="hero-intro">
-          __PROJECTNAME__ is ready for a fast mobile web prototype with Vue 3 and
+          mobile-vue-vite is ready for a fast mobile web prototype with Vue 3 and
           TDesign Mobile.
         </p>
       </div>
