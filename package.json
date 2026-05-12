@@ -19,6 +19,14 @@
   "publishConfig": {
     "access": "public"
   },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TDesignOteam/create-tdesign.git"
+  },
+  "homepage": "https://github.com/TDesignOteam/create-tdesign/blob/main/README.md",
+  "bugs": {
+    "url": "https://github.com/TDesignOteam/create-tdesign/issues"
+  },
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
