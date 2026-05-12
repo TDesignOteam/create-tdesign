@@ -132,7 +132,7 @@ async function init() {
     projectName: path.basename(root),
     packageName,
     templateName: template.display,
-  })
+  }, packageManager)
 
   prompts.outro(renderDoneMessage(root, packageManager))
 }
@@ -366,10 +366,19 @@ function scaffoldTemplate(
   templateDir: string,
   root: string,
   context: Record<string, string>,
+  packageManager: PackageManager,
 ) {
   for (const entry of fs.readdirSync(templateDir)) {
+    if (shouldSkipTemplateEntry(entry, packageManager)) {
+      continue
+    }
+
     copyEntry(path.join(templateDir, entry), path.join(root, renameFiles[entry] ?? entry), context)
   }
+}
+
+function shouldSkipTemplateEntry(entry: string, packageManager: PackageManager) {
+  return entry === 'pnpm-workspace.yaml' && packageManager !== 'pnpm'
 }
 
 function copyEntry(source: string, destination: string, context: Record<string, string>) {
