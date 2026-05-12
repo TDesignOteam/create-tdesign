@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'vue-next', resolveIcons: true })],
+      resolvers: [TDesignResolver({ library: 'vue-next' })],
     }),
     Components({
       resolvers: [TDesignResolver({ library: 'vue-next', resolveIcons: true })],

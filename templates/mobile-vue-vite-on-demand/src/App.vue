@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { AppIcon } from 'tdesign-icons-vue-next'
-
 const sections = [
   {
     title: 'Mobile-ready starter',
@@ -21,7 +19,7 @@ const sections = [
   <main class="page-shell">
     <section class="hero">
       <p class="eyebrow">
-        <AppIcon style="margin-right: 8px; vertical-align: middle" />
+        <app-icon style="margin-right: 8px; vertical-align: middle" />
         __TEMPLATENAME__
       </p>
       <h1>Mobile TDesign Starter</h1>

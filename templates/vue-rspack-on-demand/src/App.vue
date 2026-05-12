@@ -1,6 +1,4 @@
 <script setup lang="ts">
-import { AppIcon } from 'tdesign-icons-vue-next'
-
 const highlights = [
   'Vue 3 + TypeScript',
   'Rspack dev/build pipeline',
@@ -14,7 +12,7 @@ const highlights = [
       <t-card class="hero-card" :bordered="false">
         <t-space direction="vertical" size="16px">
           <t-tag theme="primary" variant="light">
-            <AppIcon style="margin-right: 6px; vertical-align: middle" />
+            <app-icon style="margin-right: 6px; vertical-align: middle" />
             __TEMPLATENAME__
           </t-tag>
           <div>

@@ -1,12 +1,8 @@
-<script setup lang="ts">
-import { ChatBubbleIcon } from 'tdesign-icons-vue-next'
-</script>
-
 <template>
   <main class="page-shell">
     <section class="intro-panel">
       <p class="eyebrow">
-        <ChatBubbleIcon style="margin-right: 8px; vertical-align: middle" />
+        <chat-bubble-icon style="margin-right: 8px; vertical-align: middle" />
         __TEMPLATENAME__
       </p>
       <h1>AI Chat Starter</h1>

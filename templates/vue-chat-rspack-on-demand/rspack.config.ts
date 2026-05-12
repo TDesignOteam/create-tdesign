@@ -62,7 +62,7 @@ export default defineConfig({
     }),
     new VueLoaderPlugin() as RspackPluginFunction,
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],
+      resolvers: [TDesignResolver({ library: 'chat' })],
     }),
     Components({
       resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],

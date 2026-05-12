@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
+      resolvers: [TDesignResolver({ library: 'mobile-vue' })],
     }),
     Components({
       resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],

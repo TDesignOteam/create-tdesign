@@ -52,7 +52,7 @@ export default defineConfig({
     }),
     new VueLoaderPlugin() as RspackPluginFunction,
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
+      resolvers: [TDesignResolver({ library: 'mobile-vue' })],
     }),
     Components({
       resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],

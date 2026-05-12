@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [
     vue(),
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],
+      resolvers: [TDesignResolver({ library: 'chat' })],
     }),
     Components({
       resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],
