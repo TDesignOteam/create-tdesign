@@ -27,7 +27,7 @@ jobs:
           script: |
             const fs = require('fs');
             const { execSync } = require('child_process');
-            const dirs = fs.readdirSync('examples');
+            const dirs = fs.readdirSync('templates');
             execSync('mkdir examples && cd examples', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'examples' });
