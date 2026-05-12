@@ -1,4 +1,6 @@
 <script setup lang="ts">
+import { AppIcon } from 'tdesign-icons-vue-next'
+
 const highlights = [
   'Vue 3 + TypeScript',
   'Vite dev/build pipeline',
@@ -11,7 +13,10 @@ const highlights = [
     <section class="hero-grid">
       <t-card class="hero-card" :bordered="false">
         <t-space direction="vertical" size="16px">
-          <t-tag theme="primary" variant="light">__TEMPLATENAME__</t-tag>
+          <t-tag theme="primary" variant="light">
+            <AppIcon style="margin-right: 6px; vertical-align: middle" />
+            __TEMPLATENAME__
+          </t-tag>
           <div>
             <h1>Create TDesign</h1>
             <p>

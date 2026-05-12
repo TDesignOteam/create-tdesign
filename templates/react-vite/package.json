@@ -12,6 +12,7 @@
   "dependencies": {
     "react": "^19.2.6",
     "react-dom": "^19.2.6",
+    "tdesign-icons-react": "^0.6.4",
     "tdesign-react": "^1.16.9"
   },
   "devDependencies": {

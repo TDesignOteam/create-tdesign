@@ -1,11 +1,15 @@
 <script setup lang="ts">
 import { Chatbot } from '@tdesign-vue-next/chat'
+import { ChatBubbleIcon } from 'tdesign-icons-vue-next'
 </script>
 
 <template>
   <main class="page-shell">
     <section class="intro-panel">
-      <p class="eyebrow">__TEMPLATENAME__</p>
+      <p class="eyebrow">
+        <ChatBubbleIcon style="margin-right: 8px; vertical-align: middle" />
+        __TEMPLATENAME__
+      </p>
       <h1>AI Chat Starter</h1>
       <p class="intro">
         __PROJECTNAME__ ships with the TDesign chat component. Connect your real

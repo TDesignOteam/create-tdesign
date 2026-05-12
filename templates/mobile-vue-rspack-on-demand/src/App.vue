@@ -1,4 +1,5 @@
 <script setup lang="ts">
+
 const sections = [
   {
     title: 'Mobile-ready starter',
@@ -18,7 +19,10 @@ const sections = [
 <template>
   <main class="page-shell">
     <section class="hero">
-      <p class="eyebrow">__TEMPLATENAME__</p>
+      <p class="eyebrow">
+        <app-icon style="margin-right: 8px; vertical-align: middle" />
+        __TEMPLATENAME__
+      </p>
       <h1>Mobile TDesign Starter</h1>
       <p class="intro">
         __PROJECTNAME__ is ready for a fast mobile web prototype with Vue 3 and

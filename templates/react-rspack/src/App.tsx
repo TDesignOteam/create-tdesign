@@ -1,4 +1,5 @@
 import { Button, Card, Space, Tag } from 'tdesign-react'
+import { AppIcon } from 'tdesign-icons-react'
 
 const highlights = [
   'React + TypeScript',
@@ -13,6 +14,7 @@ export default function App() {
         <Card className="hero-card" bordered={false}>
           <Space direction="vertical" size={16}>
             <Tag theme="primary" variant="light-outline">
+              <AppIcon style={{ marginRight: '6px', verticalAlign: 'middle' }} />
               __TEMPLATENAME__
             </Tag>
             <div>

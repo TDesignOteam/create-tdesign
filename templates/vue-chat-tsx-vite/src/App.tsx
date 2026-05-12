@@ -1,11 +1,15 @@
 import { defineComponent } from 'vue'
 import { Chatbot } from '@tdesign-vue-next/chat'
+import { ChatBubbleIcon } from 'tdesign-icons-vue-next'
 
 export default defineComponent(() => {
   return () => (
     <main class="page-shell">
       <section class="intro-panel">
-        <p class="eyebrow">__TEMPLATENAME__</p>
+        <p class="eyebrow">
+          <ChatBubbleIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+          __TEMPLATENAME__
+        </p>
         <h1>AI Chat Starter</h1>
         <p class="intro">
           __PROJECTNAME__ ships with the TDesign chat component. Connect your real

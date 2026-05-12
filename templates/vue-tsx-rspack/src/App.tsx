@@ -1,4 +1,5 @@
 import { defineComponent } from 'vue'
+import { AppIcon } from 'tdesign-icons-vue-next'
 import {
   Button as TButton,
   Card as TCard,
@@ -19,6 +20,7 @@ export default defineComponent(() => {
         <TCard class="hero-card" bordered={false}>
           <TSpace direction="vertical" size="16px">
             <TTag theme="primary" variant="light">
+              <AppIcon style={{ marginRight: '6px', verticalAlign: 'middle' }} />
               __TEMPLATENAME__
             </TTag>
             <div>

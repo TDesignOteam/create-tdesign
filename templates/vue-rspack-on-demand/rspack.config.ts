@@ -52,10 +52,10 @@ export default defineConfig({
     }),
     new VueLoaderPlugin() as RspackPluginFunction,
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'vue-next' })],
+      resolvers: [TDesignResolver({ library: 'vue-next', resolveIcons: true })],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'vue-next' })],
+      resolvers: [TDesignResolver({ library: 'vue-next', resolveIcons: true })],
     }),
   ],
 })

@@ -1,10 +1,14 @@
 import { ChatBot } from '@tdesign-react/chat'
+import { ChatBubbleIcon } from 'tdesign-icons-react'
 
 export default function App() {
   return (
     <main className="page-shell">
       <section className="intro-panel">
-        <p className="eyebrow">__TEMPLATENAME__</p>
+        <p className="eyebrow">
+          <ChatBubbleIcon style={{ marginRight: '8px', verticalAlign: 'middle' }} />
+          __TEMPLATENAME__
+        </p>
         <h1>AI Chat Starter</h1>
         <p className="intro">
           __PROJECTNAME__ ships with the TDesign chat component. Connect your real

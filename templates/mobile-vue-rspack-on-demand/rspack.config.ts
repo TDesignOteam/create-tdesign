@@ -52,10 +52,10 @@ export default defineConfig({
     }),
     new VueLoaderPlugin() as RspackPluginFunction,
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'mobile-vue' })],
+      resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'mobile-vue' })],
+      resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
     }),
   ],
 })
