@@ -31,4 +31,7 @@ jobs:
           mkdir tests && cd tests
           node ../dist/index.js vue-vite --template vue-vite
           node ../dist/index.js vue-rspack --template vue-rspack
+          node ../dist/index.js react-vite --template react-vite
           node ../dist/index.js react-rspack --template react-rspack
+          pnpm -r install
+          pnpm -r build
