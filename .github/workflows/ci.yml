@@ -26,6 +26,7 @@ jobs:
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
+          cache: pnpm
 
       - run: pnpm ci
 
@@ -40,7 +41,7 @@ jobs:
             const dirs = fs.readdirSync('templates');
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
-              execSync(`node ../dist/index.js ${name} --template ${name} --pm npm`, { stdio: 'inherit', cwd: 'tests' });
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
             });
             execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
             execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });

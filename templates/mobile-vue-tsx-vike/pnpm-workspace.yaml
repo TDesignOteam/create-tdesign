@@ -1,0 +1,7 @@
+allowBuilds:
+  esbuild: true
+  vue-demi: true
+overrides:
+  cac: 6.7.14
+packages:
+  - '.'

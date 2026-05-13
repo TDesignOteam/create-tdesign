@@ -5,34 +5,46 @@ export type UiFramework =
   | 'mobile-react'
   | 'vue-chat'
   | 'react-chat'
-export type Bundler = 'vite' | 'rspack'
+export type Bundler = 'vite' | 'rspack' | 'vike'
 export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateImportMode = 'full' | 'on-demand'
 export type TemplateId =
   | 'vue-vite'
   | 'vue-vite-on-demand'
   | 'vue-tsx-vite'
+  | 'vue-vike'
+  | 'vue-vike-on-demand'
+  | 'vue-tsx-vike'
   | 'react-vite'
+  | 'mobile-react-vite'
+  | 'mobile-vue-vike'
+  | 'mobile-vue-vike-on-demand'
+  | 'mobile-vue-tsx-vike'
+  | 'react-chat-vite'
+  | 'vue-chat-vike'
+  | 'vue-chat-vike-on-demand'
+  | 'vue-chat-tsx-vike'
   | 'vue-rspack'
   | 'vue-rspack-on-demand'
   | 'vue-tsx-rspack'
   | 'react-rspack'
+  | 'mobile-react-rspack'
+  | 'react-chat-rspack'
+  | 'react-vike'
+  | 'mobile-react-vike'
+  | 'react-chat-vike'
   | 'mobile-vue-vite'
   | 'mobile-vue-vite-on-demand'
   | 'mobile-vue-tsx-vite'
-  | 'mobile-react-vite'
   | 'mobile-vue-rspack'
   | 'mobile-vue-rspack-on-demand'
   | 'mobile-vue-tsx-rspack'
-  | 'mobile-react-rspack'
   | 'vue-chat-vite'
   | 'vue-chat-vite-on-demand'
   | 'vue-chat-tsx-vite'
-  | 'react-chat-vite'
   | 'vue-chat-rspack'
   | 'vue-chat-rspack-on-demand'
   | 'vue-chat-tsx-rspack'
-  | 'react-chat-rspack'
 
 export interface TemplateMeta {
   id: TemplateId
@@ -112,6 +124,39 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-react',
   },
   {
+    id: 'react-vike',
+    ui: 'react',
+    bundler: 'vike',
+    display: 'React + Vike',
+    description: 'React + TypeScript + Vike + tdesign-react',
+  },
+  {
+    id: 'vue-vike',
+    importMode: 'full',
+    ui: 'vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Vue + Vike',
+    description: 'Vue 3 + TypeScript + Vike + tdesign-vue-next',
+  },
+  {
+    id: 'vue-vike-on-demand',
+    importMode: 'on-demand',
+    ui: 'vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Vue + Vike (On-demand)',
+    description: 'Vue 3 + TypeScript + Vike + tdesign-vue-next on-demand',
+  },
+  {
+    id: 'vue-tsx-vike',
+    ui: 'vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue + TSX + Vike',
+    description: 'Vue 3 + TSX + TypeScript + Vike + tdesign-vue-next',
+  },
+  {
     id: 'mobile-vue-vite',
     importMode: 'full',
     ui: 'mobile-vue',
@@ -178,6 +223,39 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-mobile-react',
   },
   {
+    id: 'mobile-react-vike',
+    ui: 'mobile-react',
+    bundler: 'vike',
+    display: 'Mobile React + Vike',
+    description: 'React + TypeScript + Vike + tdesign-mobile-react',
+  },
+  {
+    id: 'mobile-vue-vike',
+    importMode: 'full',
+    ui: 'mobile-vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Mobile Vue + Vike',
+    description: 'Vue 3 + TypeScript + Vike + tdesign-mobile-vue',
+  },
+  {
+    id: 'mobile-vue-vike-on-demand',
+    importMode: 'on-demand',
+    ui: 'mobile-vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Mobile Vue + Vike (On-demand)',
+    description: 'Vue 3 + TypeScript + Vike + tdesign-mobile-vue on-demand',
+  },
+  {
+    id: 'mobile-vue-tsx-vike',
+    ui: 'mobile-vue',
+    bundler: 'vike',
+    vueTemplateStyle: 'tsx',
+    display: 'Mobile Vue + TSX + Vike',
+    description: 'Vue 3 + TSX + TypeScript + Vike + tdesign-mobile-vue',
+  },
+  {
     id: 'vue-chat-vite',
     importMode: 'full',
     ui: 'vue-chat',
@@ -209,6 +287,32 @@ export const TEMPLATES: TemplateMeta[] = [
     bundler: 'vite',
     display: 'React Chat + Vite',
     description: 'React + TypeScript + @tdesign-react/chat',
+  },
+  {
+    id: 'vue-chat-vike',
+    importMode: 'full',
+    ui: 'vue-chat',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Vue Chat + Vike',
+    description: 'Vue 3 + TypeScript + Vike + @tdesign-vue-next/chat',
+  },
+  {
+    id: 'vue-chat-vike-on-demand',
+    importMode: 'on-demand',
+    ui: 'vue-chat',
+    bundler: 'vike',
+    vueTemplateStyle: 'sfc',
+    display: 'Vue Chat + Vike (On-demand)',
+    description: 'Vue 3 + TypeScript + Vike + @tdesign-vue-next/chat on-demand',
+  },
+  {
+    id: 'vue-chat-tsx-vike',
+    ui: 'vue-chat',
+    bundler: 'vike',
+    vueTemplateStyle: 'tsx',
+    display: 'Vue Chat + TSX + Vike',
+    description: 'Vue 3 + TSX + TypeScript + Vike + @tdesign-vue-next/chat',
   },
   {
     id: 'vue-chat-rspack',
@@ -243,6 +347,13 @@ export const TEMPLATES: TemplateMeta[] = [
     display: 'React Chat + Rspack',
     description: 'React + TypeScript + @tdesign-react/chat',
   },
+  {
+    id: 'react-chat-vike',
+    ui: 'react-chat',
+    bundler: 'vike',
+    display: 'React Chat + Vike',
+    description: 'React + TypeScript + Vike + @tdesign-react/chat',
+  },
 ]
 
 export const UI_OPTIONS: Array<{ value: UiFramework; label: string }> = [
@@ -257,6 +368,7 @@ export const UI_OPTIONS: Array<{ value: UiFramework; label: string }> = [
 export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [
   { value: 'vite', label: 'Vite' },
   { value: 'rspack', label: 'Rspack' },
+  { value: 'vike', label: 'Vike' },
 ]
 
 export function findTemplateById(templateId: string): TemplateMeta | undefined {
