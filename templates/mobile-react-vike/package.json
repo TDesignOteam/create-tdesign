@@ -1,0 +1,27 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vike dev",
+    "build": "tsc --noEmit && vike build",
+    "preview": "vike build && vike preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "react": "^19.2.6",
+    "react-dom": "^19.2.6",
+    "tdesign-icons-react": "^0.6.4",
+    "tdesign-mobile-react": "^0.22.0",
+    "vike": "0.4.259",
+    "vike-react": "^0.6.21"
+  },
+  "devDependencies": {
+    "@types/react": "^19.2.14",
+    "@types/react-dom": "^19.2.3",
+    "@vitejs/plugin-react": "^6.0.1",
+    "typescript": "^6.0.3",
+    "vite": "^8.0.12"
+  }
+}

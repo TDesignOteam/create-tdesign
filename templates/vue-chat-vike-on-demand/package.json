@@ -1,0 +1,28 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vike dev",
+    "build": "vue-tsc --noEmit && vike build",
+    "preview": "vike build && vike preview",
+    "typecheck": "vue-tsc --noEmit"
+  },
+  "dependencies": {
+    "@tdesign-vue-next/chat": "^0.5.2",
+    "tdesign-icons-vue-next": "^0.4.4",
+    "vike": "0.4.259",
+    "vike-vue": "^0.9.11",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@tdesign-vue-next/auto-import-resolver": "^0.1.6",
+    "@vitejs/plugin-vue": "^6.0.6",
+    "typescript": "^6.0.3",
+    "unplugin-auto-import": "^21.0.0",
+    "unplugin-vue-components": "^32.0.0",
+    "vite": "^8.0.12",
+    "vue-tsc": "^3.2.8"
+  }
+}

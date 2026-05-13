@@ -24,10 +24,5 @@
     "babel-loader": "^10.1.1",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.2.8"
-  },
-  "pnpm": {
-    "onlyBuiltDependencies": [
-      "vue-demi"
-    ]
   }
 }
