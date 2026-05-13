@@ -15,9 +15,9 @@
     "vue": "^3.5.34"
   },
   "devDependencies": {
-    "@types/node": "^25.6.2",
-    "@rspack/cli": "^2.0.2",
-    "@rspack/core": "^2.0.2",
+    "@types/node": "^25.7.0",
+    "@rspack/cli": "^2.0.3",
+    "@rspack/core": "^2.0.3",
     "@rspack/dev-server": "^2.0.1",
     "rspack-vue-loader": "^17.5.0",
     "typescript": "^6.0.3",
