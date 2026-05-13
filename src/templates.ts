@@ -371,14 +371,6 @@ export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [
   { value: 'vike', label: 'Vike' },
 ]
 
-export function getBundlerOptionsForUi(ui: UiFramework) {
-  const supportedBundlers = new Set(
-    TEMPLATES.filter((template) => template.ui === ui).map((template) => template.bundler),
-  )
-
-  return BUNDLER_OPTIONS.filter((option) => supportedBundlers.has(option.value))
-}
-
 export function findTemplateById(templateId: string): TemplateMeta | undefined {
   return TEMPLATES.find((template) => template.id === templateId)
 }

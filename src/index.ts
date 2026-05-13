@@ -10,7 +10,6 @@ import {
   TEMPLATES,
   findTemplateById,
   findTemplateByParts,
-  getBundlerOptionsForUi,
   type Bundler,
   type TemplateImportMode,
   type UiFramework,
@@ -276,7 +275,7 @@ async function resolveTemplate(interactive: boolean) {
 
   const bundler = await prompts.select({
     message: 'Select a bundler:',
-    options: getBundlerOptionsForUi(normalizedUi).map((option) => ({
+    options: BUNDLER_OPTIONS.map((option) => ({
       label: option.label,
       value: option.value,
     })),
