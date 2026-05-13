@@ -9,36 +9,179 @@ concurrency:
   cancel-in-progress: ${{ github.ref_name != 'main' }}
 
 jobs:
-  build:
+  vue:
     strategy:
       fail-fast: false
       matrix:
         node: [22, 24, 26]
         os: [ubuntu-latest, windows-latest]
-
     runs-on: ${{ matrix.os }}
-
     steps:
       - uses: actions/checkout@v6
-
       - uses: pnpm/action-setup@v6
-
       - uses: actions/setup-node@v6
         with:
           node-version: ${{ matrix.node }}
           cache: pnpm
-
       - run: pnpm ci
-
       - run: pnpm build
-
       - name: test templates
         uses: actions/github-script@v9
         with:
           script: |
             const fs = require('fs');
             const { execSync } = require('child_process');
-            const dirs = fs.readdirSync('templates');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('vue-') && !d.includes('-chat-') && !d.startsWith('mobile-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });
+
+  mobile-vue:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('mobile-vue-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });
+
+  react:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('react-') && !d.includes('-chat-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });
+
+  vue-chat:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('vue-chat-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });
+
+  react-chat:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('react-chat-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+            });
+            execSync('pnpm -r install', { stdio: 'inherit', cwd: 'tests' });
+            execSync('pnpm -r build', { stdio: 'inherit', cwd: 'tests' });
+
+  mobile-react:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@v6
+      - uses: pnpm/action-setup@v6
+      - uses: actions/setup-node@v6
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@v9
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('mobile-react-'));
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
