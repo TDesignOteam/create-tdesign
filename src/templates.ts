@@ -5,7 +5,7 @@ export type UiFramework =
   | 'mobile-react'
   | 'vue-chat'
   | 'react-chat'
-export type Bundler = 'vite' | 'rspack'
+export type Bundler = 'vite' | 'rspack' | 'vike'
 export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateImportMode = 'full' | 'on-demand'
 export type TemplateId =
@@ -17,6 +17,7 @@ export type TemplateId =
   | 'vue-rspack-on-demand'
   | 'vue-tsx-rspack'
   | 'react-rspack'
+  | 'react-vike'
   | 'mobile-vue-vite'
   | 'mobile-vue-vite-on-demand'
   | 'mobile-vue-tsx-vite'
@@ -110,6 +111,13 @@ export const TEMPLATES: TemplateMeta[] = [
     bundler: 'rspack',
     display: 'React + Rspack',
     description: 'React + TypeScript + tdesign-react',
+  },
+  {
+    id: 'react-vike',
+    ui: 'react',
+    bundler: 'vike',
+    display: 'React + Vike',
+    description: 'React + TypeScript + Vike + tdesign-react',
   },
   {
     id: 'mobile-vue-vite',
@@ -257,7 +265,16 @@ export const UI_OPTIONS: Array<{ value: UiFramework; label: string }> = [
 export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [
   { value: 'vite', label: 'Vite' },
   { value: 'rspack', label: 'Rspack' },
+  { value: 'vike', label: 'Vike' },
 ]
+
+export function getBundlerOptionsForUi(ui: UiFramework) {
+  const supportedBundlers = new Set(
+    TEMPLATES.filter((template) => template.ui === ui).map((template) => template.bundler),
+  )
+
+  return BUNDLER_OPTIONS.filter((option) => supportedBundlers.has(option.value))
+}
 
 export function findTemplateById(templateId: string): TemplateMeta | undefined {
   return TEMPLATES.find((template) => template.id === templateId)

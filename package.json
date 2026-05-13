@@ -2,7 +2,7 @@
   "name": "create-tdesign",
   "version": "0.1.0",
   "packageManager": "pnpm@11.1.1",
-  "description": "Scaffold TDesign projects with Vite or Rspack.",
+  "description": "Scaffold TDesign projects with Vite, Rspack, or Vike.",
   "type": "module",
   "license": "MIT",
   "bin": {
@@ -37,7 +37,8 @@
     "cli",
     "scaffold",
     "vite",
-    "rspack"
+    "rspack",
+    "vike"
   ],
   
   "devDependencies": {

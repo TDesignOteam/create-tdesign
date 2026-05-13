@@ -10,6 +10,7 @@ import {
   TEMPLATES,
   findTemplateById,
   findTemplateByParts,
+  getBundlerOptionsForUi,
   type Bundler,
   type TemplateImportMode,
   type UiFramework,
@@ -71,7 +72,7 @@ Scaffold a TDesign project with TypeScript.
 Options:
   -t, --template NAME       use a specific template
       --ui NAME             choose a UI framework
-      --bundler NAME        choose a bundler (vite, rspack)
+      --bundler NAME        choose a bundler (vite, rspack, vike)
       --import-mode NAME    choose a Vue import mode (full, on-demand)
       --package-manager     choose a package manager (npm, pnpm, bun, yarn)
       --pm NAME             alias of --package-manager
@@ -271,9 +272,11 @@ async function resolveTemplate(interactive: boolean) {
     return undefined
   }
 
+  const normalizedUi = ui as UiFramework
+
   const bundler = await prompts.select({
     message: 'Select a bundler:',
-    options: BUNDLER_OPTIONS.map((option) => ({
+    options: getBundlerOptionsForUi(normalizedUi).map((option) => ({
       label: option.label,
       value: option.value,
     })),
@@ -283,7 +286,6 @@ async function resolveTemplate(interactive: boolean) {
     return undefined
   }
 
-  const normalizedUi = ui as UiFramework
   const normalizedBundler = bundler as Bundler
   const vueTemplateStyle = isVueRelatedUi(normalizedUi)
     ? await resolveVueTemplateStyle()
@@ -490,9 +492,11 @@ function isVueImportModeSupportedUi(value: UiFramework) {
 }
 
 function normalizeBundler(value: string): Bundler {
-  if (value === 'vite' || value === 'rspack') {
-    return value
+  const match = BUNDLER_OPTIONS.find((option) => option.value === value)
+  if (match) {
+    return match.value
   }
+
   fail(`Unsupported bundler "${value}".`)
 }
 

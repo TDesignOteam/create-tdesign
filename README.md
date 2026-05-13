@@ -4,7 +4,7 @@
 
 ## Templates
 
-当前已支持 24 个 TypeScript 模板：
+当前已支持 25 个 TypeScript 模板：
 
 ### Vue SFC
 
@@ -46,6 +46,7 @@
 
 - `react-vite`
 - `react-rspack`
+- `react-vike`
 - `mobile-react-vite`
 - `mobile-react-rspack`
 - `react-chat-vite`
@@ -66,6 +67,7 @@ pnpm create tdesign my-app --template vue-vite
 pnpm create tdesign my-app --template vue-tsx-rspack
 pnpm create tdesign my-app --template vue-vite-on-demand
 pnpm create tdesign my-app --template react-chat-rspack
+pnpm create tdesign my-app --template react-vike
 ```
 
 按 UI 和打包工具组合指定：
@@ -73,6 +75,7 @@ pnpm create tdesign my-app --template react-chat-rspack
 ```bash
 pnpm create tdesign my-app --ui vue --bundler vite
 pnpm create tdesign my-app --ui react --bundler rspack
+pnpm create tdesign my-app --ui react --bundler vike
 pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand
 ```
 
@@ -102,6 +105,7 @@ pnpm create tdesign my-app --template react-chat-rspack --pm bun
 - `chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在 `App.vue` 或 `App.tsx` 里补充 `chatServiceConfig`。
 - Vue / Mobile Vue / Vue Chat 的 SFC 模板支持 `Full` 和 `On-demand` 两种引入模式。
 - TSX 模板不支持 `--import-mode on-demand`，`unplugin-vue-components` 仅对 SFC `<template>` 生效。
+- 目前仅 React 桌面端支持 `--bundler vike`。
 - `mobile-vue` 模板在 pnpm v11+ 环境下首次安装会自动放行 `vue-demi` 的构建脚本。
 
 ## Development
