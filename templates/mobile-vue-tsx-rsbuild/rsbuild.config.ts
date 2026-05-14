@@ -7,7 +7,7 @@ export default defineConfig({
   plugins: [pluginBabel({ include: /\.(?:jsx|tsx)$/ }), pluginVue(), pluginVueJsx()],
   source: {
     entry: {
-      main: './src/main.ts',
+      index: './src/main.ts',
     },
     define: {
       __VUE_OPTIONS_API__: true,
