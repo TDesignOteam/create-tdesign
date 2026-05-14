@@ -9,58 +9,58 @@
 ### Vue SFC
 
 - `vue-vite`
-- `vue-rspack`
+- `vue-rsbuild`
 - `vue-vike`
 - `vue-vite-on-demand`
 - `vue-vike-on-demand`
-- `vue-rspack-on-demand`
+- `vue-rsbuild-on-demand`
 
 ### Vue TSX
 
 - `vue-tsx-vite`
 - `vue-tsx-vike`
-- `vue-tsx-rspack`
+- `vue-tsx-rsbuild`
 
 ### Mobile Vue SFC
 
 - `mobile-vue-vite`
-- `mobile-vue-rspack`
+- `mobile-vue-rsbuild`
 - `mobile-vue-vike`
 - `mobile-vue-vite-on-demand`
 - `mobile-vue-vike-on-demand`
-- `mobile-vue-rspack-on-demand`
+- `mobile-vue-rsbuild-on-demand`
 
 ### Mobile Vue TSX
 
 - `mobile-vue-tsx-vite`
 - `mobile-vue-tsx-vike`
-- `mobile-vue-tsx-rspack`
+- `mobile-vue-tsx-rsbuild`
 
 ### Vue Chat SFC
 
 - `vue-chat-vite`
 - `vue-chat-vike`
-- `vue-chat-rspack`
+- `vue-chat-rsbuild`
 - `vue-chat-vite-on-demand`
 - `vue-chat-vike-on-demand`
-- `vue-chat-rspack-on-demand`
+- `vue-chat-rsbuild-on-demand`
 
 ### Vue Chat TSX
 
 - `vue-chat-tsx-vite`
 - `vue-chat-tsx-vike`
-- `vue-chat-tsx-rspack`
+- `vue-chat-tsx-rsbuild`
 
 ### React
 
 - `react-vite`
-- `react-rspack`
+- `react-rsbuild`
 - `react-vike`
 - `mobile-react-vite`
-- `mobile-react-rspack`
+- `mobile-react-rsbuild`
 - `mobile-react-vike`
 - `react-chat-vite`
-- `react-chat-rspack`
+- `react-chat-rsbuild`
 - `react-chat-vike`
 
 模板源码统一放在 `templates/` 目录下。
@@ -76,9 +76,9 @@ pnpm create tdesign my-app
 ```bash
 pnpm create tdesign my-app --template vue-vite
 pnpm create tdesign my-app --template vue-vike
-pnpm create tdesign my-app --template vue-tsx-rspack
+pnpm create tdesign my-app --template vue-tsx-rsbuild
 pnpm create tdesign my-app --template vue-vite-on-demand
-pnpm create tdesign my-app --template react-chat-rspack
+pnpm create tdesign my-app --template react-chat-rsbuild
 pnpm create tdesign my-app --template react-vike
 ```
 
@@ -86,7 +86,7 @@ pnpm create tdesign my-app --template react-vike
 
 ```bash
 pnpm create tdesign my-app --ui vue --bundler vite
-pnpm create tdesign my-app --ui react --bundler rspack
+pnpm create tdesign my-app --ui react --bundler rsbuild
 pnpm create tdesign my-app --ui react --bundler vike
 pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand
 ```
@@ -95,7 +95,7 @@ pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand
 
 ```bash
 pnpm create tdesign my-app --template vue-vite --package-manager npm
-pnpm create tdesign my-app --template react-chat-rspack --pm bun
+pnpm create tdesign my-app --template react-chat-rsbuild --pm bun
 ```
 
 ## Options

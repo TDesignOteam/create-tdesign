@@ -5,7 +5,7 @@ export type UiFramework =
   | 'mobile-react'
   | 'vue-chat'
   | 'react-chat'
-export type Bundler = 'vite' | 'rspack' | 'vike'
+export type Bundler = 'vite' | 'rsbuild' | 'vike'
 export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateImportMode = 'full' | 'on-demand'
 export type TemplateId =
@@ -24,27 +24,27 @@ export type TemplateId =
   | 'vue-chat-vike'
   | 'vue-chat-vike-on-demand'
   | 'vue-chat-tsx-vike'
-  | 'vue-rspack'
-  | 'vue-rspack-on-demand'
-  | 'vue-tsx-rspack'
-  | 'react-rspack'
-  | 'mobile-react-rspack'
-  | 'react-chat-rspack'
+  | 'vue-rsbuild'
+  | 'vue-rsbuild-on-demand'
+  | 'vue-tsx-rsbuild'
+  | 'react-rsbuild'
+  | 'mobile-react-rsbuild'
+  | 'react-chat-rsbuild'
   | 'react-vike'
   | 'mobile-react-vike'
   | 'react-chat-vike'
   | 'mobile-vue-vite'
   | 'mobile-vue-vite-on-demand'
   | 'mobile-vue-tsx-vite'
-  | 'mobile-vue-rspack'
-  | 'mobile-vue-rspack-on-demand'
-  | 'mobile-vue-tsx-rspack'
+  | 'mobile-vue-rsbuild'
+  | 'mobile-vue-rsbuild-on-demand'
+  | 'mobile-vue-tsx-rsbuild'
   | 'vue-chat-vite'
   | 'vue-chat-vite-on-demand'
   | 'vue-chat-tsx-vite'
-  | 'vue-chat-rspack'
-  | 'vue-chat-rspack-on-demand'
-  | 'vue-chat-tsx-rspack'
+  | 'vue-chat-rsbuild'
+  | 'vue-chat-rsbuild-on-demand'
+  | 'vue-chat-tsx-rsbuild'
 
 export interface TemplateMeta {
   id: TemplateId
@@ -91,36 +91,36 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-react',
   },
   {
-    id: 'vue-rspack',
+    id: 'vue-rsbuild',
     importMode: 'full',
     ui: 'vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Vue + Rspack',
+    display: 'Vue + Rsbuild',
     description: 'Vue 3 + TypeScript + tdesign-vue-next',
   },
   {
-    id: 'vue-rspack-on-demand',
+    id: 'vue-rsbuild-on-demand',
     importMode: 'on-demand',
     ui: 'vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Vue + Rspack (On-demand)',
+    display: 'Vue + Rsbuild (On-demand)',
     description: 'Vue 3 + TypeScript + tdesign-vue-next on-demand',
   },
   {
-    id: 'vue-tsx-rspack',
+    id: 'vue-tsx-rsbuild',
     ui: 'vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'tsx',
-    display: 'Vue + TSX + Rspack',
+    display: 'Vue + TSX + Rsbuild',
     description: 'Vue 3 + TSX + TypeScript + tdesign-vue-next',
   },
   {
-    id: 'react-rspack',
+    id: 'react-rsbuild',
     ui: 'react',
-    bundler: 'rspack',
-    display: 'React + Rspack',
+    bundler: 'rsbuild',
+    display: 'React + Rsbuild',
     description: 'React + TypeScript + tdesign-react',
   },
   {
@@ -190,36 +190,36 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-mobile-react',
   },
   {
-    id: 'mobile-vue-rspack',
+    id: 'mobile-vue-rsbuild',
     importMode: 'full',
     ui: 'mobile-vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Mobile Vue + Rspack',
+    display: 'Mobile Vue + Rsbuild',
     description: 'Vue 3 + TypeScript + tdesign-mobile-vue',
   },
   {
-    id: 'mobile-vue-rspack-on-demand',
+    id: 'mobile-vue-rsbuild-on-demand',
     importMode: 'on-demand',
     ui: 'mobile-vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Mobile Vue + Rspack (On-demand)',
+    display: 'Mobile Vue + Rsbuild (On-demand)',
     description: 'Vue 3 + TypeScript + tdesign-mobile-vue on-demand',
   },
   {
-    id: 'mobile-vue-tsx-rspack',
+    id: 'mobile-vue-tsx-rsbuild',
     ui: 'mobile-vue',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'tsx',
-    display: 'Mobile Vue + TSX + Rspack',
+    display: 'Mobile Vue + TSX + Rsbuild',
     description: 'Vue 3 + TSX + TypeScript + tdesign-mobile-vue',
   },
   {
-    id: 'mobile-react-rspack',
+    id: 'mobile-react-rsbuild',
     ui: 'mobile-react',
-    bundler: 'rspack',
-    display: 'Mobile React + Rspack',
+    bundler: 'rsbuild',
+    display: 'Mobile React + Rsbuild',
     description: 'React + TypeScript + tdesign-mobile-react',
   },
   {
@@ -315,36 +315,36 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'Vue 3 + TSX + TypeScript + Vike + @tdesign-vue-next/chat',
   },
   {
-    id: 'vue-chat-rspack',
+    id: 'vue-chat-rsbuild',
     importMode: 'full',
     ui: 'vue-chat',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Vue Chat + Rspack',
+    display: 'Vue Chat + Rsbuild',
     description: 'Vue 3 + TypeScript + @tdesign-vue-next/chat',
   },
   {
-    id: 'vue-chat-rspack-on-demand',
+    id: 'vue-chat-rsbuild-on-demand',
     importMode: 'on-demand',
     ui: 'vue-chat',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'sfc',
-    display: 'Vue Chat + Rspack (On-demand)',
+    display: 'Vue Chat + Rsbuild (On-demand)',
     description: 'Vue 3 + TypeScript + @tdesign-vue-next/chat on-demand',
   },
   {
-    id: 'vue-chat-tsx-rspack',
+    id: 'vue-chat-tsx-rsbuild',
     ui: 'vue-chat',
-    bundler: 'rspack',
+    bundler: 'rsbuild',
     vueTemplateStyle: 'tsx',
-    display: 'Vue Chat + TSX + Rspack',
+    display: 'Vue Chat + TSX + Rsbuild',
     description: 'Vue 3 + TSX + TypeScript + @tdesign-vue-next/chat',
   },
   {
-    id: 'react-chat-rspack',
+    id: 'react-chat-rsbuild',
     ui: 'react-chat',
-    bundler: 'rspack',
-    display: 'React Chat + Rspack',
+    bundler: 'rsbuild',
+    display: 'React Chat + Rsbuild',
     description: 'React + TypeScript + @tdesign-react/chat',
   },
   {
@@ -367,7 +367,7 @@ export const UI_OPTIONS: Array<{ value: UiFramework; label: string }> = [
 
 export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [
   { value: 'vite', label: 'Vite' },
-  { value: 'rspack', label: 'Rspack' },
+  { value: 'rsbuild', label: 'Rsbuild' },
   { value: 'vike', label: 'Vike' },
 ]
 
