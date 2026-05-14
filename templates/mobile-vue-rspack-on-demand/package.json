@@ -21,7 +21,7 @@
     "@rspack/dev-server": "^2.0.1",
     "rspack-vue-loader": "^17.5.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.2.8",
+    "vue-tsc": "^3.2.9",
     "@tdesign-vue-next/auto-import-resolver": "^0.1.6",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.0.0"

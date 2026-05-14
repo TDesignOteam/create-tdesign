@@ -21,6 +21,6 @@
     "@rspack/dev-server": "^2.0.1",
     "rspack-vue-loader": "^17.5.0",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.2.8"
+    "vue-tsc": "^3.2.9"
   }
 }
