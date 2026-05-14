@@ -4,62 +4,74 @@
 
 ## Templates
 
-当前已支持 36 个 TypeScript 模板：
+当前已支持 48 个 TypeScript 模板：
 
 ### Vue SFC
 
 - `vue-vite`
+- `vue-vite-plus`
 - `vue-rspack`
 - `vue-vike`
 - `vue-vite-on-demand`
+- `vue-vite-plus-on-demand`
 - `vue-vike-on-demand`
 - `vue-rspack-on-demand`
 
 ### Vue TSX
 
 - `vue-tsx-vite`
+- `vue-tsx-vite-plus`
 - `vue-tsx-vike`
 - `vue-tsx-rspack`
 
 ### Mobile Vue SFC
 
 - `mobile-vue-vite`
+- `mobile-vue-vite-plus`
 - `mobile-vue-rspack`
 - `mobile-vue-vike`
 - `mobile-vue-vite-on-demand`
+- `mobile-vue-vite-plus-on-demand`
 - `mobile-vue-vike-on-demand`
 - `mobile-vue-rspack-on-demand`
 
 ### Mobile Vue TSX
 
 - `mobile-vue-tsx-vite`
+- `mobile-vue-tsx-vite-plus`
 - `mobile-vue-tsx-vike`
 - `mobile-vue-tsx-rspack`
 
 ### Vue Chat SFC
 
 - `vue-chat-vite`
+- `vue-chat-vite-plus`
 - `vue-chat-vike`
 - `vue-chat-rspack`
 - `vue-chat-vite-on-demand`
+- `vue-chat-vite-plus-on-demand`
 - `vue-chat-vike-on-demand`
 - `vue-chat-rspack-on-demand`
 
 ### Vue Chat TSX
 
 - `vue-chat-tsx-vite`
+- `vue-chat-tsx-vite-plus`
 - `vue-chat-tsx-vike`
 - `vue-chat-tsx-rspack`
 
 ### React
 
 - `react-vite`
+- `react-vite-plus`
 - `react-rspack`
 - `react-vike`
 - `mobile-react-vite`
+- `mobile-react-vite-plus`
 - `mobile-react-rspack`
 - `mobile-react-vike`
 - `react-chat-vite`
+- `react-chat-vite-plus`
 - `react-chat-rspack`
 - `react-chat-vike`
 
@@ -75,6 +87,7 @@ pnpm create tdesign my-app
 
 ```bash
 pnpm create tdesign my-app --template vue-vite
+pnpm create tdesign my-app --template vue-vite-plus
 pnpm create tdesign my-app --template vue-vike
 pnpm create tdesign my-app --template vue-tsx-rspack
 pnpm create tdesign my-app --template vue-vite-on-demand
@@ -86,6 +99,7 @@ pnpm create tdesign my-app --template react-vike
 
 ```bash
 pnpm create tdesign my-app --ui vue --bundler vite
+pnpm create tdesign my-app --ui vue --bundler vite-plus
 pnpm create tdesign my-app --ui react --bundler rspack
 pnpm create tdesign my-app --ui react --bundler vike
 pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand

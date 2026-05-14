@@ -71,7 +71,7 @@ Scaffold a TDesign project with TypeScript.
 Options:
   -t, --template NAME       use a specific template
       --ui NAME             choose a UI framework
-      --bundler NAME        choose a bundler (vite, rspack, vike)
+      --bundler NAME        choose a bundler (vite, vite-plus, rspack, vike)
       --import-mode NAME    choose a Vue import mode (full, on-demand)
       --package-manager     choose a package manager (npm, pnpm, bun, yarn)
       --pm NAME             alias of --package-manager
