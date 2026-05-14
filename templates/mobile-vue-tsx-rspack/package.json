@@ -15,6 +15,7 @@
     "vue": "^3.5.34"
   },
   "devDependencies": {
+    "@babel/preset-typescript": "^7.28.0",
     "@rspack/cli": "^2.0.3",
     "@rspack/core": "^2.0.3",
     "@rspack/dev-server": "^2.0.1",

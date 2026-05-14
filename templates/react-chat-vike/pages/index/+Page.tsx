@@ -13,7 +13,7 @@ const sections = [
   },
   {
     title: 'Next step',
-    description: 'Edit chatServiceConfig in pages/index/+Page.tsx to connect your model service.',
+    description: 'Edit chatServiceConfig in pages/index/ChatPanel.tsx to connect your model service.',
   },
 ]
 
@@ -31,7 +31,7 @@ export default function Page() {
             <p className="hero-intro">
               __PROJECTNAME__ ships with an SSR-ready chat shell. Connect your real
               model service by updating <code>chatServiceConfig</code> in{' '}
-              <code>pages/index/+Page.tsx</code>.
+              <code>pages/index/ChatPanel.tsx</code>.
             </p>
           </div>
           <div className="section-block">
