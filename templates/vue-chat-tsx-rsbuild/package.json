@@ -19,7 +19,7 @@
     "@rsbuild/plugin-babel": "^1.1.2",
     "@rsbuild/plugin-vue": "^1.2.8",
     "@rsbuild/plugin-vue-jsx": "^2.0.0",
-    "@types/node": "^25.7.0",
+    "@types/node": "^25.8.0",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.2.9"
   }

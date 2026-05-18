@@ -18,7 +18,7 @@
   },
   "devDependencies": {
     "@tdesign-vue-next/auto-import-resolver": "^0.1.6",
-    "@vitejs/plugin-vue": "^6.0.6",
+    "@vitejs/plugin-vue": "^6.0.7",
     "typescript": "^6.0.3",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.0.0",
