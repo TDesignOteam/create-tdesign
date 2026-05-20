@@ -125,6 +125,7 @@ pnpm create tdesign my-app --template react-chat-rsbuild --pm bun
 - TSX 模板不支持 `--import-mode on-demand`，`unplugin-vue-components` 仅对 SFC `<template>` 生效。
 - Nuxt 4 模板要求 Node.js 22.12+。
 - Next.js 模板使用 App Router 和客户端页面承载 TDesign UI。
+- Next.js 模板在 StackBlitz 上使用 Webpack 启动。
 - `mobile-vue` 模板在 pnpm v11+ 环境下首次安装会自动放行 `vue-demi` 的构建脚本。
 
 ## Development

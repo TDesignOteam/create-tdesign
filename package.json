@@ -2,7 +2,7 @@
   "name": "create-tdesign",
   "version": "0.1.0",
   "packageManager": "pnpm@11.1.2",
-  "description": "Scaffold TDesign projects with Vite, Rsbuild, Vike, Nuxt, or Next.",
+  "description": "Scaffold TDesign projects with Vite, Rsbuild, Vike, Nuxt, or Next.js.",
   "type": "module",
   "license": "MIT",
   "bin": {
