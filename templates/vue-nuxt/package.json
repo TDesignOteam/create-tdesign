@@ -1,0 +1,26 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "nuxt dev",
+    "build": "nuxt typecheck && nuxt build",
+    "preview": "nuxt build && nuxt preview",
+    "typecheck": "nuxt typecheck"
+  },
+  "dependencies": {
+    "nuxt": "^4.4.6",
+    "tdesign-icons-vue-next": "^0.4.4",
+    "tdesign-vue-next": "^1.20.0",
+    "vue": "^3.5.34"
+  },
+  "devDependencies": {
+    "@tdesign-vue-next/nuxt": "^0.2.1",
+    "typescript": "^6.0.3",
+    "vue-tsc": "^3.2.9"
+  },
+  "engines": {
+    "node": "^22.12.0 || ^24.11.0 || >=26.0.0"
+  }
+}

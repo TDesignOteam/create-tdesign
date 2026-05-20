@@ -71,7 +71,7 @@ Scaffold a TDesign project with TypeScript.
 Options:
   -t, --template NAME       use a specific template
       --ui NAME             choose a UI framework
-      --bundler NAME        choose a bundler (vite, rsbuild, vike)
+      --bundler NAME        choose a bundler or app framework (vite, rsbuild, vike, nuxt, next)
       --import-mode NAME    choose a Vue import mode (full, on-demand)
       --package-manager     choose a package manager (npm, pnpm, bun, yarn)
       --pm NAME             alias of --package-manager
@@ -241,8 +241,10 @@ async function resolveTemplate(interactive: boolean) {
 
     const ui = normalizeUi(argv.ui)
     const bundler = normalizeBundler(argv.bundler)
-    const vueTemplateStyle = isVueRelatedUi(ui) ? 'sfc' : undefined
-    const importMode = isVueImportModeSupportedUi(ui) && argv['import-mode']
+    const vueTemplateStyle = isVueRelatedUi(ui) && hasVueTemplateStyle(ui, bundler, 'sfc')
+      ? 'sfc'
+      : undefined
+    const importMode = isVueImportModeSupported(ui, bundler) && argv['import-mode']
       ? normalizeImportMode(argv['import-mode'])
       : undefined
 
@@ -273,9 +275,10 @@ async function resolveTemplate(interactive: boolean) {
 
   const normalizedUi = ui as UiFramework
 
+  const availableBundlers = getAvailableBundlers(normalizedUi)
   const bundler = await prompts.select({
-    message: 'Select a bundler:',
-    options: BUNDLER_OPTIONS.map((option) => ({
+    message: 'Select a bundler or app framework:',
+    options: availableBundlers.map((option) => ({
       label: option.label,
       value: option.value,
     })),
@@ -287,28 +290,36 @@ async function resolveTemplate(interactive: boolean) {
 
   const normalizedBundler = bundler as Bundler
   const vueTemplateStyle = isVueRelatedUi(normalizedUi)
-    ? await resolveVueTemplateStyle()
+    ? await resolveVueTemplateStyle(normalizedUi, normalizedBundler)
     : undefined
 
   if (isVueRelatedUi(normalizedUi) && !vueTemplateStyle) {
     return undefined
   }
 
-  const importMode = isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc'
+  const importMode = isVueImportModeSupported(normalizedUi, normalizedBundler) && vueTemplateStyle === 'sfc'
     ? await resolveVueImportMode()
     : undefined
 
-  if (isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc' && !importMode) {
+  if (isVueImportModeSupported(normalizedUi, normalizedBundler) && vueTemplateStyle === 'sfc' && !importMode) {
     return undefined
   }
 
   return findTemplateByParts(normalizedUi, normalizedBundler, vueTemplateStyle, importMode)
 }
 
-async function resolveVueTemplateStyle() {
+async function resolveVueTemplateStyle(ui: UiFramework, bundler: Bundler) {
+  const availableStyles = VUE_TEMPLATE_STYLE_OPTIONS.filter((option) =>
+    hasVueTemplateStyle(ui, bundler, option.value),
+  )
+
+  if (availableStyles.length === 1) {
+    return availableStyles[0]?.value
+  }
+
   const vueTemplateStyle = await prompts.select({
     message: 'Select a Vue component style:',
-    options: VUE_TEMPLATE_STYLE_OPTIONS.map((option) => ({
+    options: availableStyles.map((option) => ({
       label: option.label,
       value: option.value,
     })),
@@ -488,6 +499,45 @@ function isVueRelatedUi(value: UiFramework) {
 
 function isVueImportModeSupportedUi(value: UiFramework) {
   return value === 'vue' || value === 'mobile-vue' || value === 'vue-chat'
+}
+
+function isVueImportModeSupported(ui: UiFramework, bundler: Bundler) {
+  if (!isVueImportModeSupportedUi(ui)) {
+    return false
+  }
+
+  return getAvailableImportModes(ui, bundler).length > 1
+}
+
+function getAvailableImportModes(ui: UiFramework, bundler: Bundler) {
+  return TEMPLATES
+    .filter(
+      (template) =>
+        template.ui === ui &&
+        template.bundler === bundler &&
+        template.vueTemplateStyle === 'sfc' &&
+        template.importMode,
+    )
+    .map((template) => template.importMode)
+}
+
+function getAvailableBundlers(ui: UiFramework) {
+  return BUNDLER_OPTIONS.filter((option) =>
+    TEMPLATES.some((template) => template.ui === ui && template.bundler === option.value),
+  )
+}
+
+function hasVueTemplateStyle(
+  ui: UiFramework,
+  bundler: Bundler,
+  vueTemplateStyle: VueTemplateStyle,
+) {
+  return TEMPLATES.some(
+    (template) =>
+      template.ui === ui &&
+      template.bundler === bundler &&
+      template.vueTemplateStyle === vueTemplateStyle,
+  )
 }
 
 function normalizeBundler(value: string): Bundler {

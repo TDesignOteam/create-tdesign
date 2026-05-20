@@ -5,7 +5,7 @@ export type UiFramework =
   | 'mobile-react'
   | 'vue-chat'
   | 'react-chat'
-export type Bundler = 'vite' | 'rsbuild' | 'vike'
+export type Bundler = 'vite' | 'rsbuild' | 'vike' | 'nuxt' | 'next'
 export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateImportMode = 'full' | 'on-demand'
 export type TemplateId =
@@ -15,7 +15,9 @@ export type TemplateId =
   | 'vue-vike'
   | 'vue-vike-on-demand'
   | 'vue-tsx-vike'
+  | 'vue-nuxt'
   | 'react-vite'
+  | 'react-next'
   | 'mobile-react-vite'
   | 'mobile-vue-vike'
   | 'mobile-vue-vike-on-demand'
@@ -131,6 +133,13 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + Vike + tdesign-react',
   },
   {
+    id: 'react-next',
+    ui: 'react',
+    bundler: 'next',
+    display: 'React + Next.js',
+    description: 'React + TypeScript + Next.js + tdesign-react',
+  },
+  {
     id: 'vue-vike',
     importMode: 'full',
     ui: 'vue',
@@ -155,6 +164,15 @@ export const TEMPLATES: TemplateMeta[] = [
     vueTemplateStyle: 'tsx',
     display: 'Vue + TSX + Vike',
     description: 'Vue 3 + TSX + TypeScript + Vike + tdesign-vue-next',
+  },
+  {
+    id: 'vue-nuxt',
+    importMode: 'on-demand',
+    ui: 'vue',
+    bundler: 'nuxt',
+    vueTemplateStyle: 'sfc',
+    display: 'Vue + Nuxt',
+    description: 'Vue 3 + TypeScript + Nuxt 4 + tdesign-vue-next on-demand',
   },
   {
     id: 'mobile-vue-vite',
@@ -369,6 +387,8 @@ export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [
   { value: 'vite', label: 'Vite' },
   { value: 'rsbuild', label: 'Rsbuild' },
   { value: 'vike', label: 'Vike' },
+  { value: 'nuxt', label: 'Nuxt' },
+  { value: 'next', label: 'Next.js' },
 ]
 
 export function findTemplateById(templateId: string): TemplateMeta | undefined {
