@@ -4,13 +4,14 @@
 
 ## Templates
 
-当前已支持 36 个 TypeScript 模板：
+当前已支持 38 个 TypeScript 模板：
 
 ### Vue SFC
 
 - `vue-vite`
 - `vue-rsbuild`
 - `vue-vike`
+- `vue-nuxt`
 - `vue-vite-on-demand`
 - `vue-vike-on-demand`
 - `vue-rsbuild-on-demand`
@@ -56,6 +57,7 @@
 - `react-vite`
 - `react-rsbuild`
 - `react-vike`
+- `react-next`
 - `mobile-react-vite`
 - `mobile-react-rsbuild`
 - `mobile-react-vike`
@@ -76,10 +78,12 @@ pnpm create tdesign my-app
 ```bash
 pnpm create tdesign my-app --template vue-vite
 pnpm create tdesign my-app --template vue-vike
+pnpm create tdesign my-app --template vue-nuxt
 pnpm create tdesign my-app --template vue-tsx-rsbuild
 pnpm create tdesign my-app --template vue-vite-on-demand
 pnpm create tdesign my-app --template react-chat-rsbuild
 pnpm create tdesign my-app --template react-vike
+pnpm create tdesign my-app --template react-next
 ```
 
 按 UI 和打包工具组合指定：
@@ -88,6 +92,8 @@ pnpm create tdesign my-app --template react-vike
 pnpm create tdesign my-app --ui vue --bundler vite
 pnpm create tdesign my-app --ui react --bundler rsbuild
 pnpm create tdesign my-app --ui react --bundler vike
+pnpm create tdesign my-app --ui vue --bundler nuxt
+pnpm create tdesign my-app --ui react --bundler next
 pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand
 ```
 
@@ -115,8 +121,10 @@ pnpm create tdesign my-app --template react-chat-rsbuild --pm bun
 ## Notes
 
 - `chat` 模板默认提供一个可运行的聊天前端壳子，真实模型接口需要你在模板页面文件里补充 `chatServiceConfig`。
-- Vue / Mobile Vue / Vue Chat 的 SFC 模板支持 `Full` 和 `On-demand` 两种引入模式。
+- Vue / Mobile Vue / Vue Chat 的 SFC 模板支持 `Full` 和 `On-demand` 两种引入模式，Nuxt 模板通过 `@tdesign-vue-next/nuxt` 默认使用按需引入。
 - TSX 模板不支持 `--import-mode on-demand`，`unplugin-vue-components` 仅对 SFC `<template>` 生效。
+- Nuxt 4 模板要求 Node.js 22.12+。
+- Next.js 模板使用 App Router 和客户端页面承载 TDesign UI。
 - `mobile-vue` 模板在 pnpm v11+ 环境下首次安装会自动放行 `vue-demi` 的构建脚本。
 
 ## Development
