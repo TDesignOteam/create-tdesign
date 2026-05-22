@@ -17,10 +17,10 @@
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.7",
     "typescript": "^6.0.3",
-    "vite": "^8.0.13",
-    "vue-tsc": "^3.2.9",
+    "vite": "^8.0.14",
+    "vue-tsc": "^3.3.1",
     "@tdesign-vue-next/auto-import-resolver": "^0.1.6",
     "unplugin-auto-import": "^21.0.0",
-    "unplugin-vue-components": "^32.0.0"
+    "unplugin-vue-components": "^32.1.0"
   }
 }
