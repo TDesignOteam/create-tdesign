@@ -1,7 +1,7 @@
 {
   "name": "create-tdesign",
   "version": "0.1.0",
-  "packageManager": "pnpm@11.5.0",
+  "packageManager": "pnpm@11.5.2",
   "description": "Scaffold TDesign projects with Vite, Rsbuild, or Vike.",
   "type": "module",
   "license": "MIT",
@@ -42,11 +42,11 @@
   ],
   
   "devDependencies": {
-    "@clack/prompts": "^1.5.0",
-    "@types/node": "^25.9.1",
+    "@clack/prompts": "^1.5.1",
+    "@types/node": "^25.9.2",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
-    "tsdown": "^0.22.1",
+    "tsdown": "^0.22.2",
     "typescript": "^6.0.3"
   }
 }
