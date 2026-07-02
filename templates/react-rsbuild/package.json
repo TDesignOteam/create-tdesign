@@ -13,7 +13,7 @@
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
     "tdesign-icons-react": "^0.6.4",
-    "tdesign-react": "^1.17.1"
+    "tdesign-react": "^1.18.0"
   },
   "devDependencies": {
     "@rsbuild/core": "^2.0.15",
