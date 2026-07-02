@@ -3,6 +3,7 @@ import { pluginVue } from '@rsbuild/plugin-vue'
 import AutoImport from 'unplugin-auto-import/rspack'
 import Components from 'unplugin-vue-components/rspack'
 import { TDesignResolver } from '@tdesign-vue-next/auto-import-resolver'
+import path from 'path'
 
 export default defineConfig({
   plugins: [pluginVue()],
@@ -10,6 +11,7 @@ export default defineConfig({
     alias: {
       'tdesign-vue-next/es/config-provider/hooks$':
         'tdesign-vue-next/es/config-provider/hooks/index.mjs',
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   source: {
