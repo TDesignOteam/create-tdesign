@@ -16,7 +16,7 @@
     "tdesign-mobile-react": "^0.23.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.0.15",
+    "@rsbuild/core": "^2.1.2",
     "@rsbuild/plugin-react": "^2.1.0",
     "@types/node": "^25.9.4",
     "@types/react": "^19.2.17",
