@@ -13,7 +13,10 @@
     "isolatedModules": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
-    "types": ["node", "tdesign-mobile-vue/global"]
+    "paths": {
+      "@/*": ["./src/*"]
+    },
+    "types": ["node", "vite/client", "tdesign-mobile-vue/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "rsbuild.config.ts"]
 }

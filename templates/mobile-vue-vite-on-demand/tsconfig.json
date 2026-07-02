@@ -11,6 +11,9 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "noEmit": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "types": ["vite/client", "tdesign-mobile-vue/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.ts"]
