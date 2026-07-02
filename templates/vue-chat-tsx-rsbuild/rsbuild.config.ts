@@ -2,6 +2,7 @@ import { defineConfig } from '@rsbuild/core'
 import { pluginBabel } from '@rsbuild/plugin-babel'
 import { pluginVue } from '@rsbuild/plugin-vue'
 import { pluginVueJsx } from '@rsbuild/plugin-vue-jsx'
+import path from 'path'
 
 export default defineConfig({
   plugins: [pluginBabel({ include: /\.(?:jsx|tsx)$/ }), pluginVue(), pluginVueJsx()],
@@ -9,6 +10,7 @@ export default defineConfig({
     alias: {
       'tdesign-vue-next/es/config-provider/hooks$':
         'tdesign-vue-next/es/config-provider/hooks/index.mjs',
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   source: {

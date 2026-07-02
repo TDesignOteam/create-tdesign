@@ -3,6 +3,7 @@ import { pluginVue } from '@rsbuild/plugin-vue'
 import AutoImport from 'unplugin-auto-import/rspack'
 import Components from 'unplugin-vue-components/rspack'
 import { TDesignResolver } from '@tdesign-vue-next/auto-import-resolver'
+import path from 'path'
 
 export default defineConfig({
   plugins: [pluginVue()],
@@ -17,6 +18,11 @@ export default defineConfig({
   },
   html: {
     template: './index.html',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
   tools: {
     rspack: {

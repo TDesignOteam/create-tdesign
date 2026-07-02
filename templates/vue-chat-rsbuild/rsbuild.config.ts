@@ -1,5 +1,6 @@
 import { defineConfig } from '@rsbuild/core'
 import { pluginVue } from '@rsbuild/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   plugins: [pluginVue()],
@@ -7,6 +8,7 @@ export default defineConfig({
     alias: {
       'tdesign-vue-next/es/config-provider/hooks$':
         'tdesign-vue-next/es/config-provider/hooks/index.mjs',
+      '@': path.resolve(__dirname, 'src'),
     },
   },
   source: {

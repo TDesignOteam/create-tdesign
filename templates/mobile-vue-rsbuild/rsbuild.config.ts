@@ -1,5 +1,6 @@
 import { defineConfig } from '@rsbuild/core'
 import { pluginVue } from '@rsbuild/plugin-vue'
+import path from 'path'
 
 export default defineConfig({
   plugins: [pluginVue()],
@@ -14,5 +15,10 @@ export default defineConfig({
   },
   html: {
     template: './index.html',
+  },
+  resolve: {
+    alias: {
+      '@': path.resolve(__dirname, 'src'),
+    },
   },
 })
