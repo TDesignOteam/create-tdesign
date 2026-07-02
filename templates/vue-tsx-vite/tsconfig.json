@@ -13,7 +13,7 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "tdesign-vue-next/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "src/**/*.vue", "vite.config.ts"]
 }

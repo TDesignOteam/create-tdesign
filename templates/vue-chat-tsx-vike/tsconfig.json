@@ -13,7 +13,7 @@
     "allowImportingTsExtensions": true,
     "isolatedModules": true,
     "noEmit": true,
-    "types": ["vite/client"]
+    "types": ["vite/client", "@tdesign-vue-next/chat/global"]
   },
   "include": ["pages/**/*.ts", "pages/**/*.tsx", "pages/**/*.d.ts", "pages/**/*.vue", "vite.config.ts"],
   "exclude": ["dist"]
