@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["node", "vite/client", "@tdesign-vue-next/chat/global"]
+    "types": ["node", "@tdesign-vue-next/chat/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "rsbuild.config.ts"]
 }

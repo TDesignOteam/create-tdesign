@@ -14,7 +14,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["node", "vite/client"]
+    "types": ["node"]
   },
   "include": ["src", "rsbuild.config.ts"]
 }
