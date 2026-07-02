@@ -16,7 +16,7 @@
   },
   "devDependencies": {
     "@rsbuild/core": "^2.1.2",
-    "@rsbuild/plugin-vue": "^1.2.9",
+    "@rsbuild/plugin-vue": "^2.0.0",
     "@tdesign-vue-next/auto-import-resolver": "^0.1.7",
     "@types/node": "^25.9.4",
     "typescript": "^6.0.3",
