@@ -11,6 +11,9 @@
     "isolatedModules": true,
     "noEmit": true,
     "allowSyntheticDefaultImports": true,
+    "paths": {
+      "@/*": ["./src/*"]
+    },
     "types": ["node", "tdesign-vue-next/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "rsbuild.config.ts"]
