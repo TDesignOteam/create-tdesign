@@ -12,7 +12,7 @@
   "dependencies": {
     "react": "^19.2.7",
     "react-dom": "^19.2.7",
-    "react-router": "^7.6.1",
+    "react-router": "^7.18.1",
     "tdesign-icons-react": "^0.6.5",
     "tdesign-react": "^1.18.0"
   },
