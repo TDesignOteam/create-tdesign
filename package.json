@@ -1,7 +1,7 @@
 {
   "name": "create-tdesign",
   "version": "0.1.0",
-  "packageManager": "pnpm@11.6.0",
+  "packageManager": "pnpm@11.13.0",
   "description": "Scaffold TDesign projects with Vite, Rsbuild, or Vike.",
   "type": "module",
   "license": "MIT",
