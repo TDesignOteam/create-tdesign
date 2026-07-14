@@ -35,9 +35,9 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
 
   mobile-vue:
     strategy:
@@ -65,9 +65,9 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
 
   react:
     strategy:
@@ -95,9 +95,9 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
 
   vue-chat:
     strategy:
@@ -125,9 +125,9 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
 
   react-chat:
     strategy:
@@ -155,9 +155,9 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
 
   mobile-react:
     strategy:
@@ -185,6 +185,6 @@ jobs:
             execSync('mkdir tests && cd tests', { stdio: 'inherit' });
             dirs.forEach(name => {
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm --if-present build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
-            execSync('pnpm -r install --if-present', { stdio: 'inherit', cwd: 'tests' });
-            execSync('pnpm -r build --if-present', { stdio: 'inherit', cwd: 'tests' });
