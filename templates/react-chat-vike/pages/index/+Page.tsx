@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ClientOnly } from 'vike-react/ClientOnly'
-import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
+import { BookOpenIcon, ComponentGridIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 import ChatPanel from './ChatPanel'
@@ -56,6 +56,9 @@ export default function Page() {
           </div>
 
           <nav className="header-actions" aria-label="Resources">
+            <a className="nav-action" href="/dependencies">
+              <ComponentGridIcon /><span>Dependencies</span>
+            </a>
             <a className="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
               <BookOpenIcon /><span>Docs</span>
             </a>

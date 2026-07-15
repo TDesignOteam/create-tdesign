@@ -7,6 +7,7 @@ import {
   CheckCircleIcon,
   ChevronRightIcon,
   CodeIcon,
+  ComponentGridIcon,
   LogoGithubIcon,
   MoonIcon,
   SunnyIcon,
@@ -126,6 +127,11 @@ export default function HomePage() {
           </Card>
 
           <Card className="work-card resources-card" title="Resources" bordered>
+            <a href="./dependencies">
+              <span className="resource-icon"><ComponentGridIcon /></span>
+              <span><strong>Dependencies</strong><small>Review runtime and development packages</small></span>
+              <ChevronRightIcon />
+            </a>
             <a href={docsUrl} target="_blank" rel="noreferrer">
               <span className="resource-icon"><BookOpenIcon /></span>
               <span><strong>Component docs</strong><small>APIs, examples, and design guidance</small></span>

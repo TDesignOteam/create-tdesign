@@ -19,6 +19,12 @@ const resources = [
     description: 'Source code, releases, and issue tracker',
     url: 'https://github.com/Tencent/tdesign-mobile-vue',
   },
+  {
+    title: 'Dependencies',
+    description: 'Review runtime and development package versions',
+    url: '/dependencies',
+    internal: true,
+  },
 ]
 
 function applyTheme(dark: boolean) {
@@ -32,7 +38,11 @@ function toggleTheme() {
   localStorage.setItem(STORAGE_KEY, nextDark ? 'dark' : 'light')
 }
 
-function openLink(url: string) {
+function openLink(url: string, internal = false) {
+  if (internal) {
+    window.location.assign(url)
+    return
+  }
   window.open(url, '_blank', 'noopener,noreferrer')
 }
 
@@ -90,7 +100,7 @@ onMounted(() => {
       <section class="workspace-section" aria-labelledby="resources-title">
         <div class="section-title-row"><div><p class="section-kicker">Resources</p><h2 id="resources-title">Build from here</h2></div></div>
         <t-cell-group theme="card">
-          <t-cell v-for="item in resources" :key="item.url" :title="item.title" :description="item.description" arrow hover @click="openLink(item.url)" />
+          <t-cell v-for="item in resources" :key="item.url" :title="item.title" :description="item.description" arrow hover @click="openLink(item.url, item.internal)" />
         </t-cell-group>
       </section>
 

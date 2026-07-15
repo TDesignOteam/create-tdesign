@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { ChatBot } from '@tdesign-react/chat'
-import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
+import { BookOpenIcon, ComponentGridIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import type { AIMessageContent, ChatServiceConfig, SSEChunkData } from '@tdesign-react/chat'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -69,6 +69,9 @@ export default function HomePage() {
           </div>
 
           <nav className="header-actions" aria-label="Resources">
+            <a className="nav-action" href="/dependencies">
+              <ComponentGridIcon /><span>Dependencies</span>
+            </a>
             <a className="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
               <BookOpenIcon /><span>Docs</span>
             </a>

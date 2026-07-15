@@ -8,6 +8,7 @@ import {
   CheckCircleIcon,
   ChevronRightIcon,
   CodeIcon,
+  ComponentGridIcon,
   LogoGithubIcon,
   MoonIcon,
   SunnyIcon,
@@ -117,6 +118,11 @@ const tasks = [
         </t-card>
 
         <t-card class="work-card resources-card" title="Resources" :bordered="true">
+          <a href="/dependencies">
+            <span class="resource-icon"><ComponentGridIcon /></span>
+            <span><strong>Dependencies</strong><small>Review runtime and development packages</small></span>
+            <ChevronRightIcon />
+          </a>
           <a :href="docsUrl" target="_blank" rel="noreferrer">
             <span class="resource-icon"><BookOpenIcon /></span>
             <span><strong>Component docs</strong><small>APIs, examples, and design guidance</small></span>

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ClientOnly } from 'vike-vue/ClientOnly'
-import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import { BookOpenIcon, ComponentGridIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 import ChatPanel from './ChatPanel.vue'
@@ -54,6 +54,9 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
         </div>
 
         <nav class="header-actions" aria-label="Resources">
+          <a class="nav-action" href="/dependencies">
+            <ComponentGridIcon /><span>Dependencies</span>
+          </a>
           <a class="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
             <BookOpenIcon /><span>Docs</span>
           </a>
