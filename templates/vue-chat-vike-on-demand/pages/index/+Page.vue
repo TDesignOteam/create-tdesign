@@ -1,7 +1,6 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ClientOnly } from 'vike-vue/ClientOnly'
-import { BookOpenIcon, ComponentGridIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 import ChatPanel from './ChatPanel.vue'
@@ -31,7 +30,13 @@ const toggleTheme = () => {
 onMounted(() => {
   colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
   const savedTheme = localStorage.getItem(THEME_KEY)
-  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+  applyTheme(
+    savedTheme === 'dark' || savedTheme === 'light'
+      ? savedTheme
+      : colorScheme.matches
+        ? 'dark'
+        : 'light',
+  )
   colorScheme.addEventListener('change', syncSystemTheme)
 })
 
@@ -50,18 +55,34 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
 
         <div class="template-tags" aria-label="Template status">
           <span class="template-tag">__TEMPLATENAME__</span>
-          <span class="online-tag"><i aria-hidden="true" />Online</span>
+          <span class="online-tag">
+            <i aria-hidden="true" />
+            Online
+          </span>
         </div>
 
         <nav class="header-actions" aria-label="Resources">
           <a class="nav-action" href="/dependencies">
-            <ComponentGridIcon /><span>Dependencies</span>
+            <ComponentGridIcon />
+            <span>Dependencies</span>
           </a>
-          <a class="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
-            <BookOpenIcon /><span>Docs</span>
+          <a
+            class="nav-action"
+            href="https://tdesign.tencent.com/chat/getting-started"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <BookOpenIcon />
+            <span>Docs</span>
           </a>
-          <a class="nav-action" href="https://github.com/Tencent/tdesign" target="_blank" rel="noreferrer">
-            <LogoGithubIcon /><span>GitHub</span>
+          <a
+            class="nav-action"
+            href="https://github.com/Tencent/tdesign"
+            target="_blank"
+            rel="noreferrer"
+          >
+            <LogoGithubIcon />
+            <span>GitHub</span>
           </a>
           <button
             type="button"
@@ -80,7 +101,10 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
     <div class="workspace-grid">
       <section class="chat-panel" aria-label="AI chat workspace">
         <div class="chat-panel-heading">
-          <div><span class="status-dot" aria-hidden="true" />Assistant</div>
+          <div>
+            <span class="status-dot" aria-hidden="true" />
+            Assistant
+          </div>
           <span>Streaming ready</span>
         </div>
         <ClientOnly>
@@ -99,9 +123,21 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
         </div>
 
         <dl class="config-list">
-          <div><dt>Transport</dt><dd>SSE stream</dd></div>
-          <div><dt>Rendering</dt><dd>Vike SSR</dd></div>
-          <div><dt>Service</dt><dd><span class="status-dot" aria-hidden="true" />Remote endpoint</dd></div>
+          <div>
+            <dt>Transport</dt>
+            <dd>SSE stream</dd>
+          </div>
+          <div>
+            <dt>Rendering</dt>
+            <dd>Vike SSR</dd>
+          </div>
+          <div>
+            <dt>Service</dt>
+            <dd>
+              <span class="status-dot" aria-hidden="true" />
+              Remote endpoint
+            </dd>
+          </div>
         </dl>
 
         <div class="command-block">
@@ -109,7 +145,13 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
           <code>__DEVCOMMAND__</code>
         </div>
 
-        <p class="setup-note">Update <code>chatServiceConfig</code> in <code>ChatPanel</code> when your service is ready.</p>
+        <p class="setup-note">
+          Update
+          <code>chatServiceConfig</code>
+          in
+          <code>ChatPanel</code>
+          when your service is ready.
+        </p>
       </aside>
     </div>
   </main>

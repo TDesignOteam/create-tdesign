@@ -1,6 +1,12 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
 import { Chatbot } from '@tdesign-vue-next/chat'
-import { BookOpenIcon, ComponentGridIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import {
+  BookOpenIcon,
+  ComponentGridIcon,
+  LogoGithubIcon,
+  MoonIcon,
+  SunnyIcon,
+} from 'tdesign-icons-vue-next'
 import type { AIMessageContent, ChatServiceConfig, SSEChunkData } from '@tdesign-vue-next/chat'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -45,7 +51,13 @@ export default defineComponent(() => {
   onMounted(() => {
     colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
     const savedTheme = localStorage.getItem(THEME_KEY)
-    applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+    applyTheme(
+      savedTheme === 'dark' || savedTheme === 'light'
+        ? savedTheme
+        : colorScheme.matches
+          ? 'dark'
+          : 'light',
+    )
     colorScheme.addEventListener('change', syncSystemTheme)
   })
 
@@ -63,18 +75,34 @@ export default defineComponent(() => {
 
           <div class="template-tags" aria-label="Template status">
             <span class="template-tag">__TEMPLATENAME__</span>
-            <span class="online-tag"><i aria-hidden="true" />Online</span>
+            <span class="online-tag">
+              <i aria-hidden="true" />
+              Online
+            </span>
           </div>
 
           <nav class="header-actions" aria-label="Resources">
             <a class="nav-action" href="/dependencies">
-              <ComponentGridIcon /><span>Dependencies</span>
+              <ComponentGridIcon />
+              <span>Dependencies</span>
             </a>
-            <a class="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
-              <BookOpenIcon /><span>Docs</span>
+            <a
+              class="nav-action"
+              href="https://tdesign.tencent.com/chat/getting-started"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <BookOpenIcon />
+              <span>Docs</span>
             </a>
-            <a class="nav-action" href="https://github.com/Tencent/tdesign" target="_blank" rel="noreferrer">
-              <LogoGithubIcon /><span>GitHub</span>
+            <a
+              class="nav-action"
+              href="https://github.com/Tencent/tdesign"
+              target="_blank"
+              rel="noreferrer"
+            >
+              <LogoGithubIcon />
+              <span>GitHub</span>
             </a>
             <button
               type="button"
@@ -92,7 +120,10 @@ export default defineComponent(() => {
       <div class="workspace-grid">
         <section class="chat-panel" aria-label="AI chat workspace">
           <div class="chat-panel-heading">
-            <div><span class="status-dot" aria-hidden="true" />Assistant</div>
+            <div>
+              <span class="status-dot" aria-hidden="true" />
+              Assistant
+            </div>
             <span>Streaming ready</span>
           </div>
           <div class="chatbot-host">
@@ -104,13 +135,27 @@ export default defineComponent(() => {
           <div class="setup-heading">
             <span class="eyebrow">Starter configuration</span>
             <h1>Build on a working chat foundation</h1>
-            <p>Chatbot is connected to a streaming SSE service and maps each response to markdown.</p>
+            <p>
+              Chatbot is connected to a streaming SSE service and maps each response to markdown.
+            </p>
           </div>
 
           <dl class="config-list">
-            <div><dt>Transport</dt><dd>SSE stream</dd></div>
-            <div><dt>Response</dt><dd>Markdown</dd></div>
-            <div><dt>Service</dt><dd><span class="status-dot" aria-hidden="true" />Remote endpoint</dd></div>
+            <div>
+              <dt>Transport</dt>
+              <dd>SSE stream</dd>
+            </div>
+            <div>
+              <dt>Response</dt>
+              <dd>Markdown</dd>
+            </div>
+            <div>
+              <dt>Service</dt>
+              <dd>
+                <span class="status-dot" aria-hidden="true" />
+                Remote endpoint
+              </dd>
+            </div>
           </dl>
 
           <div class="command-block">
@@ -118,7 +163,9 @@ export default defineComponent(() => {
             <code>__DEVCOMMAND__</code>
           </div>
 
-          <p class="setup-note">Update <code>chatServiceConfig</code> when your model service is ready.</p>
+          <p class="setup-note">
+            Update <code>chatServiceConfig</code> when your model service is ready.
+          </p>
         </aside>
       </div>
     </main>

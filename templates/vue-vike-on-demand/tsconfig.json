@@ -13,6 +13,13 @@
     "noEmit": true,
     "types": ["vite/client", "tdesign-vue-next/global"]
   },
-  "include": ["pages/**/*.ts", "pages/**/*.d.ts", "pages/**/*.vue", "vite.config.ts"],
+  "include": [
+    "pages/**/*.ts",
+    "pages/**/*.d.ts",
+    "pages/**/*.vue",
+    "vite.config.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
+  ],
   "exclude": ["dist"]
 }

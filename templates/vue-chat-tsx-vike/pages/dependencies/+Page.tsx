@@ -57,7 +57,13 @@ export default defineComponent(() => {
   onMounted(() => {
     colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
     const savedTheme = localStorage.getItem(THEME_KEY)
-    applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+    applyTheme(
+      savedTheme === 'dark' || savedTheme === 'light'
+        ? savedTheme
+        : colorScheme.matches
+          ? 'dark'
+          : 'light',
+    )
     colorScheme.addEventListener('change', syncSystemTheme)
   })
 
@@ -68,18 +74,38 @@ export default defineComponent(() => {
       <THeader class="dependencies-header">
         <TRow class="dependencies-header-inner" align="middle" justify="space-between">
           <TCol>
-            <TButton class="dependencies-brand" tag="a" href="/" variant="text" aria-label="Back to Chat home">
+            <TButton
+              class="dependencies-brand"
+              tag="a"
+              href="/"
+              variant="text"
+              aria-label="Back to Chat home"
+            >
               <TSpace align="center" size={12}>
-                <img class="dependencies-logo" src={isDark.value ? logoDark : logoLight} alt="TDesign" />
-                <TypographyText class="dependencies-brand-name" strong>Chat Dependencies</TypographyText>
+                <img
+                  class="dependencies-logo"
+                  src={isDark.value ? logoDark : logoLight}
+                  alt="TDesign"
+                />
+                <TypographyText class="dependencies-brand-name" strong>
+                  Chat Dependencies
+                </TypographyText>
               </TSpace>
             </TButton>
           </TCol>
           <TCol>
             <TSpace align="center" size={4}>
-              <TButton tag="a" href="/" variant="text"><ArrowLeftIcon />Home</TButton>
+              <TButton tag="a" href="/" variant="text">
+                <ArrowLeftIcon />
+                Home
+              </TButton>
               <TTooltip content={isDark.value ? 'Use light theme' : 'Use dark theme'}>
-                <TButton shape="circle" variant="text" aria-label={isDark.value ? 'Use light theme' : 'Use dark theme'} onClick={toggleTheme}>
+                <TButton
+                  shape="circle"
+                  variant="text"
+                  aria-label={isDark.value ? 'Use light theme' : 'Use dark theme'}
+                  onClick={toggleTheme}
+                >
                   {isDark.value ? <SunnyIcon /> : <MoonIcon />}
                 </TButton>
               </TTooltip>
@@ -91,25 +117,53 @@ export default defineComponent(() => {
         <div class="dependencies-content-inner">
           <TSpace class="dependencies-stack" direction="vertical" size={32}>
             <TSpace direction="vertical" size={8}>
-              <TTag theme="primary" variant="light">Chat package manifest</TTag>
-              <TypographyTitle class="dependencies-title" level="h1">Dependencies</TypographyTitle>
+              <TTag theme="primary" variant="light">
+                Chat package manifest
+              </TTag>
+              <TypographyTitle class="dependencies-title" level="h1">
+                Dependencies
+              </TypographyTitle>
               <TypographyParagraph class="dependencies-description">
-                Packages declared by <TypographyText code>{packageJson.name}</TypographyText>, grouped by how they are used.
+                Packages declared by <TypographyText code>{packageJson.name}</TypographyText>,
+                grouped by how they are used.
               </TypographyParagraph>
             </TSpace>
             <TRow gutter={[16, 16]} aria-label="Dependency summary">
-              <TCol xs={12} sm={4}><TStatistic title="Total" value={runtimeDependencies.length + developmentDependencies.length} /></TCol>
-              <TCol xs={12} sm={4}><TStatistic title="Runtime" value={runtimeDependencies.length} /></TCol>
-              <TCol xs={12} sm={4}><TStatistic title="Development" value={developmentDependencies.length} /></TCol>
+              <TCol xs={12} sm={4}>
+                <TStatistic
+                  title="Total"
+                  value={runtimeDependencies.length + developmentDependencies.length}
+                />
+              </TCol>
+              <TCol xs={12} sm={4}>
+                <TStatistic title="Runtime" value={runtimeDependencies.length} />
+              </TCol>
+              <TCol xs={12} sm={4}>
+                <TStatistic title="Development" value={developmentDependencies.length} />
+              </TCol>
             </TRow>
             <TRow gutter={[20, 20]} align="start">
               {dependencyGroups.map((group) => (
                 <TCol key={group.title} xs={12} md={6}>
-                  <TCard class="dependencies-card" headerBordered title={() => group.title} actions={() => <TTag variant="light">{group.items.length} packages</TTag>}>
+                  <TCard
+                    class="dependencies-card"
+                    headerBordered
+                    title={() => group.title}
+                    actions={() => <TTag variant="light">{group.items.length} packages</TTag>}
+                  >
                     <TList split>
                       {group.items.map(([name, version]) => (
-                        <TListItem key={name} action={() => <TypographyText class="dependency-version" code copyable>{version}</TypographyText>}>
-                          <TypographyText class="dependency-name" strong>{name}</TypographyText>
+                        <TListItem
+                          key={name}
+                          action={() => (
+                            <TypographyText class="dependency-version" code copyable>
+                              {version}
+                            </TypographyText>
+                          )}
+                        >
+                          <TypographyText class="dependency-name" strong>
+                            {name}
+                          </TypographyText>
                         </TListItem>
                       ))}
                     </TList>

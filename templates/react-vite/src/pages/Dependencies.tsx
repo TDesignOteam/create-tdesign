@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  ArrowLeftIcon,
-  ComponentGridIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-react'
+import { ArrowLeftIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import {
   Button,
   Card,
@@ -27,9 +22,7 @@ type Theme = 'light' | 'dark'
 
 const themeKey = 'tdesign-starter-theme'
 const runtimeDependencies = Object.entries(packageJson.dependencies ?? {})
-const developmentDependencies = Object.entries(
-  packageJson.devDependencies ?? {},
-)
+const developmentDependencies = Object.entries(packageJson.devDependencies ?? {})
 const dependencyGroups = [
   { title: 'Runtime dependencies', items: runtimeDependencies },
   { title: 'Development dependencies', items: developmentDependencies },
@@ -47,15 +40,12 @@ const getInitialTheme = (): Theme => {
   if (typeof window === 'undefined') return 'light'
   const savedTheme = window.localStorage.getItem(themeKey)
   if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 const applyTheme = (theme: Theme) => {
   if (typeof document === 'undefined') return
-  if (theme === 'dark')
-    document.documentElement.setAttribute('theme-mode', 'dark')
+  if (theme === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')
   else document.documentElement.removeAttribute('theme-mode')
 }
 
@@ -76,28 +66,18 @@ export default function DependenciesPage() {
       <Layout.Header className="topbar">
         <Row className="topbar-inner" align="middle" justify="space-between">
           <a href="./" className="dependencies-brand" aria-label="Back to home">
-            <img
-              className="brand-logo"
-              src={isDark ? logoDark : logoLight}
-              alt="TDesign"
-            />
+            <img className="brand-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
           </a>
           <Space className="topbar-actions" size={4}>
             <Button tag="a" href="./" variant="text">
               <ArrowLeftIcon />
               Home
             </Button>
-            <Tooltip
-              content={
-                isDark ? 'Switch to light theme' : 'Switch to dark theme'
-              }
-            >
+            <Tooltip content={isDark ? 'Switch to light theme' : 'Switch to dark theme'}>
               <Button
                 shape="circle"
                 variant="text"
-                aria-label={
-                  isDark ? 'Switch to light theme' : 'Switch to dark theme'
-                }
+                aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
                 onClick={toggleTheme}
               >
                 {isDark ? <SunnyIcon /> : <MoonIcon />}
@@ -109,11 +89,7 @@ export default function DependenciesPage() {
 
       <Layout.Content className="dependencies-workspace">
         <section aria-labelledby="dependencies-title">
-          <Row
-            className="dependencies-intro"
-            align="bottom"
-            justify="space-between"
-          >
+          <Row className="dependencies-intro" align="bottom" justify="space-between">
             <Space direction="vertical" size="small">
               <Tag theme="primary" variant="light">
                 Package manifest
@@ -122,8 +98,7 @@ export default function DependenciesPage() {
                 <Typography.Title level="h1">Dependencies</Typography.Title>
               </div>
               <Typography.Text theme="secondary">
-                Packages declared by{' '}
-                <Typography.Text code>{packageJson.name}</Typography.Text>,
+                Packages declared by <Typography.Text code>{packageJson.name}</Typography.Text>,
                 grouped by how they are used.
               </Typography.Text>
             </Space>
@@ -133,10 +108,7 @@ export default function DependenciesPage() {
           </Row>
         </section>
 
-        <section
-          className="dependencies-summary"
-          aria-label="Dependency summary"
-        >
+        <section className="dependencies-summary" aria-label="Dependency summary">
           <Row gutter={[16, 16]}>
             {summary.map((item) => (
               <Col key={item.title} xs={12} sm={4}>
@@ -154,12 +126,8 @@ export default function DependenciesPage() {
               <Col key={group.title} xs={12} sm={6}>
                 <Card
                   className="dependencies-card"
-                  title={
-                    <Typography.Text strong>{group.title}</Typography.Text>
-                  }
-                  actions={
-                    <Tag variant="light">{group.items.length} packages</Tag>
-                  }
+                  title={<Typography.Text strong>{group.title}</Typography.Text>}
+                  actions={<Tag variant="light">{group.items.length} packages</Tag>}
                   bordered
                   headerBordered
                 >

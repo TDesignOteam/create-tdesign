@@ -1,21 +1,116 @@
-.dependencies-page { min-width: 320px; background: var(--starter-page); }
-.dependencies-width { width: 100%; max-width: 760px; margin-inline: auto; }
-.dependencies-hero { border-bottom: 1px solid var(--starter-border); background: var(--starter-surface); }
-.dependencies-hero .dependencies-width { padding: 24px 16px; }
-.dependencies-hero h1 { margin: 0; color: var(--starter-text); font-size: 28px; line-height: 1.2; letter-spacing: 0; }
-.dependencies-kicker { display: block; margin: 0 0 6px; color: var(--starter-blue); font-size: 12px; font-weight: 600; line-height: 1.3; letter-spacing: 0; }
-.dependencies-copy { max-width: 580px; margin: 8px 0 0; color: var(--starter-muted); font-size: 14px; line-height: 1.55; }
-.dependencies-copy > .t-typography { margin: 0; color: inherit; font-size: inherit; line-height: inherit; }
-.dependencies-summary { margin-top: 16px; }
-.dependencies-content { padding: 20px 12px 32px; }
-.dependency-section + .dependency-section { margin-top: 24px; }
-.dependency-heading { display: flex; min-width: 0; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 12px; margin: 0 4px 10px; }
-.dependency-heading h2 { min-width: 0; margin: 0; overflow-wrap: anywhere; }
-.dependency-heading span { flex: none; color: var(--starter-muted); font-size: 12px; }
-.dependencies-page .dependency-cell .t-cell__title { min-width: 0; overflow-wrap: anywhere; }
-.dependencies-page .dependency-cell .t-cell__note { max-width: 42%; margin-left: 8px; }
-.dependencies-page .dependency-version { display: inline-flex; max-width: 100%; text-align: right; }
-.dependencies-page .dependency-version > .t-typography { display: inline-flex; min-width: 0; max-width: 100%; align-items: center; justify-content: flex-end; }
-.dependencies-page .dependency-version code { min-width: 0; max-width: 100%; margin: 0 4px 0 0; padding-inline: 4px; white-space: normal; overflow-wrap: anywhere; }
-.dependencies-home { margin-top: 24px; border-radius: 6px; }
-@media (max-width: 359px) { .dependencies-hero .dependencies-width { padding-inline: 12px; } .dependencies-hero h1 { font-size: 24px; } .dependencies-page .dependency-cell .t-cell__note { max-width: 38%; } }
+.dependencies-page {
+  min-width: 320px;
+  background: var(--starter-page);
+}
+.dependencies-width {
+  width: 100%;
+  max-width: 760px;
+  margin-inline: auto;
+}
+.dependencies-hero {
+  border-bottom: 1px solid var(--starter-border);
+  background: var(--starter-surface);
+}
+.dependencies-hero .dependencies-width {
+  padding: 24px 16px;
+}
+.dependencies-hero h1 {
+  margin: 0;
+  color: var(--starter-text);
+  font-size: 28px;
+  line-height: 1.2;
+  letter-spacing: 0;
+}
+.dependencies-kicker {
+  display: block;
+  margin: 0 0 6px;
+  color: var(--starter-blue);
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1.3;
+  letter-spacing: 0;
+}
+.dependencies-copy {
+  max-width: 580px;
+  margin: 8px 0 0;
+  color: var(--starter-muted);
+  font-size: 14px;
+  line-height: 1.55;
+}
+.dependencies-copy > .t-typography {
+  margin: 0;
+  color: inherit;
+  font-size: inherit;
+  line-height: inherit;
+}
+.dependencies-summary {
+  margin-top: 16px;
+}
+.dependencies-content {
+  padding: 20px 12px 32px;
+}
+.dependency-section + .dependency-section {
+  margin-top: 24px;
+}
+.dependency-heading {
+  display: flex;
+  min-width: 0;
+  flex-wrap: wrap;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 4px 12px;
+  margin: 0 4px 10px;
+}
+.dependency-heading h2 {
+  min-width: 0;
+  margin: 0;
+  overflow-wrap: anywhere;
+}
+.dependency-heading span {
+  flex: none;
+  color: var(--starter-muted);
+  font-size: 12px;
+}
+.dependencies-page .dependency-cell .t-cell__title {
+  min-width: 0;
+  overflow-wrap: anywhere;
+}
+.dependencies-page .dependency-cell .t-cell__note {
+  max-width: 42%;
+  margin-left: 8px;
+}
+.dependencies-page .dependency-version {
+  display: inline-flex;
+  max-width: 100%;
+  text-align: right;
+}
+.dependencies-page .dependency-version > .t-typography {
+  display: inline-flex;
+  min-width: 0;
+  max-width: 100%;
+  align-items: center;
+  justify-content: flex-end;
+}
+.dependencies-page .dependency-version code {
+  min-width: 0;
+  max-width: 100%;
+  margin: 0 4px 0 0;
+  padding-inline: 4px;
+  white-space: normal;
+  overflow-wrap: anywhere;
+}
+.dependencies-home {
+  margin-top: 24px;
+  border-radius: 6px;
+}
+@media (max-width: 359px) {
+  .dependencies-hero .dependencies-width {
+    padding-inline: 12px;
+  }
+  .dependencies-hero h1 {
+    font-size: 24px;
+  }
+  .dependencies-page .dependency-cell .t-cell__note {
+    max-width: 38%;
+  }
+}

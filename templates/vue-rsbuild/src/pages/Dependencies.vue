@@ -1,11 +1,6 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
-import {
-  ArrowLeftIcon,
-  ComponentGridIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
+import { ArrowLeftIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import packageJson from '../../package.json'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -17,18 +12,14 @@ const getInitialTheme = (): Theme => {
   if (typeof window === 'undefined') return 'light'
   const savedTheme = window.localStorage.getItem(themeKey)
   if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
-  return window.matchMedia('(prefers-color-scheme: dark)').matches
-    ? 'dark'
-    : 'light'
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
 }
 
 const theme = ref<Theme>(getInitialTheme())
 const isDark = computed(() => theme.value === 'dark')
 const logo = computed(() => (isDark.value ? logoDark : logoLight))
 const runtimeDependencies = Object.entries(packageJson.dependencies ?? {})
-const developmentDependencies = Object.entries(
-  packageJson.devDependencies ?? {},
-)
+const developmentDependencies = Object.entries(packageJson.devDependencies ?? {})
 const dependencyGroups = [
   { title: 'Runtime dependencies', items: runtimeDependencies },
   { title: 'Development dependencies', items: developmentDependencies },
@@ -44,8 +35,7 @@ const summary = [
 
 const applyTheme = (nextTheme: Theme) => {
   if (typeof document === 'undefined') return
-  if (nextTheme === 'dark')
-    document.documentElement.setAttribute('theme-mode', 'dark')
+  if (nextTheme === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')
   else document.documentElement.removeAttribute('theme-mode')
 }
 
@@ -61,27 +51,20 @@ const toggleTheme = () => {
 <template>
   <t-layout class="dependencies-page">
     <t-header class="dependencies-topbar">
-      <t-row
-        class="dependencies-topbar-inner"
-        align="middle"
-        justify="space-between"
-      >
+      <t-row class="dependencies-topbar-inner" align="middle" justify="space-between">
         <a href="./" aria-label="Back to home">
           <img :src="logo" alt="TDesign" />
         </a>
         <t-space class="dependencies-actions" :size="4">
           <t-button tag="a" href="./" variant="text">
-            <ArrowLeftIcon />Home
+            <ArrowLeftIcon />
+            Home
           </t-button>
-          <t-tooltip
-            :content="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
-          >
+          <t-tooltip :content="isDark ? 'Switch to light theme' : 'Switch to dark theme'">
             <t-button
               shape="circle"
               variant="text"
-              :aria-label="
-                isDark ? 'Switch to light theme' : 'Switch to dark theme'
-              "
+              :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
               @click="toggleTheme"
             >
               <SunnyIcon v-if="isDark" />
@@ -94,11 +77,7 @@ const toggleTheme = () => {
 
     <t-content class="dependencies-workspace">
       <section aria-labelledby="dependencies-title">
-        <t-row
-          class="dependencies-intro"
-          align="bottom"
-          justify="space-between"
-        >
+        <t-row class="dependencies-intro" align="bottom" justify="space-between">
           <t-space direction="vertical" size="small">
             <t-tag theme="primary" variant="light">Package manifest</t-tag>
             <div id="dependencies-title">
@@ -106,8 +85,8 @@ const toggleTheme = () => {
             </div>
             <t-typography-text theme="secondary">
               Packages declared by
-              <t-typography-text code>{{ packageJson.name }}</t-typography-text>,
-              grouped by how they are used.
+              <t-typography-text code>{{ packageJson.name }}</t-typography-text>
+              , grouped by how they are used.
             </t-typography-text>
           </t-space>
           <span class="dependencies-title-icon"><ComponentGridIcon /></span>
@@ -126,17 +105,8 @@ const toggleTheme = () => {
 
       <section aria-label="Dependency lists">
         <t-row align="top" :gutter="[16, 16]">
-          <t-col
-            v-for="group in dependencyGroups"
-            :key="group.title"
-            :xs="12"
-            :sm="6"
-          >
-            <t-card
-              class="dependencies-card"
-              :bordered="true"
-              header-bordered
-            >
+          <t-col v-for="group in dependencyGroups" :key="group.title" :xs="12" :sm="6">
+            <t-card class="dependencies-card" :bordered="true" header-bordered>
               <template #title>
                 <t-typography-text strong>{{ group.title }}</t-typography-text>
               </template>
@@ -144,10 +114,7 @@ const toggleTheme = () => {
                 <t-tag variant="light">{{ group.items.length }} packages</t-tag>
               </template>
               <t-list split>
-                <t-list-item
-                  v-for="[name, version] in group.items"
-                  :key="name"
-                >
+                <t-list-item v-for="[name, version] in group.items" :key="name">
                   <t-typography-text class="dependency-name" strong>
                     {{ name }}
                   </t-typography-text>
@@ -171,7 +138,12 @@ const toggleTheme = () => {
   color: #1d2129;
   background: #f4f6f8;
   color-scheme: light;
-  font-family: Inter, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+  font-family:
+    Inter,
+    -apple-system,
+    BlinkMacSystemFont,
+    'Segoe UI',
+    sans-serif;
   --dep-bg: #f4f6f8;
   --dep-surface: #fff;
   --dep-text: #1d2129;
@@ -192,7 +164,9 @@ const toggleTheme = () => {
   --dep-blue: #4080ff;
   --dep-blue-soft: #1d2f50;
 }
-:global(*) { box-sizing: border-box; }
+:global(*) {
+  box-sizing: border-box;
+}
 :global(body) {
   margin: 0;
   min-width: 320px;
@@ -220,14 +194,18 @@ const toggleTheme = () => {
   width: 132px;
   height: auto;
 }
-.dependencies-actions :deep(.t-button) { color: var(--dep-secondary); }
+.dependencies-actions :deep(.t-button) {
+  color: var(--dep-secondary);
+}
 .dependencies-workspace {
   width: 100%;
   max-width: 1232px;
   margin: 0 auto;
   padding: 44px 24px 64px;
 }
-.dependencies-intro { margin-bottom: 24px; }
+.dependencies-intro {
+  margin-bottom: 24px;
+}
 .dependencies-title-icon {
   display: inline-flex;
   width: 48px;
@@ -240,19 +218,33 @@ const toggleTheme = () => {
   background: var(--dep-blue-soft);
   font-size: 25px;
 }
-.dependencies-summary { margin-bottom: 16px; }
-.dependencies-card { height: 100%; }
-.dependencies-card :deep(.t-card__body) { padding: 0; }
+.dependencies-summary {
+  margin-bottom: 16px;
+}
+.dependencies-card {
+  height: 100%;
+}
+.dependencies-card :deep(.t-card__body) {
+  padding: 0;
+}
 .dependency-name {
   min-width: 0;
   overflow-wrap: anywhere;
 }
 @media (max-width: 760px) {
-  .dependencies-topbar-inner { padding: 0 16px; }
-  .dependencies-topbar-inner img { width: 116px; }
-  .dependencies-workspace { padding: 32px 16px 48px; }
+  .dependencies-topbar-inner {
+    padding: 0 16px;
+  }
+  .dependencies-topbar-inner img {
+    width: 116px;
+  }
+  .dependencies-workspace {
+    padding: 32px 16px 48px;
+  }
 }
 @media (max-width: 420px) {
-  .dependencies-title-icon { display: none; }
+  .dependencies-title-icon {
+    display: none;
+  }
 }
 </style>

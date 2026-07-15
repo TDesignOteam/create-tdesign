@@ -1,10 +1,5 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import {
-  ArrowLeftIcon,
-  ComponentGridIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
+import { ArrowLeftIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
   Button as TButton,
   Card as TCard,
@@ -31,9 +26,7 @@ type Theme = 'light' | 'dark'
 
 const themeKey = 'tdesign-starter-theme'
 const runtimeDependencies = Object.entries(packageJson.dependencies ?? {})
-const developmentDependencies = Object.entries(
-  packageJson.devDependencies ?? {},
-)
+const developmentDependencies = Object.entries(packageJson.devDependencies ?? {})
 const dependencyGroups = [
   { title: 'Runtime dependencies', items: runtimeDependencies },
   { title: 'Development dependencies', items: developmentDependencies },
@@ -49,8 +42,7 @@ const summary = [
 
 const applyTheme = (theme: Theme) => {
   if (typeof document === 'undefined') return
-  if (theme === 'dark')
-    document.documentElement.setAttribute('theme-mode', 'dark')
+  if (theme === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')
   else document.documentElement.removeAttribute('theme-mode')
 }
 
@@ -88,19 +80,11 @@ export default defineComponent(() => {
               <ArrowLeftIcon />
               Home
             </TButton>
-            <TTooltip
-              content={
-                isDark.value ? 'Switch to light theme' : 'Switch to dark theme'
-              }
-            >
+            <TTooltip content={isDark.value ? 'Switch to light theme' : 'Switch to dark theme'}>
               <TButton
                 shape="circle"
                 variant="text"
-                aria-label={
-                  isDark.value
-                    ? 'Switch to light theme'
-                    : 'Switch to dark theme'
-                }
+                aria-label={isDark.value ? 'Switch to light theme' : 'Switch to dark theme'}
                 onClick={toggleTheme}
               >
                 {isDark.value ? <SunnyIcon /> : <MoonIcon />}

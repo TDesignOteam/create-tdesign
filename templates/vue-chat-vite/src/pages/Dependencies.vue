@@ -56,7 +56,13 @@ const toggleTheme = () => {
 onMounted(() => {
   colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
   const savedTheme = localStorage.getItem(THEME_KEY)
-  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+  applyTheme(
+    savedTheme === 'dark' || savedTheme === 'light'
+      ? savedTheme
+      : colorScheme.matches
+        ? 'dark'
+        : 'light',
+  )
   colorScheme.addEventListener('change', syncSystemTheme)
 })
 
@@ -68,16 +74,27 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
     <THeader class="dependencies-header">
       <TRow class="dependencies-header-inner" align="middle" justify="space-between">
         <TCol>
-          <TButton class="dependencies-brand" tag="a" href="/" variant="text" aria-label="Back to Chat home">
+          <TButton
+            class="dependencies-brand"
+            tag="a"
+            href="/"
+            variant="text"
+            aria-label="Back to Chat home"
+          >
             <TSpace align="center" :size="12">
               <img class="dependencies-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
-              <TypographyText class="dependencies-brand-name" strong>Chat Dependencies</TypographyText>
+              <TypographyText class="dependencies-brand-name" strong>
+                Chat Dependencies
+              </TypographyText>
             </TSpace>
           </TButton>
         </TCol>
         <TCol>
           <TSpace align="center" :size="4">
-            <TButton tag="a" href="/" variant="text"><ArrowLeftIcon />Home</TButton>
+            <TButton tag="a" href="/" variant="text">
+              <ArrowLeftIcon />
+              Home
+            </TButton>
             <TTooltip :content="isDark ? 'Use light theme' : 'Use dark theme'">
               <TButton
                 shape="circle"
@@ -101,26 +118,41 @@ onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme
             <TTag theme="primary" variant="light">Chat package manifest</TTag>
             <TypographyTitle class="dependencies-title" level="h1">Dependencies</TypographyTitle>
             <TypographyParagraph class="dependencies-description">
-              Packages declared by <TypographyText code>{{ packageJson.name }}</TypographyText>, grouped by how they are used.
+              Packages declared by
+              <TypographyText code>{{ packageJson.name }}</TypographyText>
+              , grouped by how they are used.
             </TypographyParagraph>
           </TSpace>
 
           <TRow :gutter="[16, 16]" aria-label="Dependency summary">
-            <TCol :xs="12" :sm="4"><TStatistic title="Total" :value="runtimeDependencies.length + developmentDependencies.length" /></TCol>
-            <TCol :xs="12" :sm="4"><TStatistic title="Runtime" :value="runtimeDependencies.length" /></TCol>
-            <TCol :xs="12" :sm="4"><TStatistic title="Development" :value="developmentDependencies.length" /></TCol>
+            <TCol :xs="12" :sm="4">
+              <TStatistic
+                title="Total"
+                :value="runtimeDependencies.length + developmentDependencies.length"
+              />
+            </TCol>
+            <TCol :xs="12" :sm="4">
+              <TStatistic title="Runtime" :value="runtimeDependencies.length" />
+            </TCol>
+            <TCol :xs="12" :sm="4">
+              <TStatistic title="Development" :value="developmentDependencies.length" />
+            </TCol>
           </TRow>
 
           <TRow :gutter="[20, 20]" align="start">
             <TCol v-for="group in dependencyGroups" :key="group.title" :xs="12" :md="6">
               <TCard class="dependencies-card" :header-bordered="true">
                 <template #title>{{ group.title }}</template>
-                <template #actions><TTag variant="light">{{ group.items.length }} packages</TTag></template>
+                <template #actions>
+                  <TTag variant="light">{{ group.items.length }} packages</TTag>
+                </template>
                 <TList split>
                   <TListItem v-for="[name, version] in group.items" :key="name">
                     <TypographyText class="dependency-name" strong>{{ name }}</TypographyText>
                     <template #action>
-                      <TypographyText class="dependency-version" code copyable>{{ version }}</TypographyText>
+                      <TypographyText class="dependency-version" code copyable>
+                        {{ version }}
+                      </TypographyText>
                     </template>
                   </TListItem>
                 </TList>

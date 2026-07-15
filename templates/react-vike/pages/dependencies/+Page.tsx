@@ -1,10 +1,5 @@
 import { useEffect, useState } from 'react'
-import {
-  ArrowLeftIcon,
-  ComponentGridIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-react'
+import { ArrowLeftIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import {
   Button,
   Card,
@@ -27,9 +22,7 @@ type Theme = 'light' | 'dark'
 
 const themeKey = 'tdesign-starter-theme'
 const runtimeDependencies = Object.entries(packageJson.dependencies ?? {})
-const developmentDependencies = Object.entries(
-  packageJson.devDependencies ?? {},
-)
+const developmentDependencies = Object.entries(packageJson.devDependencies ?? {})
 const dependencyGroups = [
   { title: 'Runtime dependencies', items: runtimeDependencies },
   { title: 'Development dependencies', items: developmentDependencies },
@@ -45,8 +38,7 @@ const summary = [
 
 const applyTheme = (theme: Theme) => {
   if (typeof document === 'undefined') return
-  if (theme === 'dark')
-    document.documentElement.setAttribute('theme-mode', 'dark')
+  if (theme === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')
   else document.documentElement.removeAttribute('theme-mode')
 }
 
@@ -78,28 +70,18 @@ export default function Page() {
       <Layout.Header className="topbar">
         <Row className="topbar-inner" align="middle" justify="space-between">
           <a href="/" className="dependencies-brand" aria-label="Back to home">
-            <img
-              className="brand-logo"
-              src={isDark ? logoDark : logoLight}
-              alt="TDesign"
-            />
+            <img className="brand-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
           </a>
           <Space className="topbar-actions" size={4}>
             <Button tag="a" href="/" variant="text">
               <ArrowLeftIcon />
               Home
             </Button>
-            <Tooltip
-              content={
-                isDark ? 'Switch to light theme' : 'Switch to dark theme'
-              }
-            >
+            <Tooltip content={isDark ? 'Switch to light theme' : 'Switch to dark theme'}>
               <Button
                 shape="circle"
                 variant="text"
-                aria-label={
-                  isDark ? 'Switch to light theme' : 'Switch to dark theme'
-                }
+                aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
                 onClick={toggleTheme}
               >
                 {isDark ? <SunnyIcon /> : <MoonIcon />}
@@ -120,9 +102,8 @@ export default function Page() {
                 <Typography.Title level="h1">Dependencies</Typography.Title>
               </div>
               <Typography.Text theme="secondary">
-                Packages declared by{' '}
-                <Typography.Text code>{packageJson.name}</Typography.Text>, grouped
-                by how they are used.
+                Packages declared by <Typography.Text code>{packageJson.name}</Typography.Text>,
+                grouped by how they are used.
               </Typography.Text>
             </Space>
             <span className="dependencies-title-icon">

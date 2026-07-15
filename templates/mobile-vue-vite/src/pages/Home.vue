@@ -48,7 +48,9 @@ function openLink(url: string, internal = false) {
 
 onMounted(() => {
   const savedTheme = localStorage.getItem(STORAGE_KEY)
-  applyTheme(savedTheme ? savedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches)
+  applyTheme(
+    savedTheme ? savedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches,
+  )
 })
 </script>
 
@@ -62,7 +64,13 @@ onMounted(() => {
         </div>
       </template>
       <template #right>
-        <button class="theme-button" type="button" :aria-label="themeLabel" :title="themeLabel" @click.stop="toggleTheme">
+        <button
+          class="theme-button"
+          type="button"
+          :aria-label="themeLabel"
+          :title="themeLabel"
+          @click.stop="toggleTheme"
+        >
           <SunnyIcon v-if="isDark" size="20px" />
           <MoonIcon v-else size="20px" />
         </button>
@@ -74,7 +82,9 @@ onMounted(() => {
         <div>
           <p class="overline">Mobile starter workspace</p>
           <h1>__PROJECTNAME__</h1>
-          <p class="intro-copy">A compact Vue 3 workspace with TDesign Mobile components and production-ready defaults.</p>
+          <p class="intro-copy">
+            A compact Vue 3 workspace with TDesign Mobile components and production-ready defaults.
+          </p>
         </div>
         <t-tag theme="success" variant="light">Ready</t-tag>
       </div>
@@ -83,30 +93,64 @@ onMounted(() => {
     <div class="content-width workspace">
       <section class="workspace-section" aria-labelledby="overview-title">
         <div class="section-title-row">
-          <div><p class="section-kicker">Overview</p><h2 id="overview-title">Project status</h2></div>
+          <div>
+            <p class="section-kicker">Overview</p>
+            <h2 id="overview-title">Project status</h2>
+          </div>
           <span class="status-dot">Configured</span>
         </div>
         <t-cell-group theme="card">
-          <t-cell title="UI foundation" description="Vue 3 + TypeScript + TDesign Mobile Vue" note="Active" />
+          <t-cell
+            title="UI foundation"
+            description="Vue 3 + TypeScript + TDesign Mobile Vue"
+            note="Active"
+          />
           <t-cell title="Template" description="__TEMPLATENAME__" note="Mobile" />
         </t-cell-group>
       </section>
 
       <section class="workspace-section" aria-labelledby="command-title">
-        <div class="section-title-row"><div><p class="section-kicker">Quick start</p><h2 id="command-title">Development command</h2></div></div>
-        <div class="command-row"><code>__DEVCOMMAND__</code><t-tag theme="success" variant="light-outline">Local</t-tag></div>
+        <div class="section-title-row">
+          <div>
+            <p class="section-kicker">Quick start</p>
+            <h2 id="command-title">Development command</h2>
+          </div>
+        </div>
+        <div class="command-row">
+          <code>__DEVCOMMAND__</code>
+          <t-tag theme="success" variant="light-outline">Local</t-tag>
+        </div>
       </section>
 
       <section class="workspace-section" aria-labelledby="resources-title">
-        <div class="section-title-row"><div><p class="section-kicker">Resources</p><h2 id="resources-title">Build from here</h2></div></div>
+        <div class="section-title-row">
+          <div>
+            <p class="section-kicker">Resources</p>
+            <h2 id="resources-title">Build from here</h2>
+          </div>
+        </div>
         <t-cell-group theme="card">
-          <t-cell v-for="item in resources" :key="item.url" :title="item.title" :description="item.description" arrow hover @click="openLink(item.url, item.internal)" />
+          <t-cell
+            v-for="item in resources"
+            :key="item.url"
+            :title="item.title"
+            :description="item.description"
+            arrow
+            hover
+            @click="openLink(item.url, item.internal)"
+          />
         </t-cell-group>
       </section>
 
       <div class="actions">
-        <t-button theme="primary" size="large" block @click="openLink(resources[0].url)"><template #icon><BookOpenIcon /></template>Open documentation</t-button>
-        <t-button variant="outline" size="large" block @click="openLink(resources[1].url)"><template #icon><LogoGithubIcon /></template>View on GitHub</t-button>
+        <t-button theme="primary" size="large" block @click="openLink(resources[0].url)">
+          <template #icon><BookOpenIcon /></template>
+          Open documentation
+        </t-button>
+        <t-button variant="outline" size="large" block @click="openLink(resources[1].url)">
+          <template #icon><LogoGithubIcon /></template>
+          View on GitHub
+        </t-button>
       </div>
     </div>
   </main>

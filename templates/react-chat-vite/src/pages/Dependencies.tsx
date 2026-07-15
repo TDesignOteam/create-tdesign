@@ -48,7 +48,13 @@ export default function DependenciesPage() {
   useEffect(() => {
     const colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
     const savedTheme = localStorage.getItem(THEME_KEY)
-    applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+    applyTheme(
+      savedTheme === 'dark' || savedTheme === 'light'
+        ? savedTheme
+        : colorScheme.matches
+          ? 'dark'
+          : 'light',
+    )
 
     const syncSystemTheme = (event: MediaQueryListEvent) => {
       if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light')
@@ -65,16 +71,30 @@ export default function DependenciesPage() {
       <Layout.Header className="dependencies-header">
         <Row className="dependencies-header-inner" align="middle" justify="space-between">
           <Col>
-            <Button className="dependencies-brand" tag="a" href="/" variant="text" aria-label="Back to Chat home">
+            <Button
+              className="dependencies-brand"
+              tag="a"
+              href="/"
+              variant="text"
+              aria-label="Back to Chat home"
+            >
               <Space align="center" size={12}>
-                <img className="dependencies-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
-                <Typography.Text className="dependencies-brand-name" strong>Chat Dependencies</Typography.Text>
+                <img
+                  className="dependencies-logo"
+                  src={isDark ? logoDark : logoLight}
+                  alt="TDesign"
+                />
+                <Typography.Text className="dependencies-brand-name" strong>
+                  Chat Dependencies
+                </Typography.Text>
               </Space>
             </Button>
           </Col>
           <Col>
             <Space align="center" size={4}>
-              <Button tag="a" href="/" variant="text" icon={<ArrowLeftIcon />}>Home</Button>
+              <Button tag="a" href="/" variant="text" icon={<ArrowLeftIcon />}>
+                Home
+              </Button>
               <Tooltip content={themeLabel}>
                 <Button shape="circle" variant="text" aria-label={themeLabel} onClick={toggleTheme}>
                   {isDark ? <SunnyIcon /> : <MoonIcon />}
@@ -89,17 +109,31 @@ export default function DependenciesPage() {
         <div className="dependencies-content-inner">
           <Space className="dependencies-stack" direction="vertical" size={32}>
             <Space direction="vertical" size={8}>
-              <Tag theme="primary" variant="light">Chat package manifest</Tag>
-              <Typography.Title className="dependencies-title" level="h1">Dependencies</Typography.Title>
+              <Tag theme="primary" variant="light">
+                Chat package manifest
+              </Tag>
+              <Typography.Title className="dependencies-title" level="h1">
+                Dependencies
+              </Typography.Title>
               <Typography.Paragraph className="dependencies-description">
-                Packages declared by <Typography.Text code>{packageJson.name}</Typography.Text>, grouped by how they are used.
+                Packages declared by <Typography.Text code>{packageJson.name}</Typography.Text>,
+                grouped by how they are used.
               </Typography.Paragraph>
             </Space>
 
             <Row gutter={[16, 16]} aria-label="Dependency summary">
-              <Col xs={12} sm={4}><Statistic title="Total" value={runtimeDependencies.length + developmentDependencies.length} /></Col>
-              <Col xs={12} sm={4}><Statistic title="Runtime" value={runtimeDependencies.length} /></Col>
-              <Col xs={12} sm={4}><Statistic title="Development" value={developmentDependencies.length} /></Col>
+              <Col xs={12} sm={4}>
+                <Statistic
+                  title="Total"
+                  value={runtimeDependencies.length + developmentDependencies.length}
+                />
+              </Col>
+              <Col xs={12} sm={4}>
+                <Statistic title="Runtime" value={runtimeDependencies.length} />
+              </Col>
+              <Col xs={12} sm={4}>
+                <Statistic title="Development" value={developmentDependencies.length} />
+              </Col>
             </Row>
 
             <Row gutter={[20, 20]} align="start">
@@ -115,9 +149,15 @@ export default function DependenciesPage() {
                       {group.items.map(([name, version]) => (
                         <List.ListItem
                           key={name}
-                          action={<Typography.Text className="dependency-version" code copyable>{version}</Typography.Text>}
+                          action={
+                            <Typography.Text className="dependency-version" code copyable>
+                              {version}
+                            </Typography.Text>
+                          }
                         >
-                          <Typography.Text className="dependency-name" strong>{name}</Typography.Text>
+                          <Typography.Text className="dependency-name" strong>
+                            {name}
+                          </Typography.Text>
                         </List.ListItem>
                       ))}
                     </List>

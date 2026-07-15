@@ -3,4 +3,4 @@ allowBuilds:
   vue-demi: true
 
 packages:
-  - "."
+  - '.'

@@ -28,7 +28,7 @@ export default defineConfig({
     rspack: {
       plugins: [
         AutoImport({
-          resolvers: [TDesignResolver({ library: 'mobile-vue' })],
+          resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],
         }),
         Components({
           resolvers: [TDesignResolver({ library: 'mobile-vue', resolveIcons: true })],

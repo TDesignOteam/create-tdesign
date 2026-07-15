@@ -30,6 +30,8 @@
   "scripts": {
     "dev": "tsdown --watch",
     "build": "tsdown",
+    "format:templates": "prettier --write \"templates/**/*.{css,html,js,json,jsx,md,ts,tsx,vue,yaml,yml}\"",
+    "format:templates:check": "prettier --check \"templates/**/*.{css,html,js,json,jsx,md,ts,tsx,vue,yaml,yml}\"",
     "typecheck": "tsc --noEmit"
   },
   "keywords": [
@@ -40,12 +42,12 @@
     "rsbuild",
     "vike"
   ],
-  
   "devDependencies": {
     "@clack/prompts": "^1.7.0",
     "@types/node": "^25.9.5",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
+    "prettier": "^3.9.5",
     "tsdown": "^0.22.7",
     "typescript": "^6.0.3"
   }

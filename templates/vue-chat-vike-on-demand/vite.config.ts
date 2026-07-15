@@ -10,10 +10,16 @@ export default defineConfig({
     vike(),
     vue(),
     AutoImport({
-      resolvers: [TDesignResolver({ library: 'chat' })],
+      resolvers: [
+        TDesignResolver({ library: 'chat' }),
+        TDesignResolver({ library: 'vue-next', resolveIcons: true }),
+      ],
     }),
     Components({
-      resolvers: [TDesignResolver({ library: 'chat', resolveIcons: true })],
+      resolvers: [
+        TDesignResolver({ library: 'chat' }),
+        TDesignResolver({ library: 'vue-next', resolveIcons: true }),
+      ],
     }),
   ],
 })
