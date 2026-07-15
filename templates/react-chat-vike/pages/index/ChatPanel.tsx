@@ -16,5 +16,9 @@ const chatServiceConfig: ChatServiceConfig = {
 }
 
 export default function ChatPanel() {
-  return <ChatBot chatServiceConfig={chatServiceConfig} />
+  return (
+    <div className="chatbot-host">
+      <ChatBot chatServiceConfig={chatServiceConfig} />
+    </div>
+  )
 }

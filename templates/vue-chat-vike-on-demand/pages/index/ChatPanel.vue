@@ -20,5 +20,7 @@ const chatServiceConfig: ChatServiceConfig = {
 </script>
 
 <template>
-  <t-chatbot :chat-service-config="chatServiceConfig" />
+  <div class="chatbot-host">
+    <t-chatbot :chat-service-config="chatServiceConfig" />
+  </div>
 </template>

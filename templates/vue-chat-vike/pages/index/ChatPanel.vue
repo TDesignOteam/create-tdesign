@@ -21,5 +21,7 @@ const chatServiceConfig: ChatServiceConfig = {
 </script>
 
 <template>
-  <Chatbot :chat-service-config="chatServiceConfig" />
+  <div class="chatbot-host">
+    <Chatbot :chat-service-config="chatServiceConfig" />
+  </div>
 </template>

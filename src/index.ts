@@ -132,6 +132,7 @@ async function init() {
     projectName: path.basename(root),
     packageName,
     templateName: template.display,
+    devCommand: getRunCommand(packageManager, 'dev'),
   }, packageManager)
 
   prompts.outro(renderDoneMessage(root, packageManager))
@@ -392,8 +393,13 @@ function copyEntry(source: string, destination: string, context: Record<string, 
     return
   }
 
-  const content = fs.readFileSync(source, 'utf8')
-  fs.writeFileSync(destination, applyPlaceholders(content, context))
+  const content = fs.readFileSync(source)
+  if (content.includes(0)) {
+    fs.writeFileSync(destination, content)
+    return
+  }
+
+  fs.writeFileSync(destination, applyPlaceholders(content.toString('utf8'), context))
 }
 
 function applyPlaceholders(content: string, context: Record<string, string>) {

@@ -1,5 +1,40 @@
 <script setup lang="ts">
+import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import type { AIMessageContent, ChatServiceConfig, SSEChunkData } from '@tdesign-vue-next/chat'
+import logoDark from '../assets/TDesign-logo_dark.png'
+import logoLight from '../assets/TDesign-logo_light.png'
+
+type ThemeMode = 'light' | 'dark'
+
+const THEME_KEY = 'tdesign-chat-theme'
+const theme = ref<ThemeMode>('light')
+const isDark = computed(() => theme.value === 'dark')
+let colorScheme: MediaQueryList | undefined
+
+const applyTheme = (value: ThemeMode) => {
+  theme.value = value
+  document.documentElement.setAttribute('theme-mode', value)
+}
+
+const syncSystemTheme = (event: MediaQueryListEvent) => {
+  if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light')
+}
+
+const toggleTheme = () => {
+  const nextTheme = isDark.value ? 'light' : 'dark'
+  localStorage.setItem(THEME_KEY, nextTheme)
+  applyTheme(nextTheme)
+}
+
+onMounted(() => {
+  colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
+  const savedTheme = localStorage.getItem(THEME_KEY)
+  applyTheme(savedTheme === 'dark' || savedTheme === 'light' ? savedTheme : colorScheme.matches ? 'dark' : 'light')
+  colorScheme.addEventListener('change', syncSystemTheme)
+})
+
+onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme))
 
 const chatServiceConfig: ChatServiceConfig = {
   endpoint: 'https://1257786608-9i9j1kpa67.ap-guangzhou.tencentscf.com/sse/normal',
@@ -13,198 +48,75 @@ const chatServiceConfig: ChatServiceConfig = {
     }
   },
 }
-
-const sections = [
-  {
-    title: 'Starter stack',
-    description: 'Built with Vue 3 and the TDesign chat component.',
-  },
-  {
-    title: 'Build workflow',
-    description: 'Use Vite for instant local startup and production builds.',
-  },
-  {
-    title: 'Next step',
-    description: 'Edit chatServiceConfig in src/pages/Home.vue to connect your model service.',
-  },
-]
 </script>
 
 <template>
-  <main class="page-shell">
-    <section class="content-grid">
-      <aside class="intro-panel">
-        <p class="eyebrow">
-          <chat-bubble-icon style="margin-right: 8px; vertical-align: middle" />
-          __TEMPLATENAME__
-        </p>
-        <div class="hero-copy">
-          <h1 class="hero-title">AI Chat Starter</h1>
-          <p class="hero-intro">
-            __PROJECTNAME__ ships with a ready-to-wire chat shell. Connect your
-            real model service by updating <code>chatServiceConfig</code> in
-            <code>src/pages/Home.vue</code>.
-          </p>
-        </div>
-        <div class="section-block">
-          <p class="section-heading">Getting started</p>
-          <div class="section-list">
-            <div v-for="item in sections" :key="item.title" class="section-row">
-              <span class="section-row-title">{{ item.title }}</span>
-              <p class="section-row-description">{{ item.description }}</p>
-            </div>
-          </div>
-        </div>
-        <div class="action-row">
-          <button type="button" class="primary-action">Run pnpm dev</button>
-          <button type="button" class="secondary-action">Edit chatServiceConfig</button>
-        </div>
-      </aside>
+  <main class="app-shell">
+    <header class="app-header">
+      <div class="header-inner">
+        <a class="brand" href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
+          <img class="brand-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
+          <span class="brand-divider" aria-hidden="true" />
+          <span class="product-name">AI Chat Starter</span>
+        </a>
 
-      <section class="chat-panel">
-        <t-chatbot :chat-service-config="chatServiceConfig" />
+        <div class="template-tags" aria-label="Template status">
+          <span class="template-tag">__TEMPLATENAME__</span>
+          <span class="online-tag"><i aria-hidden="true" />Online</span>
+        </div>
+
+        <nav class="header-actions" aria-label="Resources">
+          <a class="nav-action" href="https://tdesign.tencent.com/chat/getting-started" target="_blank" rel="noreferrer">
+            <BookOpenIcon /><span>Docs</span>
+          </a>
+          <a class="nav-action" href="https://github.com/Tencent/tdesign" target="_blank" rel="noreferrer">
+            <LogoGithubIcon /><span>GitHub</span>
+          </a>
+          <button
+            type="button"
+            class="theme-button"
+            :aria-label="isDark ? 'Use light theme' : 'Use dark theme'"
+            :title="isDark ? 'Use light theme' : 'Use dark theme'"
+            @click="toggleTheme"
+          >
+            <SunnyIcon v-if="isDark" />
+            <MoonIcon v-else />
+          </button>
+        </nav>
+      </div>
+    </header>
+
+    <div class="workspace-grid">
+      <section class="chat-panel" aria-label="AI chat workspace">
+        <div class="chat-panel-heading">
+          <div><span class="status-dot" aria-hidden="true" />Assistant</div>
+          <span>Streaming ready</span>
+        </div>
+        <div class="chatbot-host">
+          <t-chatbot :chat-service-config="chatServiceConfig" />
+        </div>
       </section>
-    </section>
+
+      <aside class="setup-panel">
+        <div class="setup-heading">
+          <span class="eyebrow">Starter configuration</span>
+          <h1>Build on a working chat foundation</h1>
+          <p>Chatbot is connected to a streaming SSE service and maps each response to markdown.</p>
+        </div>
+
+        <dl class="config-list">
+          <div><dt>Transport</dt><dd>SSE stream</dd></div>
+          <div><dt>Response</dt><dd>Markdown</dd></div>
+          <div><dt>Service</dt><dd><span class="status-dot" aria-hidden="true" />Remote endpoint</dd></div>
+        </dl>
+
+        <div class="command-block">
+          <span>Start locally</span>
+          <code>__DEVCOMMAND__</code>
+        </div>
+
+        <p class="setup-note">Update <code>chatServiceConfig</code> when your model service is ready.</p>
+      </aside>
+    </div>
   </main>
 </template>
-
-<style scoped>
-.page-shell {
-  min-height: 100vh;
-  padding: 20px;
-  background:
-    radial-gradient(circle at top, rgba(74, 111, 255, 0.16), transparent 24%),
-    linear-gradient(180deg, #f7f9fe 0%, #edf2fb 100%);
-}
-
-.content-grid {
-  display: grid;
-  gap: 20px;
-  max-width: 1080px;
-  margin: 0 auto;
-}
-
-.intro-panel {
-  padding: 24px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.82);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-  backdrop-filter: blur(14px);
-  display: grid;
-  gap: 20px;
-}
-
-.eyebrow,
-.section-heading {
-  margin: 0;
-  color: #315efb;
-  font-size: 12px;
-  font-weight: 700;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.hero-copy {
-  display: grid;
-  gap: 12px;
-}
-
-.hero-title {
-  margin: 0;
-  font-size: clamp(32px, 5vw, 48px);
-  line-height: 1.05;
-}
-
-.hero-intro {
-  margin: 0;
-  max-width: 60ch;
-  color: #52606d;
-  font-size: 16px;
-  line-height: 1.7;
-}
-
-.section-block {
-  display: grid;
-  gap: 16px;
-}
-
-.section-list {
-  display: grid;
-  gap: 16px;
-}
-
-.section-row {
-  display: grid;
-  gap: 6px;
-}
-
-.section-row-title {
-  font-size: 18px;
-  font-weight: 600;
-  line-height: 1.4;
-}
-
-.section-row-description {
-  margin: 0;
-  color: #52606d;
-  font-size: 15px;
-  line-height: 1.65;
-}
-
-.action-row {
-  display: flex;
-  gap: 12px;
-  flex-wrap: wrap;
-}
-
-.primary-action,
-.secondary-action {
-  appearance: none;
-  border-radius: 999px;
-  padding: 12px 18px;
-  font: inherit;
-  cursor: pointer;
-  transition:
-    transform 0.2s ease,
-    box-shadow 0.2s ease,
-    border-color 0.2s ease;
-}
-
-.primary-action {
-  border: 1px solid transparent;
-  background: #315efb;
-  color: #fff;
-  box-shadow: 0 12px 24px rgba(49, 94, 251, 0.24);
-}
-
-.secondary-action {
-  border: 1px solid rgba(49, 94, 251, 0.2);
-  background: rgba(255, 255, 255, 0.88);
-  color: #315efb;
-}
-
-.primary-action:hover,
-.secondary-action:hover {
-  transform: translateY(-1px);
-}
-
-.chat-panel {
-  height: min(72vh, 680px);
-  padding: 12px;
-  border-radius: 24px;
-  background: rgba(255, 255, 255, 0.92);
-  box-shadow: 0 18px 40px rgba(15, 23, 42, 0.08);
-}
-
-.chat-panel :deep(t-chatbot) {
-  display: block;
-  height: 100%;
-}
-
-@media (min-width: 980px) {
-  .content-grid {
-    grid-template-columns: minmax(320px, 0.9fr) minmax(0, 1.4fr);
-    align-items: stretch;
-  }
-}
-</style>
