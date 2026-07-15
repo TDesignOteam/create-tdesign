@@ -1,9 +1,5 @@
 <script setup lang="ts">
-import type {
-  AIMessageContent,
-  ChatServiceConfig,
-  SSEChunkData,
-} from '@tdesign-vue-next/chat'
+import type { AIMessageContent, ChatServiceConfig, SSEChunkData } from '@tdesign-vue-next/chat'
 
 const chatServiceConfig: ChatServiceConfig = {
   endpoint: 'https://1257786608-9i9j1kpa67.ap-guangzhou.tencentscf.com/sse/normal',
@@ -20,5 +16,7 @@ const chatServiceConfig: ChatServiceConfig = {
 </script>
 
 <template>
-  <t-chatbot :chat-service-config="chatServiceConfig" />
+  <div class="chatbot-host">
+    <t-chatbot :chat-service-config="chatServiceConfig" />
+  </div>
 </template>

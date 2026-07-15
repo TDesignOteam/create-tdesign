@@ -16,7 +16,7 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "@tdesign-vue-next/chat/global"]
+    "types": ["vite/client", "node", "@tdesign-vue-next/chat/global"]
   },
   "include": ["src/**/*.ts", "src/**/*.tsx", "src/**/*.d.ts", "vite.config.ts"]
 }

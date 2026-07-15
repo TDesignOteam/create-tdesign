@@ -15,6 +15,12 @@
     "noEmit": true,
     "types": ["vite/client", "tdesign-mobile-vue/global"]
   },
-  "include": ["pages/**/*.ts", "pages/**/*.tsx", "pages/**/*.d.ts", "pages/**/*.vue", "vite.config.ts"],
+  "include": [
+    "pages/**/*.ts",
+    "pages/**/*.tsx",
+    "pages/**/*.d.ts",
+    "pages/**/*.vue",
+    "vite.config.ts"
+  ],
   "exclude": ["dist"]
 }

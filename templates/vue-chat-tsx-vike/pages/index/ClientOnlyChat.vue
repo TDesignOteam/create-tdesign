@@ -7,7 +7,7 @@ import ChatPanel from './ChatPanel'
   <ClientOnly>
     <ChatPanel />
     <template #fallback>
-      <div class="chat-placeholder">Hydrating chat workspace...</div>
+      <div class="chatbot-host chat-placeholder">Preparing chat workspace...</div>
     </template>
   </ClientOnly>
 </template>

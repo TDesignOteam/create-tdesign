@@ -8,6 +8,11 @@ const router = createRouter({
       name: 'home',
       component: () => import('@/pages/Home'),
     },
+    {
+      path: '/dependencies',
+      name: 'dependencies',
+      component: () => import('@/pages/Dependencies'),
+    },
   ],
 })
 

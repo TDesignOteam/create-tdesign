@@ -2,4 +2,4 @@ allowBuilds:
   esbuild: true
 
 packages:
-  - "."
+  - '.'

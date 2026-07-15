@@ -14,7 +14,14 @@
     "paths": {
       "@/*": ["./src/*"]
     },
-    "types": ["vite/client", "@tdesign-vue-next/chat/global"]
+    "types": ["vite/client", "node", "@tdesign-vue-next/chat/global"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "vite.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "vite.config.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
+  ]
 }

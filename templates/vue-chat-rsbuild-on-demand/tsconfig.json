@@ -16,5 +16,12 @@
     },
     "types": ["node", "@tdesign-vue-next/chat/global"]
   },
-  "include": ["src/**/*.ts", "src/**/*.d.ts", "src/**/*.vue", "rsbuild.config.ts"]
+  "include": [
+    "src/**/*.ts",
+    "src/**/*.d.ts",
+    "src/**/*.vue",
+    "rsbuild.config.ts",
+    "components.d.ts",
+    "auto-imports.d.ts"
+  ]
 }

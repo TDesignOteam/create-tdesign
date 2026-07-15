@@ -16,5 +16,9 @@ const chatServiceConfig: ChatServiceConfig = {
 }
 
 export default defineComponent(() => {
-  return () => <Chatbot chatServiceConfig={chatServiceConfig} />
+  return () => (
+    <div class="chatbot-host">
+      <Chatbot chatServiceConfig={chatServiceConfig} />
+    </div>
+  )
 })
