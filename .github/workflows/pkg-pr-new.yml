@@ -32,4 +32,4 @@ jobs:
               execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'examples' });
             });
 
-      - run: pnpm dlx pkg-pr-new publish --bin --packageManager=npm,pnpm,bun --template './examples/*'
+      - run: pnpm dlx pkg-pr-new publish --bin --packageManager=npm,pnpm,bun --template './examples/*' --previewVersion
