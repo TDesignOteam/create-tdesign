@@ -1,5 +1,5 @@
 import { dangerouslySkipEscape, escapeInject } from 'vike/server'
-import { pageHtml } from '../src/page'
+import { pageHtml, projectName } from '../src/page'
 import '../src/style.css'
 
 export function onRenderHtml() {
@@ -12,7 +12,7 @@ export function onRenderHtml() {
           name="description"
           content="TDesign Web Components starter powered by TypeScript and Vike."
         />
-        <title>__PROJECTNAME__</title>
+        <title>${projectName}</title>
       </head>
       <body>
         <div id="app">${dangerouslySkipEscape(pageHtml)}</div>

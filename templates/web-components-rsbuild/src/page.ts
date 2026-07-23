@@ -1,3 +1,9 @@
+export const projectName = __PROJECTNAMEJSON__
+const templateName = __TEMPLATENAMEJSON__
+const devCommand = __DEVCOMMANDJSON__
+const escapeHtml = (value: string) =>
+  value.replace(/[&<>"']/g, (character) => `&#${character.charCodeAt(0)};`)
+
 export const pageHtml = `
   <div class="starter-page">
     <header class="topbar">
@@ -24,8 +30,8 @@ export const pageHtml = `
     <main class="workspace">
       <section class="welcome" aria-labelledby="starter-title">
         <div>
-          <t-tag theme="primary" variant="light">__TEMPLATENAME__</t-tag>
-          <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
+          <span class="status-tag status-tag-primary">${escapeHtml(templateName)}</span>
+          <h1 id="starter-title">${escapeHtml(projectName)} is ready.</h1>
           <p>Build framework-agnostic interfaces with standards-based custom elements from TDesign.</p>
         </div>
         <a href="https://tdesign.tencent.com/web-components/overview" target="_blank" rel="noreferrer">
@@ -37,34 +43,35 @@ export const pageHtml = `
         <span class="feature-icon"><t-icon-code></t-icon-code></span>
         <div class="command-copy">
           <span>Development command</span>
-          <code>__DEVCOMMAND__</code>
+          <code>${escapeHtml(devCommand)}</code>
         </div>
-        <t-tag theme="success" variant="light">Ready</t-tag>
+        <span class="status-tag status-tag-success">Ready</span>
       </section>
 
       <section class="overview-grid" aria-label="Project overview">
-        <t-card>
+        <article class="surface-card">
           <div class="overview-item">
             <span class="feature-icon"><t-icon-app></t-icon-app></span>
             <div><small>Application</small><strong>Web Components + TypeScript</strong></div>
           </div>
-        </t-card>
-        <t-card>
+        </article>
+        <article class="surface-card">
           <div class="overview-item">
             <span class="feature-icon"><t-icon-component-grid></t-icon-component-grid></span>
             <div><small>Design system</small><strong>TDesign Desktop</strong></div>
           </div>
-        </t-card>
-        <t-card>
+        </article>
+        <article class="surface-card">
           <div class="overview-item">
             <span class="feature-icon feature-icon-green"><t-icon-browse></t-icon-browse></span>
             <div><small>Runtime</small><strong>Native custom elements</strong></div>
           </div>
-        </t-card>
+        </article>
       </section>
 
       <section class="work-grid">
-        <t-card title="Component workspace" header-bordered>
+        <section class="surface-card work-card" aria-labelledby="components-title">
+          <h2 id="components-title">Component workspace</h2>
           <div class="component-demo">
             <div>
               <span class="demo-label">Buttons</span>
@@ -77,15 +84,16 @@ export const pageHtml = `
             <div>
               <span class="demo-label">Status tags</span>
               <div class="demo-row">
-                <t-tag theme="success" variant="light">Available</t-tag>
-                <t-tag theme="warning" variant="light">Review</t-tag>
-                <t-tag theme="primary" variant="outline">Custom element</t-tag>
+                <span class="status-tag status-tag-success">Available</span>
+                <span class="status-tag status-tag-warning">Review</span>
+                <span class="status-tag status-tag-outline">Custom element</span>
               </div>
             </div>
           </div>
-        </t-card>
+        </section>
 
-        <t-card title="Resources" header-bordered>
+        <section class="surface-card work-card" aria-labelledby="resources-title">
+          <h2 id="resources-title">Resources</h2>
           <nav class="resource-list" aria-label="TDesign resources">
             <a href="https://tdesign.tencent.com/web-components/overview" target="_blank" rel="noreferrer">
               <span><strong>Component docs</strong><small>Examples and API reference</small></span>
@@ -100,7 +108,7 @@ export const pageHtml = `
               <t-icon-chevron-right></t-icon-chevron-right>
             </a>
           </nav>
-        </t-card>
+        </section>
       </section>
     </main>
   </div>

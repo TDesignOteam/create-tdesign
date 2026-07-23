@@ -130,17 +130,12 @@ async function init() {
   const templateDir = path.join(packageRoot, 'templates', template.id)
   const scaffoldContext = {
     projectName: path.basename(root),
+    projectNameJson: JSON.stringify(path.basename(root)),
     packageName,
     templateName: template.display,
+    templateNameJson: JSON.stringify(template.display),
     devCommand: getRunCommand(packageManager, 'dev'),
-  }
-  if (template.ui === 'web-components') {
-    scaffoldTemplate(
-      path.join(packageRoot, 'templates', '_shared', 'web-components'),
-      root,
-      scaffoldContext,
-      packageManager,
-    )
+    devCommandJson: JSON.stringify(getRunCommand(packageManager, 'dev')),
   }
   scaffoldTemplate(templateDir, root, scaffoldContext, packageManager)
 

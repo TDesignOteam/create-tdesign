@@ -1,6 +1,5 @@
+import 'tdesign-web-components/lib/style/index.css'
 import 'tdesign-web-components/lib/button/index.js'
-import 'tdesign-web-components/lib/card/index.js'
-import 'tdesign-web-components/lib/tag/index.js'
 import 'tdesign-icons-web-components/esm/components/app.js'
 import 'tdesign-icons-web-components/esm/components/book-open.js'
 import 'tdesign-icons-web-components/esm/components/browse.js'

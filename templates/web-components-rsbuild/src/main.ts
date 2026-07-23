@@ -1,6 +1,7 @@
 import { initializeApp } from './client'
-import { pageHtml } from './page'
+import { pageHtml, projectName } from './page'
 import './style.css'
 
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = pageHtml
+document.title = projectName
 initializeApp()
