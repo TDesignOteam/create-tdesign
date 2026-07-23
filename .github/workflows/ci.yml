@@ -188,3 +188,33 @@ jobs:
               execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
               execSync('pnpm build', { stdio: 'inherit', cwd: `tests/${name}` });
             });
+
+  web-components:
+    strategy:
+      fail-fast: false
+      matrix:
+        node: [22, 24, 26]
+        os: [ubuntu-latest, windows-latest]
+    runs-on: ${{ matrix.os }}
+    steps:
+      - uses: actions/checkout@3d3c42e5aac5ba805825da76410c181273ba90b1 # v7.0.1
+      - uses: pnpm/action-setup@0ebf47130e4866e96fce0953f49152a61190b271 # v6.0.9
+      - uses: actions/setup-node@820762786026740c76f36085b0efc47a31fe5020 # v7.0.0
+        with:
+          node-version: ${{ matrix.node }}
+          cache: pnpm
+      - run: pnpm ci
+      - run: pnpm build
+      - name: test templates
+        uses: actions/github-script@3a2844b7e9c422d3c10d287c895573f7108da1b3 # v9.0.0
+        with:
+          script: |
+            const fs = require('fs');
+            const { execSync } = require('child_process');
+            const dirs = fs.readdirSync('templates').filter(d => d.startsWith('web-components-'));
+            execSync('mkdir tests && cd tests', { stdio: 'inherit' });
+            dirs.forEach(name => {
+              execSync(`node ../dist/index.js ${name} --template ${name}`, { stdio: 'inherit', cwd: 'tests' });
+              execSync('pnpm install', { stdio: 'inherit', cwd: `tests/${name}` });
+              execSync('pnpm build', { stdio: 'inherit', cwd: `tests/${name}` });
+            });

@@ -1,0 +1,21 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vike dev",
+    "build": "tsc --noEmit && vike build",
+    "preview": "vike build && vike preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tdesign-icons-web-components": "^0.3.6",
+    "tdesign-web-components": "^1.2.10",
+    "vike": "0.4.260"
+  },
+  "devDependencies": {
+    "typescript": "^6.0.3",
+    "vite": "^8.1.5"
+  }
+}
