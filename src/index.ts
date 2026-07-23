@@ -128,12 +128,16 @@ async function init() {
 
   const packageRoot = path.resolve(fileURLToPath(new URL('.', import.meta.url)), '..')
   const templateDir = path.join(packageRoot, 'templates', template.id)
-  scaffoldTemplate(templateDir, root, {
+  const scaffoldContext = {
     projectName: path.basename(root),
+    projectNameJson: JSON.stringify(path.basename(root)),
     packageName,
     templateName: template.display,
+    templateNameJson: JSON.stringify(template.display),
     devCommand: getRunCommand(packageManager, 'dev'),
-  }, packageManager)
+    devCommandJson: JSON.stringify(getRunCommand(packageManager, 'dev')),
+  }
+  scaffoldTemplate(templateDir, root, scaffoldContext, packageManager)
 
   prompts.outro(renderDoneMessage(root, packageManager))
 }
@@ -243,9 +247,10 @@ async function resolveTemplate(interactive: boolean) {
     const ui = normalizeUi(argv.ui)
     const bundler = normalizeBundler(argv.bundler)
     const vueTemplateStyle = isVueRelatedUi(ui) ? 'sfc' : undefined
-    const importMode = isVueImportModeSupportedUi(ui) && argv['import-mode']
-      ? normalizeImportMode(argv['import-mode'])
-      : undefined
+    const importMode =
+      isVueImportModeSupportedUi(ui) && argv['import-mode']
+        ? normalizeImportMode(argv['import-mode'])
+        : undefined
 
     const template = findTemplateByParts(ui, bundler, vueTemplateStyle, importMode)
 
@@ -295,9 +300,10 @@ async function resolveTemplate(interactive: boolean) {
     return undefined
   }
 
-  const importMode = isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc'
-    ? await resolveVueImportMode()
-    : undefined
+  const importMode =
+    isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc'
+      ? await resolveVueImportMode()
+      : undefined
 
   if (isVueImportModeSupportedUi(normalizedUi) && vueTemplateStyle === 'sfc' && !importMode) {
     return undefined
@@ -388,7 +394,11 @@ function copyEntry(source: string, destination: string, context: Record<string, 
   if (stat.isDirectory()) {
     fs.mkdirSync(destination, { recursive: true })
     for (const entry of fs.readdirSync(source)) {
-      copyEntry(path.join(source, entry), path.join(destination, renameFiles[entry] ?? entry), context)
+      copyEntry(
+        path.join(source, entry),
+        path.join(destination, renameFiles[entry] ?? entry),
+        context,
+      )
     }
     return
   }
