@@ -20,7 +20,7 @@
     "@rsbuild/plugin-vue": "^2.0.1",
     "@tdesign-vue-next/auto-import-resolver": "^0.1.7",
     "@types/node": "^25.9.5",
-    "typescript": "^6.0.3",
+    "typescript": "^7.0.2",
     "vue-tsc": "^3.3.7",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.1.0"
