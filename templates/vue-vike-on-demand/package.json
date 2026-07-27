@@ -10,8 +10,8 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "tdesign-icons-vue-next": "^0.4.6",
-    "tdesign-vue-next": "^1.20.3",
+    "tdesign-icons-vue-next": "^0.4.7",
+    "tdesign-vue-next": "^1.20.5",
     "vike": "0.4.260",
     "vike-vue": "^0.9.13",
     "vue": "^3.5.40"
@@ -23,6 +23,6 @@
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.1.0",
     "vite": "^8.1.5",
-    "vue-tsc": "^3.3.7"
+    "vue-tsc": "^3.3.8"
   }
 }

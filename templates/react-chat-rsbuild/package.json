@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "@tdesign-react/chat": "^1.0.2",
-    "react": "^19.2.7",
-    "react-dom": "^19.2.7",
+    "react": "^19.2.8",
+    "react-dom": "^19.2.8",
     "react-router": "^8.2.0",
-    "tdesign-icons-react": "^0.6.6",
+    "tdesign-icons-react": "^0.6.7",
     "tdesign-react": "^1.18.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.1.6",
+    "@rsbuild/core": "^2.1.8",
     "@rsbuild/plugin-react": "^2.1.0",
     "@types/node": "^25.9.5",
     "@types/react": "^19.2.17",
