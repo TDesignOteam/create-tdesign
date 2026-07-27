@@ -10,7 +10,7 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "tdesign-icons-vue-next": "^0.4.6",
+    "tdesign-icons-vue-next": "^0.4.7",
     "tdesign-mobile-vue": "^1.15.1",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
@@ -20,6 +20,6 @@
     "@vitejs/plugin-vue": "^6.0.8",
     "typescript": "^6.0.3",
     "vite": "^8.1.5",
-    "vue-tsc": "^3.3.7"
+    "vue-tsc": "^3.3.8"
   }
 }

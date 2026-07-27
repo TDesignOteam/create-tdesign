@@ -10,18 +10,18 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "tdesign-icons-vue-next": "^0.4.6",
-    "tdesign-vue-next": "^1.20.3",
+    "tdesign-icons-vue-next": "^0.4.7",
+    "tdesign-vue-next": "^1.20.5",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.1.6",
+    "@rsbuild/core": "^2.1.8",
     "@rsbuild/plugin-vue": "^2.0.1",
     "@tdesign-vue-next/auto-import-resolver": "^0.1.7",
     "@types/node": "^25.9.5",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.7",
+    "vue-tsc": "^3.3.8",
     "unplugin-auto-import": "^21.0.0",
     "unplugin-vue-components": "^32.1.0"
   }
