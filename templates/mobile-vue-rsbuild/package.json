@@ -11,7 +11,7 @@
   },
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.7",
-    "tdesign-mobile-vue": "^1.15.1",
+    "tdesign-mobile-vue": "^1.16.0",
     "vue": "^3.5.40",
     "vue-router": "^5.2.0"
   },
