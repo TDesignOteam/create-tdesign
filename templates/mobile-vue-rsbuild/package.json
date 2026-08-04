@@ -16,10 +16,10 @@
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.1.8",
+    "@rsbuild/core": "^2.1.9",
     "@rsbuild/plugin-vue": "^2.0.1",
     "@types/node": "^25.9.5",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.8"
+    "vue-tsc": "^3.3.9"
   }
 }
