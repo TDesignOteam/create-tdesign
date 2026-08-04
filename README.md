@@ -4,7 +4,7 @@
 
 ## Templates
 
-当前已支持 36 个 TypeScript 模板：
+当前已支持 39 个 TypeScript 模板：
 
 ### Vue SFC
 
@@ -63,6 +63,12 @@
 - `react-chat-rsbuild`
 - `react-chat-vike`
 
+### Web Components
+
+- `web-components-vite`
+- `web-components-rsbuild`
+- `web-components-vike`
+
 模板源码统一放在 `templates/` 目录下。
 
 ## Usage
@@ -80,6 +86,7 @@ pnpm create tdesign my-app --template vue-tsx-rsbuild
 pnpm create tdesign my-app --template vue-vite-on-demand
 pnpm create tdesign my-app --template react-chat-rsbuild
 pnpm create tdesign my-app --template react-vike
+pnpm create tdesign my-app --template web-components-vite
 ```
 
 按 UI 和打包工具组合指定：
@@ -89,6 +96,7 @@ pnpm create tdesign my-app --ui vue --bundler vite
 pnpm create tdesign my-app --ui react --bundler rsbuild
 pnpm create tdesign my-app --ui react --bundler vike
 pnpm create tdesign my-app --ui vue --bundler vite --import-mode on-demand
+pnpm create tdesign my-app --ui web-components --bundler rsbuild
 ```
 
 指定包管理器：

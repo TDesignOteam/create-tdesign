@@ -1,10 +1,5 @@
 export type UiFramework =
-  | 'vue'
-  | 'react'
-  | 'mobile-vue'
-  | 'mobile-react'
-  | 'vue-chat'
-  | 'react-chat'
+  'vue' | 'react' | 'mobile-vue' | 'mobile-react' | 'vue-chat' | 'react-chat' | 'web-components'
 export type Bundler = 'vite' | 'rsbuild' | 'vike'
 export type VueTemplateStyle = 'sfc' | 'tsx'
 export type TemplateImportMode = 'full' | 'on-demand'
@@ -45,6 +40,9 @@ export type TemplateId =
   | 'vue-chat-rsbuild'
   | 'vue-chat-rsbuild-on-demand'
   | 'vue-chat-tsx-rsbuild'
+  | 'web-components-vite'
+  | 'web-components-rsbuild'
+  | 'web-components-vike'
 
 export interface TemplateMeta {
   id: TemplateId
@@ -91,6 +89,13 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-react',
   },
   {
+    id: 'web-components-vite',
+    ui: 'web-components',
+    bundler: 'vite',
+    display: 'Web Components + Vite',
+    description: 'Web Components + TypeScript + tdesign-web-components',
+  },
+  {
     id: 'vue-rsbuild',
     importMode: 'full',
     ui: 'vue',
@@ -124,11 +129,25 @@ export const TEMPLATES: TemplateMeta[] = [
     description: 'React + TypeScript + tdesign-react',
   },
   {
+    id: 'web-components-rsbuild',
+    ui: 'web-components',
+    bundler: 'rsbuild',
+    display: 'Web Components + Rsbuild',
+    description: 'Web Components + TypeScript + tdesign-web-components',
+  },
+  {
     id: 'react-vike',
     ui: 'react',
     bundler: 'vike',
     display: 'React + Vike',
     description: 'React + TypeScript + Vike + tdesign-react',
+  },
+  {
+    id: 'web-components-vike',
+    ui: 'web-components',
+    bundler: 'vike',
+    display: 'Web Components + Vike',
+    description: 'Web Components + TypeScript + Vike + tdesign-web-components',
   },
   {
     id: 'vue-vike',
@@ -363,6 +382,7 @@ export const UI_OPTIONS: Array<{ value: UiFramework; label: string }> = [
   { value: 'mobile-react', label: 'Mobile React' },
   { value: 'vue-chat', label: 'Vue Chat' },
   { value: 'react-chat', label: 'React Chat' },
+  { value: 'web-components', label: 'Web Components' },
 ]
 
 export const BUNDLER_OPTIONS: Array<{ value: Bundler; label: string }> = [

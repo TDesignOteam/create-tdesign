@@ -1,0 +1,20 @@
+{
+  "name": "__PACKAGENAME__",
+  "private": true,
+  "version": "0.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "rsbuild dev",
+    "build": "tsc --noEmit && rsbuild build",
+    "preview": "rsbuild preview",
+    "typecheck": "tsc --noEmit"
+  },
+  "dependencies": {
+    "tdesign-icons-web-components": "^0.3.6",
+    "tdesign-web-components": "^1.2.10"
+  },
+  "devDependencies": {
+    "@rsbuild/core": "^2.1.6",
+    "typescript": "^6.0.3"
+  }
+}
