@@ -13,11 +13,11 @@
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "react-router": "^8.3.0",
-    "tdesign-icons-react": "^0.6.7",
+    "tdesign-icons-react": "^0.6.9",
     "tdesign-mobile-react": "^0.23.3"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.1.9",
+    "@rsbuild/core": "^2.1.10",
     "@rsbuild/plugin-react": "^2.1.0",
     "@types/node": "^25.9.5",
     "@types/react": "^19.2.18",
