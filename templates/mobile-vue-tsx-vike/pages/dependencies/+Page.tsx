@@ -7,10 +7,10 @@ import {
   Grid as TGrid,
   GridItem as TGridItem,
   Navbar as TNavbar,
+  Paragraph as TypographyParagraph,
+  Text as TypographyText,
+  Title as TypographyTitle,
   Typography,
-  TypographyParagraph,
-  TypographyText,
-  TypographyTitle,
 } from 'tdesign-mobile-vue'
 import packageJson from '../../package.json'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'

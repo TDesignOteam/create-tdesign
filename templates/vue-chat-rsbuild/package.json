@@ -11,13 +11,13 @@
   },
   "dependencies": {
     "@tdesign-vue-next/chat": "^0.6.0",
-    "tdesign-icons-vue-next": "^0.4.7",
+    "tdesign-icons-vue-next": "^0.4.9",
     "tdesign-vue-next": "^1.20.5",
-    "vue": "^3.5.40",
+    "vue": "^3.5.41",
     "vue-router": "^5.2.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.1.9",
+    "@rsbuild/core": "^2.1.10",
     "@rsbuild/plugin-vue": "^2.0.1",
     "@types/node": "^25.9.5",
     "typescript": "^6.0.3",
