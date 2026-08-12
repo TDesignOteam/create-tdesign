@@ -5,8 +5,8 @@ import {
   Button as TButton,
   Card as TCard,
   Space as TSpace,
-  TypographyParagraph as TParagraph,
-  TypographyTitle as TTitle,
+  Text as TText,
+  Title as TTitle,
 } from 'tdesign-vue-next'
 
 export default defineComponent(() => {
@@ -48,9 +48,9 @@ export default defineComponent(() => {
               <TTitle class="demo-card-title" level="h3">
                 Hello, TDesign
               </TTitle>
-              <TParagraph class="demo-card-copy" theme="secondary">
+              <TText class="demo-card-copy" theme="secondary">
                 点击按钮，体验这个模板中的基础交互。
-              </TParagraph>
+              </TText>
               <TSpace size={12} align="center">
                 <TButton
                   theme="primary"

@@ -14,8 +14,8 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
-  TypographyText as TText,
-  TypographyTitle as TTitle,
+  Text as TText,
+  Title as TTitle,
 } from 'tdesign-vue-next'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import 'tdesign-vue-next/es/style/index.css'

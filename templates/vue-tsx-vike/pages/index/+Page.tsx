@@ -14,8 +14,8 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
-  TypographyText as TText,
-  TypographyTitle as TTitle,
+  Text as TText,
+  Title as TTitle,
 } from 'tdesign-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'

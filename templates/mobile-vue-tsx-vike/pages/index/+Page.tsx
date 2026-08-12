@@ -5,8 +5,9 @@ import {
   CellGroup as TCellGroup,
   Navbar as TNavbar,
   Tag as TTag,
-  TypographyParagraph as TParagraph,
-  TypographyTitle as TTitle,
+  Paragraph as TParagraph,
+  Text as TText,
+  Title as TTitle,
 } from 'tdesign-mobile-vue'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
@@ -123,14 +124,14 @@ export default defineComponent(() => {
       </section>
       <div class="content-width workspace">
         <Demo />
-        <section class="info-panel" aria-labelledby="info-title">
+        <section class="info-panel">
           <div class="info-head">
-            <TTitle class="info-title" level="h2" id="info-title">
+            <TTitle class="info-title" level="h2">
               技术信息
             </TTitle>
-            <TParagraph class="info-subtitle" theme="secondary">
+            <TText class="info-subtitle" theme="secondary">
               当前模板使用的构建工具与组件库
-            </TParagraph>
+            </TText>
           </div>
           <TCellGroup bordered={false} class="tech-cells">
             {techInfo.map((item) => (

@@ -3,8 +3,8 @@ import {
   Avatar as TAvatar,
   Badge as TBadge,
   Button as TButton,
-  TypographyParagraph as TParagraph,
-  TypographyTitle as TTitle,
+  Text as TText,
+  Title as TTitle,
 } from 'tdesign-mobile-vue'
 
 export default defineComponent(() => {
@@ -42,9 +42,9 @@ export default defineComponent(() => {
           <TTitle class="demo-card-title" level="h3">
             Hello, TDesign
           </TTitle>
-          <TParagraph class="demo-card-copy" theme="secondary">
+          <TText class="demo-card-copy" theme="secondary">
             点击按钮，体验这个模板中的基础交互。
-          </TParagraph>
+          </TText>
           <div class="counter" aria-label="计数器">
             <TButton
               class="demo-button"
