@@ -5,6 +5,10 @@ import Components from 'unplugin-vue-components/vite'
 import { TDesignResolver } from '@tdesign-vue-next/auto-import-resolver'
 import { resolve } from 'path'
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: true,
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -16,7 +20,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '@': resolve(import.meta.dirname, 'src'),
     },
   },
 })

@@ -2,41 +2,53 @@
 import { computed, onBeforeUnmount, onMounted, ref } from 'vue'
 import { ClientOnly } from 'vike-vue/ClientOnly'
 import {
-  BookOpenIcon,
-  ComponentGridIcon,
-  LogoGithubIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
+  Button as TButton,
+  Card as TCard,
+  Content as TContent,
+  Footer as TFooter,
+  Header as THeader,
+  Layout as TLayout,
+  Link as TLink,
+  Space as TSpace,
+  Tag as TTag,
+  Tooltip as TTooltip,
+  Text as TText,
+  Title as TTitle,
+} from 'tdesign-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
-import ChatPanel from './ChatPanel.vue'
+import Demo from './Demo.vue'
 
-type ThemeMode = 'light' | 'dark'
+type Theme = 'light' | 'dark'
 
-const THEME_KEY = 'tdesign-chat-theme'
-const theme = ref<ThemeMode>('light')
+const docsUrl = 'https://tdesign.tencent.com/chat/getting-started'
+const githubUrl = 'https://github.com/Tencent/tdesign'
+const themeKey = 'tdesign-chat-theme'
+
+const theme = ref<Theme>('light')
 const isDark = computed(() => theme.value === 'dark')
+const logo = computed(() => (isDark.value ? logoDark : logoLight))
 let colorScheme: MediaQueryList | undefined
 
-const applyTheme = (value: ThemeMode) => {
+const applyTheme = (value: Theme) => {
   theme.value = value
   document.documentElement.setAttribute('theme-mode', value)
 }
 
 const syncSystemTheme = (event: MediaQueryListEvent) => {
-  if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light')
+  if (!localStorage.getItem(themeKey)) applyTheme(event.matches ? 'dark' : 'light')
 }
 
 const toggleTheme = () => {
   const nextTheme = isDark.value ? 'light' : 'dark'
-  localStorage.setItem(THEME_KEY, nextTheme)
+  localStorage.setItem(themeKey, nextTheme)
   applyTheme(nextTheme)
 }
 
 onMounted(() => {
   colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
-  const savedTheme = localStorage.getItem(THEME_KEY)
+  const savedTheme = localStorage.getItem(themeKey)
   applyTheme(
     savedTheme === 'dark' || savedTheme === 'light'
       ? savedTheme
@@ -48,118 +60,400 @@ onMounted(() => {
 })
 
 onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme))
+
+const techInfo = [
+  { label: '构建工具', content: 'Vike' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
+]
+
+const resources = [
+  { label: '依赖清单', href: '/dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
+]
 </script>
 
 <template>
-  <main class="app-shell">
-    <header class="app-header">
-      <div class="header-inner">
-        <a class="brand" href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-          <img class="brand-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
-          <span class="brand-divider" aria-hidden="true" />
-          <span class="product-name">AI Chat Starter</span>
-        </a>
-
-        <div class="template-tags" aria-label="Template status">
-          <span class="template-tag">__TEMPLATENAME__</span>
-          <span class="online-tag">
-            <i aria-hidden="true" />
-            Online
-          </span>
+  <TLayout class="starter-page">
+    <THeader class="topbar">
+      <div class="topbar-inner">
+        <div class="brand">
+          <img class="brand-logo" :src="logo" alt="TDesign" />
+          <t-divider class="brand-divider" layout="vertical" />
+          <span class="brand-label">AI Chat Starter</span>
         </div>
-
-        <nav class="header-actions" aria-label="Resources">
-          <a class="nav-action" href="/dependencies">
-            <ComponentGridIcon />
-            <span>Dependencies</span>
-          </a>
-          <a
-            class="nav-action"
-            href="https://tdesign.tencent.com/chat/getting-started"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <BookOpenIcon />
-            <span>Docs</span>
-          </a>
-          <a
-            class="nav-action"
-            href="https://github.com/Tencent/tdesign"
-            target="_blank"
-            rel="noreferrer"
-          >
-            <LogoGithubIcon />
-            <span>GitHub</span>
-          </a>
-          <button
-            type="button"
-            class="theme-button"
-            :aria-label="isDark ? 'Use light theme' : 'Use dark theme'"
-            :title="isDark ? 'Use light theme' : 'Use dark theme'"
-            @click="toggleTheme"
-          >
-            <SunnyIcon v-if="isDark" />
-            <MoonIcon v-else />
-          </button>
-        </nav>
+        <TSpace :size="4">
+          <TTooltip content="组件文档">
+            <TButton
+              tag="a"
+              :href="docsUrl"
+              target="_blank"
+              rel="noreferrer"
+              shape="circle"
+              variant="text"
+              aria-label="组件文档"
+            >
+              <BookOpenIcon />
+            </TButton>
+          </TTooltip>
+          <TTooltip content="TDesign on GitHub">
+            <TButton
+              tag="a"
+              :href="githubUrl"
+              target="_blank"
+              rel="noreferrer"
+              shape="circle"
+              variant="text"
+              aria-label="GitHub"
+            >
+              <LogoGithubIcon />
+            </TButton>
+          </TTooltip>
+          <TTooltip :content="isDark ? '切换为亮色主题' : '切换为暗色主题'">
+            <TButton
+              shape="circle"
+              variant="text"
+              :aria-label="isDark ? '切换为亮色主题' : '切换为暗色主题'"
+              @click="toggleTheme"
+            >
+              <SunnyIcon v-if="isDark" />
+              <MoonIcon v-else />
+            </TButton>
+          </TTooltip>
+        </TSpace>
       </div>
-    </header>
+    </THeader>
 
-    <div class="workspace-grid">
-      <section class="chat-panel" aria-label="AI chat workspace">
-        <div class="chat-panel-heading">
-          <div>
-            <span class="status-dot" aria-hidden="true" />
-            Assistant
-          </div>
-          <span>Streaming ready</span>
+    <TContent class="starter-content">
+      <section class="intro">
+        <div>
+          <TTitle level="h1" class="intro-title">__PROJECTNAME__</TTitle>
+          <TText class="intro-copy" theme="secondary">一个基于 TDesign Chat 的流式对话示例。</TText>
         </div>
-        <ClientOnly>
-          <ChatPanel />
-          <template #fallback>
-            <div class="chatbot-host chat-placeholder">Preparing chat workspace...</div>
-          </template>
-        </ClientOnly>
+        <TTag class="template-id" theme="primary" variant="light" size="large">
+          __TEMPLATENAME__
+        </TTag>
       </section>
 
-      <aside class="setup-panel">
-        <div class="setup-heading">
-          <span class="eyebrow">Starter configuration</span>
-          <h1>Build on a working chat foundation</h1>
-          <p>Chatbot is client-rendered while the surrounding application remains SSR-ready.</p>
-        </div>
-
-        <dl class="config-list">
-          <div>
-            <dt>Transport</dt>
-            <dd>SSE stream</dd>
+      <div class="workspace">
+        <section class="chat-panel" aria-label="AI chat workspace">
+          <div class="chat-panel-heading">
+            <div>
+              <t-badge dot color="var(--td-success-color)" />
+              Assistant
+            </div>
+            <span>Streaming ready</span>
           </div>
-          <div>
-            <dt>Rendering</dt>
-            <dd>Vike SSR</dd>
-          </div>
-          <div>
-            <dt>Service</dt>
-            <dd>
-              <span class="status-dot" aria-hidden="true" />
-              Remote endpoint
-            </dd>
-          </div>
-        </dl>
+          <ClientOnly>
+            <Demo />
+            <template #fallback>
+              <div class="chatbot-host chat-placeholder">Preparing chat workspace...</div>
+            </template>
+          </ClientOnly>
+        </section>
 
-        <div class="command-block">
-          <span>Start locally</span>
-          <code>__DEVCOMMAND__</code>
-        </div>
+        <TCard class="info-panel" :bordered="true">
+          <template #title>
+            <span class="info-title">技术信息</span>
+          </template>
+          <template #subtitle>
+            <span class="info-subtitle">当前模板使用的构建工具与组件库</span>
+          </template>
+          <t-descriptions :column="1" :bordered="false">
+            <t-descriptions-item v-for="item in techInfo" :key="item.label" :label="item.label">
+              {{ item.content }}
+            </t-descriptions-item>
+          </t-descriptions>
+          <div class="resource-links">
+            <TLink
+              v-for="item in resources"
+              :key="item.label"
+              class="resource-link"
+              :href="item.href"
+              :target="item.external ? '_blank' : undefined"
+              :rel="item.external ? 'noreferrer' : undefined"
+              :hover="'color'"
+            >
+              <span>{{ item.label }}</span>
+              <span class="resource-arrow">→</span>
+            </TLink>
+          </div>
+        </TCard>
+      </div>
+    </TContent>
 
-        <p class="setup-note">
-          Update
-          <code>chatServiceConfig</code>
-          in
-          <code>ChatPanel</code>
-          when your service is ready.
-        </p>
-      </aside>
-    </div>
-  </main>
+    <TFooter class="starter-footer">
+      <span>Powered by TDesign</span>
+      <TLink href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer" :hover="'color'">
+        组件文档 →
+      </TLink>
+    </TFooter>
+  </TLayout>
 </template>
+
+<style scoped>
+:global(*) {
+  box-sizing: border-box;
+}
+:global(body) {
+  margin: 0;
+  min-width: 320px;
+  min-height: 100vh;
+  background: var(--td-bg-color-page);
+}
+
+.starter-page {
+  min-height: 100vh;
+  overflow-x: hidden;
+  color: var(--td-text-color-primary);
+  background: var(--td-bg-color-page);
+}
+.topbar {
+  border-bottom: 1px solid var(--td-component-border);
+  background: var(--td-bg-color-container);
+}
+.topbar-inner {
+  display: flex;
+  width: min(1200px, 100%);
+  height: 64px;
+  margin: 0 auto;
+  padding: 0 24px;
+  align-items: center;
+  justify-content: space-between;
+}
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+.brand-logo {
+  display: block;
+  width: 126px;
+  height: auto;
+}
+.brand-divider {
+  height: 18px;
+}
+.brand-divider :deep(.t-divider) {
+  margin: 0;
+}
+.brand-label {
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+}
+.topbar :deep(.t-button) {
+  color: var(--td-text-color-secondary);
+}
+.topbar :deep(.t-button:hover) {
+  color: var(--td-brand-color);
+  background: var(--td-brand-color-light);
+}
+
+.starter-content {
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 20px 24px 64px;
+}
+.intro {
+  display: flex;
+  margin-bottom: 18px;
+  align-items: flex-end;
+  justify-content: space-between;
+  gap: 20px;
+}
+.intro-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  line-height: 1.3;
+  overflow-wrap: anywhere;
+}
+.intro-copy {
+  margin: 0;
+  line-height: 1.65;
+}
+.template-id {
+  flex: 0 0 auto;
+}
+
+.workspace {
+  display: grid;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.65fr);
+  gap: 18px;
+  align-items: stretch;
+}
+
+.chat-panel {
+  display: grid;
+  grid-template-rows: 48px minmax(0, 1fr);
+  min-width: 0;
+  height: 620px;
+  min-height: 520px;
+  overflow: hidden;
+  border: 1px solid var(--td-component-border);
+  border-radius: 8px;
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
+}
+.chat-panel-heading {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  min-width: 0;
+  padding: 0 16px;
+  border-bottom: 1px solid var(--td-component-border);
+  color: var(--td-text-color-placeholder);
+  font-size: 12px;
+}
+.chat-panel-heading > div {
+  display: flex;
+  align-items: center;
+  gap: 7px;
+  color: var(--td-text-color-primary);
+  font-size: 14px;
+  font-weight: 600;
+}
+.chat-panel-heading :deep(.t-badge) {
+  box-shadow: 0 0 0 3px var(--td-success-color-light);
+}
+.chatbot-host {
+  display: block;
+  min-width: 0;
+  min-height: 0;
+  height: 100%;
+  overflow: hidden;
+}
+.chatbot-host :deep(.t-chatbot),
+.chatbot-host :deep([class*='chatbot']) {
+  width: 100%;
+  height: 100%;
+}
+.chat-placeholder {
+  display: grid;
+  place-content: center;
+  color: var(--td-text-color-placeholder);
+  font-size: 14px;
+  text-align: center;
+}
+
+.info-panel {
+  display: flex;
+  min-width: 0;
+  border-color: var(--td-component-border);
+  border-radius: 8px;
+  background: var(--td-bg-color-container);
+  flex-direction: column;
+}
+.info-panel :deep(.t-card__header) {
+  padding: 24px 24px 0;
+  border-bottom: 0;
+}
+.info-title {
+  font-size: 17px;
+  font-weight: 600;
+}
+.info-subtitle {
+  color: var(--td-text-color-secondary);
+  font-size: 12px;
+}
+.info-panel :deep(.t-card__body) {
+  display: flex;
+  min-height: 0;
+  padding: 8px 24px 24px;
+  flex: 1;
+  flex-direction: column;
+}
+.info-panel :deep(.t-descriptions__label) {
+  color: var(--td-text-color-placeholder);
+  font-size: 12px;
+}
+.info-panel :deep(.t-descriptions__content) {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+}
+.resource-links {
+  display: grid;
+  margin-top: auto;
+  padding-top: 24px;
+  gap: 8px;
+}
+.resource-link {
+  display: flex;
+  min-height: 42px;
+  padding: 0 12px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--td-component-border);
+  border-radius: 5px;
+  color: var(--td-text-color-secondary);
+  font-size: 12px;
+}
+.resource-link :deep(.t-link__content) {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.resource-arrow {
+  color: var(--td-text-color-placeholder);
+}
+
+.starter-footer {
+  display: flex;
+  width: min(1200px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 30px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--td-text-color-placeholder);
+  font-size: 11px;
+}
+.starter-footer :deep(.t-link) {
+  color: var(--td-text-color-placeholder);
+  font-size: 11px;
+}
+
+@media (max-width: 820px) {
+  .workspace {
+    grid-template-columns: 1fr;
+  }
+  .info-panel {
+    min-height: 300px;
+  }
+}
+@media (max-width: 600px) {
+  .topbar-inner,
+  .starter-content,
+  .starter-footer {
+    padding-right: 16px;
+    padding-left: 16px;
+  }
+  .brand-logo {
+    width: 112px;
+  }
+  .brand-divider,
+  .brand-label {
+    display: none;
+  }
+  .starter-content {
+    padding-top: 16px;
+  }
+  .intro {
+    display: block;
+  }
+  .intro-title {
+    font-size: 26px;
+  }
+  .template-id {
+    display: inline-block;
+    margin-top: 16px;
+  }
+  .chat-panel {
+    height: 540px;
+  }
+  .starter-footer {
+    display: block;
+    line-height: 2;
+  }
+}
+</style>

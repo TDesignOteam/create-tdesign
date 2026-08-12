@@ -1,6 +1,4 @@
 allowBuilds:
   vue-demi: true
-onlyBuiltDependencies:
-  - vue-demi
 packages:
   - '.'

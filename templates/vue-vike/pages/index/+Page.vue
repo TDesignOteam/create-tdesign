@@ -1,20 +1,9 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import {
-  AppIcon,
-  ArrowRightIcon,
-  BookOpenIcon,
-  BrowseIcon,
-  CheckCircleIcon,
-  ChevronRightIcon,
-  CodeIcon,
-  ComponentGridIcon,
-  LogoGithubIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
+import Demo from './Demo.vue'
 
 type Theme = 'light' | 'dark'
 
@@ -47,42 +36,37 @@ const toggleTheme = () => {
   applyTheme(theme.value)
 }
 
-const overview = [
-  { icon: CodeIcon, label: 'Application', value: 'Vue 3 + Vike' },
-  { icon: AppIcon, label: 'Design system', value: 'TDesign Desktop' },
-  { icon: CheckCircleIcon, label: 'Workspace', value: 'SSR ready' },
+const techInfo = [
+  { label: '构建工具', content: 'Vike' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
 ]
 
-const tasks = [
-  {
-    title: 'Start the development server',
-    detail: 'Run the generated command from your project directory.',
-  },
-  {
-    title: 'Shape the application shell',
-    detail: 'Edit pages/index/+Page.vue and the layout to match your product.',
-  },
-  {
-    title: 'Build the first workflow',
-    detail: 'Compose TDesign components around a real user task.',
-  },
+const resources = [
+  { label: '依赖清单', href: '/dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
 ]
 </script>
 
 <template>
-  <div class="starter-page">
-    <header class="topbar">
+  <t-layout class="starter-page">
+    <t-header class="topbar">
       <div class="topbar-inner">
-        <img class="brand-logo" :src="logo" alt="TDesign" />
-        <div class="topbar-actions">
+        <div class="brand">
+          <img class="brand-logo" :src="logo" alt="TDesign" />
+          <t-divider class="brand-divider" layout="vertical" />
+          <span class="brand-label">Project Starter</span>
+        </div>
+        <t-space :size="4">
           <t-tooltip content="Vue component documentation">
             <t-button
               tag="a"
               :href="docsUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open Vue component documentation"
+              aria-label="组件文档"
             >
               <BookOpenIcon />
             </t-button>
@@ -92,114 +76,80 @@ const tasks = [
               tag="a"
               :href="githubUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open TDesign Vue on GitHub"
+              aria-label="GitHub"
             >
               <LogoGithubIcon />
             </t-button>
           </t-tooltip>
-          <t-tooltip :content="isDark ? 'Switch to light theme' : 'Switch to dark theme'">
+          <t-tooltip :content="isDark ? '切换为亮色主题' : '切换为暗色主题'">
             <t-button
               shape="circle"
               variant="text"
-              :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+              :aria-label="isDark ? '切换为亮色主题' : '切换为暗色主题'"
               @click="toggleTheme"
             >
               <SunnyIcon v-if="isDark" />
               <MoonIcon v-else />
             </t-button>
           </t-tooltip>
-        </div>
+        </t-space>
       </div>
-    </header>
+    </t-header>
 
-    <main class="workspace">
-      <section class="welcome" aria-labelledby="starter-title">
-        <div class="welcome-copy">
-          <t-tag theme="primary" variant="light">__TEMPLATENAME__</t-tag>
-          <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
-          <p>A focused starting point for building a reliable desktop application with TDesign.</p>
+    <t-content class="starter-content">
+      <section class="intro">
+        <div>
+          <t-typography-title level="h1" class="intro-title">__PROJECTNAME__</t-typography-title>
+          <t-typography-text class="intro-copy" theme="secondary">
+            一个基于 TDesign 的简单交互示例。
+          </t-typography-text>
         </div>
-        <a class="docs-action" :href="docsUrl" target="_blank" rel="noreferrer">
-          Explore components
-          <ArrowRightIcon />
-        </a>
+        <t-tag class="template-id" theme="primary" variant="light" size="large">
+          __TEMPLATENAME__
+        </t-tag>
       </section>
 
-      <section class="command-panel" aria-label="Development command">
-        <span class="command-icon"><CodeIcon /></span>
-        <div class="command-copy">
-          <span>Development command</span>
-          <code>__DEVCOMMAND__</code>
-        </div>
-        <t-tag class="ready-tag" theme="success" variant="light">Ready</t-tag>
-      </section>
+      <div class="workspace">
+        <Demo />
 
-      <section class="overview-grid" aria-label="Project overview">
-        <t-card v-for="item in overview" :key="item.label" class="overview-card" :bordered="true">
-          <span class="overview-icon"><component :is="item.icon" /></span>
-          <div>
-            <p>{{ item.label }}</p>
-            <strong>{{ item.value }}</strong>
-          </div>
-        </t-card>
-      </section>
-
-      <section class="work-grid">
-        <t-card class="work-card" title="Getting started" :bordered="true">
-          <template #actions>
-            <span class="section-status">
-              <span class="status-dot" />
-              Project initialized
-            </span>
+        <t-card class="info-panel" :bordered="true">
+          <template #title>
+            <span class="info-title">技术信息</span>
           </template>
-          <div class="task-list">
-            <div v-for="(task, index) in tasks" :key="task.title" class="task-row">
-              <span class="task-index">{{ index + 1 }}</span>
-              <div>
-                <strong>{{ task.title }}</strong>
-                <p>{{ task.detail }}</p>
-              </div>
-            </div>
+          <template #subtitle>
+            <span class="info-subtitle">当前模板使用的构建工具与组件库</span>
+          </template>
+          <t-descriptions :column="1" :bordered="false">
+            <t-descriptions-item v-for="item in techInfo" :key="item.label" :label="item.label">
+              {{ item.content }}
+            </t-descriptions-item>
+          </t-descriptions>
+          <div class="resource-links">
+            <t-link
+              v-for="item in resources"
+              :key="item.label"
+              class="resource-link"
+              :href="item.href"
+              :target="item.external ? '_blank' : undefined"
+              :rel="item.external ? 'noreferrer' : undefined"
+              :hover="'color'"
+            >
+              <span>{{ item.label }}</span>
+              <span class="resource-arrow">→</span>
+            </t-link>
           </div>
         </t-card>
+      </div>
+    </t-content>
 
-        <t-card class="work-card resources-card" title="Resources" :bordered="true">
-          <a href="/dependencies">
-            <span class="resource-icon"><ComponentGridIcon /></span>
-            <span>
-              <strong>Dependencies</strong>
-              <small>Review runtime and development packages</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="docsUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><BookOpenIcon /></span>
-            <span>
-              <strong>Component docs</strong>
-              <small>APIs, examples, and design guidance</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="githubUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><LogoGithubIcon /></span>
-            <span>
-              <strong>GitHub repository</strong>
-              <small>Source, issues, and releases</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-            <span class="resource-icon resource-icon-green"><BrowseIcon /></span>
-            <span>
-              <strong>TDesign overview</strong>
-              <small>Explore the full design system</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-        </t-card>
-      </section>
-    </main>
-  </div>
+    <t-footer class="starter-footer">
+      <span>Powered by TDesign</span>
+      <t-link href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer" :hover="'color'">
+        组件文档 →
+      </t-link>
+    </t-footer>
+  </t-layout>
 </template>

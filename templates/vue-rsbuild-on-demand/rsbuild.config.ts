@@ -6,6 +6,9 @@ import { TDesignResolver } from '@tdesign-vue-next/auto-import-resolver'
 
 export default defineConfig({
   plugins: [pluginVue()],
+  server: {
+    host: '0.0.0.0',
+  },
   source: {
     entry: {
       index: './src/main.ts',

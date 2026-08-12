@@ -134,36 +134,8 @@ const toggleTheme = () => {
 </template>
 
 <style scoped>
-:global(:root) {
-  color: #1d2129;
-  background: #f4f6f8;
-  color-scheme: light;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
-  --dep-bg: #f4f6f8;
-  --dep-surface: #fff;
-  --dep-text: #1d2129;
-  --dep-secondary: #5f6875;
-  --dep-border: #dfe3e8;
-  --dep-blue: #0052d9;
-  --dep-blue-soft: #e8f1ff;
-}
-:global(html[theme-mode='dark']) {
-  color: #f2f3f5;
-  background: #101214;
-  color-scheme: dark;
-  --dep-bg: #101214;
-  --dep-surface: #181b1f;
-  --dep-text: #f2f3f5;
-  --dep-secondary: #a6adb7;
-  --dep-border: #343a43;
-  --dep-blue: #4080ff;
-  --dep-blue-soft: #1d2f50;
-}
+
+
 :global(*) {
   box-sizing: border-box;
 }
@@ -171,16 +143,16 @@ const toggleTheme = () => {
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--dep-bg);
+  background: var(--td-bg-color-page);
 }
 .dependencies-page {
   min-height: 100vh;
-  color: var(--dep-text);
-  background: var(--dep-bg);
+  color: var(--td-text-color-primary);
+  background: var(--td-bg-color-page);
 }
 .dependencies-topbar {
-  border-bottom: 1px solid var(--dep-border);
-  background: var(--dep-surface);
+  border-bottom: 1px solid var(--td-component-border);
+  background: var(--td-bg-color-container);
 }
 .dependencies-topbar-inner {
   width: 100%;
@@ -195,7 +167,7 @@ const toggleTheme = () => {
   height: auto;
 }
 .dependencies-actions :deep(.t-button) {
-  color: var(--dep-secondary);
+  color: var(--td-text-color-secondary);
 }
 .dependencies-workspace {
   width: 100%;
@@ -214,8 +186,8 @@ const toggleTheme = () => {
   border-radius: 8px;
   align-items: center;
   justify-content: center;
-  color: var(--dep-blue);
-  background: var(--dep-blue-soft);
+  color: var(--td-brand-color);
+  background: var(--td-brand-color-light);
   font-size: 25px;
 }
 .dependencies-summary {

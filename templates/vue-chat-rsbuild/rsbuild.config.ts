@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [pluginVue()],
+  server: {
+    host: '0.0.0.0',
+  },
   resolve: {
     alias: {
       'tdesign-vue-next/es/config-provider/hooks$':

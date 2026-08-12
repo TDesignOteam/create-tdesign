@@ -1,14 +1,9 @@
 <script setup lang="ts">
 import { computed, ref } from 'vue'
+import Demo from './Demo.vue'
 import {
-  AppIcon,
-  ArrowRightIcon,
   BookOpenIcon,
-  BrowseIcon,
-  CheckCircleIcon,
   ChevronRightIcon,
-  CodeIcon,
-  ComponentGridIcon,
   LogoGithubIcon,
   MoonIcon,
   SunnyIcon,
@@ -50,42 +45,37 @@ const toggleTheme = () => {
   applyTheme(theme.value)
 }
 
-const overview = [
-  { icon: CodeIcon, label: 'Application', value: 'Vue 3 + TypeScript' },
-  { icon: AppIcon, label: 'Design system', value: 'TDesign Desktop' },
-  { icon: CheckCircleIcon, label: 'Workspace', value: 'Ready to develop' },
+const techInfo = [
+  { label: '构建工具', content: 'Rsbuild' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
 ]
 
-const tasks = [
-  {
-    title: 'Start the development server',
-    detail: 'Run the generated command from your project directory.',
-  },
-  {
-    title: 'Shape the application shell',
-    detail: 'Edit src/pages/Home.vue and the router to match your product.',
-  },
-  {
-    title: 'Build the first workflow',
-    detail: 'Compose TDesign components around a real user task.',
-  },
+const resources = [
+  { label: '依赖清单', href: './dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
 ]
 </script>
 
 <template>
-  <div class="starter-page">
-    <header class="topbar">
+  <t-layout class="starter-page">
+    <t-header class="topbar">
       <div class="topbar-inner">
-        <img class="brand-logo" :src="logo" alt="TDesign" />
-        <div class="topbar-actions">
+        <div class="brand">
+          <img class="brand-logo" :src="logo" alt="TDesign" />
+          <t-divider class="brand-divider" layout="vertical" />
+          <span class="brand-label">Project Starter</span>
+        </div>
+        <t-space :size="4">
           <t-tooltip content="Vue component documentation">
             <t-button
               tag="a"
               :href="docsUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open Vue component documentation"
+              aria-label="组件文档"
             >
               <BookOpenIcon />
             </t-button>
@@ -95,157 +85,85 @@ const tasks = [
               tag="a"
               :href="githubUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open TDesign Vue on GitHub"
+              aria-label="GitHub"
             >
               <LogoGithubIcon />
             </t-button>
           </t-tooltip>
-          <t-tooltip :content="isDark ? 'Switch to light theme' : 'Switch to dark theme'">
+          <t-tooltip :content="isDark ? '切换为亮色主题' : '切换为暗色主题'">
             <t-button
               shape="circle"
               variant="text"
-              :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+              :aria-label="isDark ? '切换为亮色主题' : '切换为暗色主题'"
               @click="toggleTheme"
             >
               <SunnyIcon v-if="isDark" />
               <MoonIcon v-else />
             </t-button>
           </t-tooltip>
-        </div>
+        </t-space>
       </div>
-    </header>
+    </t-header>
 
-    <main class="workspace">
-      <section class="welcome" aria-labelledby="starter-title">
-        <div class="welcome-copy">
-          <t-tag theme="primary" variant="light">__TEMPLATENAME__</t-tag>
-          <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
-          <p>A focused starting point for building a reliable desktop application with TDesign.</p>
+    <t-content class="starter-content">
+      <section class="intro">
+        <div>
+          <t-typography-title level="h1" class="intro-title">__PROJECTNAME__</t-typography-title>
+          <t-typography-text class="intro-copy" theme="secondary">
+            一个基于 TDesign 的简单交互示例。
+          </t-typography-text>
         </div>
-        <a class="docs-action" :href="docsUrl" target="_blank" rel="noreferrer">
-          Explore components
-          <ArrowRightIcon />
-        </a>
+        <t-tag class="template-id" theme="primary" variant="light" size="large">
+          __TEMPLATENAME__
+        </t-tag>
       </section>
 
-      <section class="command-panel" aria-label="Development command">
-        <span class="command-icon"><CodeIcon /></span>
-        <div class="command-copy">
-          <span>Development command</span>
-          <code>__DEVCOMMAND__</code>
-        </div>
-        <t-tag class="ready-tag" theme="success" variant="light">Ready</t-tag>
-      </section>
+      <div class="workspace">
+        <Demo />
 
-      <section class="overview-grid" aria-label="Project overview">
-        <t-card v-for="item in overview" :key="item.label" class="overview-card" :bordered="true">
-          <span class="overview-icon"><component :is="item.icon" /></span>
-          <div>
-            <p>{{ item.label }}</p>
-            <strong>{{ item.value }}</strong>
-          </div>
-        </t-card>
-      </section>
-
-      <section class="work-grid">
-        <t-card class="work-card" title="Getting started" :bordered="true">
-          <template #actions>
-            <span class="section-status">
-              <span class="status-dot" />
-              Project initialized
-            </span>
+        <t-card class="info-panel" :bordered="true">
+          <template #title>
+            <span class="info-title">技术信息</span>
           </template>
-          <div class="task-list">
-            <div v-for="(task, index) in tasks" :key="task.title" class="task-row">
-              <span class="task-index">{{ index + 1 }}</span>
-              <div>
-                <strong>{{ task.title }}</strong>
-                <p>{{ task.detail }}</p>
-              </div>
-            </div>
+          <template #subtitle>
+            <span class="info-subtitle">当前模板使用的构建工具与组件库</span>
+          </template>
+          <t-descriptions :column="1" :bordered="false">
+            <t-descriptions-item v-for="item in techInfo" :key="item.label" :label="item.label">
+              {{ item.content }}
+            </t-descriptions-item>
+          </t-descriptions>
+          <div class="resource-links">
+            <t-link
+              v-for="item in resources"
+              :key="item.label"
+              class="resource-link"
+              :href="item.href"
+              :target="item.external ? '_blank' : undefined"
+              :rel="item.external ? 'noreferrer' : undefined"
+              :hover="'color'"
+            >
+              <span>{{ item.label }}</span>
+              <span class="resource-arrow">→</span>
+            </t-link>
           </div>
         </t-card>
+      </div>
+    </t-content>
 
-        <t-card class="work-card resources-card" title="Resources" :bordered="true">
-          <a href="./dependencies">
-            <span class="resource-icon"><ComponentGridIcon /></span>
-            <span>
-              <strong>Dependencies</strong>
-              <small>Review runtime and development packages</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="docsUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><BookOpenIcon /></span>
-            <span>
-              <strong>Component docs</strong>
-              <small>APIs, examples, and design guidance</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="githubUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><LogoGithubIcon /></span>
-            <span>
-              <strong>GitHub repository</strong>
-              <small>Source, issues, and releases</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-            <span class="resource-icon resource-icon-green"><BrowseIcon /></span>
-            <span>
-              <strong>TDesign overview</strong>
-              <small>Explore the full design system</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-        </t-card>
-      </section>
-    </main>
-  </div>
+    <t-footer class="starter-footer">
+      <span>Powered by TDesign</span>
+      <t-link href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer" :hover="'color'">
+        组件文档 →
+      </t-link>
+    </t-footer>
+  </t-layout>
 </template>
 
 <style scoped>
-:global(:root) {
-  color: #1d2129;
-  background: #f4f6f8;
-  color-scheme: light;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
-  --starter-bg: #f4f6f8;
-  --starter-surface: #ffffff;
-  --starter-subtle: #f7f8fa;
-  --starter-text: #1d2129;
-  --starter-secondary: #5f6875;
-  --starter-border: #dfe3e8;
-  --starter-blue: #0052d9;
-  --starter-blue-soft: #e8f1ff;
-  --starter-green: #078343;
-  --starter-green-soft: #e8f7ee;
-}
-
-:global(html[theme-mode='dark']) {
-  color: #f2f3f5;
-  background: #101214;
-  color-scheme: dark;
-  --starter-bg: #101214;
-  --starter-surface: #181b1f;
-  --starter-subtle: #20242a;
-  --starter-text: #f2f3f5;
-  --starter-secondary: #a6adb7;
-  --starter-border: #343a43;
-  --starter-blue: #4080ff;
-  --starter-blue-soft: #1d2f50;
-  --starter-green: #4fc48d;
-  --starter-green-soft: #173a2a;
-}
-
 :global(*) {
   box-sizing: border-box;
 }
@@ -253,7 +171,7 @@ const tasks = [
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--starter-bg);
+  background: var(--td-bg-color-page);
 }
 :global(#app) {
   min-height: 100vh;
@@ -262,319 +180,199 @@ const tasks = [
 .starter-page {
   min-height: 100vh;
   overflow-x: hidden;
-  color: var(--starter-text);
-  background: var(--starter-bg);
+  color: var(--td-text-color-primary);
+  background: var(--td-bg-color-page);
 }
 .topbar {
-  border-bottom: 1px solid var(--starter-border);
-  background: var(--starter-surface);
+  border-bottom: 1px solid var(--td-component-border);
+  background: var(--td-bg-color-container);
 }
 .topbar-inner {
   display: flex;
-  width: 100%;
-  max-width: 1232px;
+  width: min(1040px, 100%);
   height: 64px;
   margin: 0 auto;
   padding: 0 24px;
   align-items: center;
   justify-content: space-between;
 }
+.brand {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
 .brand-logo {
   display: block;
-  width: 132px;
+  width: 126px;
   height: auto;
 }
-.topbar-actions {
-  display: flex;
-  gap: 4px;
-  align-items: center;
+.brand-divider {
+  height: 18px;
 }
-.topbar-actions :deep(.t-button) {
-  color: var(--starter-secondary);
+.brand-divider :deep(.t-divider) {
+  margin: 0;
 }
-.workspace {
-  width: 100%;
-  max-width: 1232px;
+.brand-label {
+  color: var(--td-text-color-secondary);
+  font-size: 13px;
+}
+.topbar :deep(.t-button) {
+  color: var(--td-text-color-secondary);
+}
+.topbar :deep(.t-button:hover) {
+  color: var(--td-brand-color);
+  background: var(--td-brand-color-light);
+}
+
+.starter-content {
+  width: min(1040px, 100%);
   margin: 0 auto;
-  padding: 44px 24px 64px;
+  padding: 20px 24px 64px;
 }
-.welcome {
+.intro {
   display: flex;
-  gap: 24px;
+  margin-bottom: 18px;
   align-items: flex-end;
   justify-content: space-between;
-  margin-bottom: 28px;
+  gap: 20px;
 }
-.welcome-copy {
-  min-width: 0;
-}
-.welcome h1 {
-  margin: 14px 0 8px;
-  font-size: 32px;
-  line-height: 1.25;
-  letter-spacing: 0;
+.intro-title {
+  margin: 0 0 8px;
+  font-size: 30px;
+  line-height: 1.3;
   overflow-wrap: anywhere;
 }
-.welcome p {
-  max-width: 700px;
+.intro-copy {
   margin: 0;
-  color: var(--starter-secondary);
-  font-size: 16px;
-  line-height: 1.6;
+  line-height: 1.65;
 }
-.docs-action {
-  display: inline-flex;
-  flex: 0 0 auto;
-  gap: 8px;
-  padding: 8px 0;
-  align-items: center;
-  color: var(--starter-blue);
-  font-size: 14px;
-  font-weight: 600;
-  text-decoration: none;
-}
-.command-panel {
-  display: flex;
-  min-width: 0;
-  margin-bottom: 20px;
-  padding: 16px 18px;
-  border: 1px solid var(--starter-border);
-  border-radius: 8px;
-  align-items: center;
-  gap: 14px;
-  background: var(--starter-surface);
-}
-.command-icon,
-.overview-icon,
-.resource-icon {
-  display: inline-flex;
-  flex: 0 0 auto;
-  align-items: center;
-  justify-content: center;
-  color: var(--starter-blue);
-  background: var(--starter-blue-soft);
-}
-.command-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  font-size: 20px;
-}
-.command-copy {
-  display: grid;
-  min-width: 0;
-  flex: 1;
-  gap: 3px;
-}
-.command-copy span {
-  color: var(--starter-secondary);
-  font-size: 12px;
-}
-.command-copy code {
-  color: var(--starter-text);
-  font-family: 'SFMono-Regular', Consolas, monospace;
-  font-size: 14px;
-  overflow-wrap: anywhere;
-}
-.ready-tag {
+.template-id {
   flex: 0 0 auto;
 }
-.overview-grid {
+
+.workspace {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 16px;
-  margin-bottom: 16px;
-}
-.overview-card,
-.work-card {
-  border-color: var(--starter-border);
-  border-radius: 8px;
-  background: var(--starter-surface);
-  box-shadow: none;
-}
-.overview-card :deep(.t-card__body) {
-  display: flex;
-  min-width: 0;
-  padding: 20px;
-  align-items: center;
-  gap: 14px;
-}
-.overview-icon {
-  width: 40px;
-  height: 40px;
-  border-radius: 6px;
-  font-size: 22px;
-}
-.overview-card:nth-child(3) .overview-icon {
-  color: var(--starter-green);
-  background: var(--starter-green-soft);
-}
-.overview-card p {
-  margin: 0 0 4px;
-  color: var(--starter-secondary);
-  font-size: 12px;
-}
-.overview-card strong {
-  display: block;
-  font-size: 15px;
-  line-height: 1.4;
-  overflow-wrap: anywhere;
-}
-.work-grid {
-  display: grid;
-  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.85fr);
-  gap: 16px;
+  grid-template-columns: minmax(0, 1.55fr) minmax(280px, 0.65fr);
+  gap: 18px;
   align-items: stretch;
 }
-.work-card :deep(.t-card__header) {
-  min-height: 58px;
-  padding: 16px 20px;
-  border-bottom: 1px solid var(--starter-border);
+
+.info-panel {
+  display: flex;
+  min-width: 0;
+  border-color: var(--td-component-border);
+  border-radius: 8px;
+  background: var(--td-bg-color-container);
+  flex-direction: column;
 }
-.work-card :deep(.t-card__title) {
-  color: var(--starter-text);
-  font-size: 16px;
+.info-panel :deep(.t-card__header) {
+  padding: 24px 24px 0;
+  border-bottom: 0;
+}
+.info-title {
+  font-size: 17px;
   font-weight: 600;
 }
-.work-card :deep(.t-card__body) {
-  padding: 0 20px;
-}
-.section-status {
-  display: inline-flex;
-  align-items: center;
-  gap: 7px;
-  color: var(--starter-secondary);
+.info-subtitle {
+  color: var(--td-text-color-secondary);
   font-size: 12px;
 }
-.status-dot {
-  width: 7px;
-  height: 7px;
-  border-radius: 50%;
-  background: var(--starter-green);
+.info-panel :deep(.t-card__body) {
+  display: flex;
+  min-height: 0;
+  padding: 8px 24px 24px;
+  flex: 1;
+  flex-direction: column;
 }
-.task-row {
-  display: grid;
-  grid-template-columns: 32px minmax(0, 1fr);
-  gap: 12px;
-  padding: 18px 0;
-  border-bottom: 1px solid var(--starter-border);
-}
-.task-row:last-child {
-  border-bottom: 0;
-}
-.task-index {
-  display: inline-flex;
-  width: 28px;
-  height: 28px;
-  border-radius: 6px;
-  align-items: center;
-  justify-content: center;
-  color: var(--starter-blue);
-  font-size: 13px;
-  font-weight: 700;
-  background: var(--starter-blue-soft);
-}
-.task-row strong {
-  display: block;
-  margin: 2px 0 5px;
-  font-size: 14px;
-  line-height: 1.4;
-}
-.task-row p {
-  margin: 0;
-  color: var(--starter-secondary);
-  font-size: 13px;
-  line-height: 1.55;
-}
-.resources-card :deep(.t-card__body) {
-  padding: 6px 20px;
-}
-.resources-card a {
-  display: grid;
-  grid-template-columns: 36px minmax(0, 1fr) 18px;
-  gap: 12px;
-  padding: 14px 0;
-  border-bottom: 1px solid var(--starter-border);
-  align-items: center;
-  color: var(--starter-text);
-  text-decoration: none;
-}
-.resources-card a:last-child {
-  border-bottom: 0;
-}
-.resource-icon {
-  width: 36px;
-  height: 36px;
-  border-radius: 6px;
-  font-size: 18px;
-}
-.resource-icon-green {
-  color: var(--starter-green);
-  background: var(--starter-green-soft);
-}
-.resources-card strong,
-.resources-card small {
-  display: block;
-}
-.resources-card strong {
-  margin-bottom: 3px;
-  font-size: 13px;
-}
-.resources-card small {
-  color: var(--starter-secondary);
+.info-panel :deep(.t-descriptions__label) {
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
-  line-height: 1.45;
 }
-.resources-card a > :last-child {
-  color: var(--starter-secondary);
+.info-panel :deep(.t-descriptions__content) {
+  font-size: 13px;
+  font-weight: 600;
+  text-align: right;
+}
+.resource-links {
+  display: grid;
+  margin-top: auto;
+  padding-top: 24px;
+  gap: 8px;
+}
+.resource-link {
+  display: flex;
+  min-height: 42px;
+  padding: 0 12px;
+  align-items: center;
+  justify-content: space-between;
+  border: 1px solid var(--td-component-border);
+  border-radius: 5px;
+  color: var(--td-text-color-secondary);
+  font-size: 12px;
+}
+.resource-link :deep(.t-link__content) {
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+}
+.resource-arrow {
+  color: var(--td-text-color-placeholder);
 }
 
-@media (max-width: 760px) {
-  .topbar-inner {
-    padding: 0 16px;
-  }
-  .brand-logo {
-    width: 116px;
-  }
+.starter-footer {
+  display: flex;
+  width: min(1040px, 100%);
+  margin: 0 auto;
+  padding: 0 24px 30px;
+  align-items: center;
+  justify-content: space-between;
+  color: var(--td-text-color-placeholder);
+  font-size: 11px;
+}
+.starter-footer :deep(.t-link) {
+  color: var(--td-text-color-placeholder);
+  font-size: 11px;
+}
+
+@media (max-width: 820px) {
   .workspace {
-    padding: 32px 16px 48px;
-  }
-  .welcome {
-    display: grid;
-    align-items: start;
-  }
-  .welcome h1 {
-    font-size: 26px;
-  }
-  .overview-grid,
-  .work-grid {
     grid-template-columns: 1fr;
   }
-  .docs-action {
-    width: fit-content;
+  .info-panel {
+    min-height: 300px;
   }
 }
-
-@media (max-width: 420px) {
-  .topbar-actions {
-    gap: 0;
-  }
-  .command-panel {
-    align-items: flex-start;
-  }
-  .ready-tag {
-    display: none;
-  }
-  .section-status {
-    display: none;
-  }
-  .overview-card :deep(.t-card__body) {
-    padding: 16px;
-  }
-  .work-card :deep(.t-card__header),
-  .work-card :deep(.t-card__body) {
+@media (max-width: 600px) {
+  .topbar-inner,
+  .starter-content,
+  .starter-footer {
     padding-right: 16px;
     padding-left: 16px;
+  }
+  .brand-logo {
+    width: 112px;
+  }
+  .brand-divider,
+  .brand-label {
+    display: none;
+  }
+  .starter-content {
+    padding-top: 16px;
+  }
+  .intro {
+    display: block;
+  }
+  .intro-title {
+    font-size: 26px;
+  }
+  .template-id {
+    display: inline-block;
+    margin-top: 16px;
+  }
+  .starter-footer {
+    display: block;
+    line-height: 2;
   }
 }
 </style>

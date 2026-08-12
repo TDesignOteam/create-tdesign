@@ -1,6 +1,7 @@
 import React from 'react'
 import ReactDOM from 'react-dom/client'
 import { BrowserRouter } from 'react-router'
+import 'tdesign-react/es/style/index.css'
 import '@tdesign-react/chat/es/style/index.js'
 import router from './router'
 import './style.css'

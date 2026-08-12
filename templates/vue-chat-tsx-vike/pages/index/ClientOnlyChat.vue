@@ -1,11 +1,11 @@
 <script setup lang="ts">
 import { ClientOnly } from 'vike-vue/ClientOnly'
-import ChatPanel from './ChatPanel'
+import Demo from './Demo'
 </script>
 
 <template>
   <ClientOnly>
-    <ChatPanel />
+    <Demo />
     <template #fallback>
       <div class="chatbot-host chat-placeholder">Preparing chat workspace...</div>
     </template>

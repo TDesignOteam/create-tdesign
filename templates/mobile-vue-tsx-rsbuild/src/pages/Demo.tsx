@@ -1,0 +1,77 @@
+import { defineComponent, ref } from 'vue'
+import {
+  Avatar as TAvatar,
+  Badge as TBadge,
+  Button as TButton,
+  Paragraph as TParagraph,
+  Text as TText,
+  Title as TTitle,
+} from 'tdesign-mobile-vue'
+
+export default defineComponent(() => {
+  const count = ref(0)
+  const decrease = () => {
+    count.value -= 1
+  }
+  const increase = () => {
+    count.value += 1
+  }
+
+  return () => (
+    <section class="demo-panel" aria-label="交互示例">
+      <div class="demo-head">
+        <div class="demo-title">
+          <TBadge dot color="var(--td-success-color)" />
+          示例
+        </div>
+        <span class="demo-subtitle">交互示例</span>
+      </div>
+      <div class="demo-stage">
+        <div class="demo-card">
+          <TAvatar
+            class="demo-mark"
+            size="52px"
+            shape="round"
+            style={{
+              background: 'var(--td-brand-color)',
+              color: 'var(--td-text-color-anti)',
+              fontWeight: 800,
+            }}
+          >
+            T
+          </TAvatar>
+          <TTitle class="demo-card-title" level="h3">
+            Hello, TDesign
+          </TTitle>
+          <TText class="demo-card-copy" theme="secondary">
+            点击按钮，体验这个模板中的基础交互。
+          </TText>
+          <div class="counter" aria-label="计数器">
+            <TButton
+              class="demo-button"
+              theme="primary"
+              size="large"
+              shape="square"
+              aria-label="减少"
+              onClick={decrease}
+            >
+              −
+            </TButton>
+            <span class="count">{count.value}</span>
+            <TButton
+              class="demo-button"
+              theme="primary"
+              size="large"
+              shape="square"
+              aria-label="增加"
+              onClick={increase}
+            >
+              +
+            </TButton>
+          </div>
+          <div class="hint">编辑首页文件并保存，查看热更新效果</div>
+        </div>
+      </div>
+    </section>
+  )
+})

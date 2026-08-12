@@ -1,31 +1,29 @@
 import { useEffect, useState } from 'react'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
-import { Button, Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
+import { Cell, CellGroup, Navbar, Tag, Typography } from 'tdesign-mobile-react'
+import Demo from './Demo'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
 
 const STORAGE_KEY = 'tdesign-starter-theme'
-const resources = [
-  {
-    title: 'Mobile React documentation',
-    description: 'Components, design guidance, and API reference',
-    url: 'https://tdesign.tencent.com/mobile-react/overview',
-  },
-  {
-    title: 'TDesign Mobile React on GitHub',
-    description: 'Source code, releases, and issue tracker',
-    url: 'https://github.com/Tencent/tdesign-mobile-react',
-  },
-  {
-    title: 'Dependencies',
-    description: 'Review runtime and development package versions',
-    url: '/dependencies',
-    internal: true,
-  },
+const docsUrl = 'https://tdesign.tencent.com/mobile-react/overview'
+const githubUrl = 'https://github.com/Tencent/tdesign-mobile-react'
+
+const techInfo = [
+  { label: '构建工具', value: 'Rsbuild' },
+  { label: '组件库', value: 'tdesign-mobile-react' },
+  { label: '开发语言', value: 'TypeScript' },
 ]
+
+const resources = [
+  { label: '依赖清单', href: './dependencies' },
+  { label: '组件文档', href: docsUrl, external: true },
+]
+
 export default function HomePage() {
   const [isDark, setIsDark] = useState(false)
   const themeLabel = isDark ? 'Switch to light theme' : 'Switch to dark theme'
+
   function applyTheme(dark: boolean) {
     setIsDark(dark)
     document.documentElement.setAttribute('theme-mode', dark ? 'dark' : 'light')
@@ -42,12 +40,15 @@ export default function HomePage() {
     }
     window.open(url, '_blank', 'noopener,noreferrer')
   }
+
   useEffect(() => {
     const savedTheme = localStorage.getItem(STORAGE_KEY)
     applyTheme(
       savedTheme ? savedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches,
     )
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [])
+
   return (
     <main className="page-shell">
       <Navbar
@@ -62,108 +63,92 @@ export default function HomePage() {
           </div>
         }
         right={
-          <button
-            className="theme-button"
-            type="button"
-            aria-label={themeLabel}
-            title={themeLabel}
-            onClick={(event) => {
-              event.stopPropagation()
-              toggleTheme()
-            }}
-          >
-            {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
-          </button>
+          <div className="navbar-actions">
+            <a
+              className="icon-button"
+              href={docsUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="组件文档"
+              title="组件文档"
+            >
+              <BookOpenIcon size="20px" />
+            </a>
+            <a
+              className="icon-button"
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <LogoGithubIcon size="20px" />
+            </a>
+            <button
+              className="theme-button"
+              type="button"
+              aria-label={themeLabel}
+              title={themeLabel}
+              onClick={(event) => {
+                event.stopPropagation()
+                toggleTheme()
+              }}
+            >
+              {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
+            </button>
+          </div>
         }
       />
       <section className="intro-band">
         <div className="content-width intro-content">
           <div>
-            <p className="overline">Mobile starter workspace</p>
-            <h1>__PROJECTNAME__</h1>
-            <p className="intro-copy">
-              A compact React workspace with TDesign Mobile components and production-ready
-              defaults.
-            </p>
+            <Typography.Title className="intro-title" level="h1">
+              __PROJECTNAME__
+            </Typography.Title>
+            <Typography.Paragraph className="intro-copy">
+              一个基于 TDesign 的简单交互示例。
+            </Typography.Paragraph>
           </div>
-          <Tag theme="success" variant="light">
-            Ready
+          <Tag className="template-id" theme="primary" variant="light">
+            __TEMPLATENAME__
           </Tag>
         </div>
       </section>
       <div className="content-width workspace">
-        <section className="workspace-section" aria-labelledby="overview-title">
-          <div className="section-title-row">
-            <div>
-              <p className="section-kicker">Overview</p>
-              <h2 id="overview-title">Project status</h2>
-            </div>
-            <span className="status-dot">Configured</span>
+        <Demo />
+        <section className="info-panel">
+          <div className="info-head">
+            <Typography.Title className="info-title" level="h2">
+              技术信息
+            </Typography.Title>
+            <Typography.Text className="info-subtitle" theme="secondary">
+              当前模板使用的构建工具与组件库
+            </Typography.Text>
           </div>
-          <CellGroup theme="card">
-            <Cell
-              title="UI foundation"
-              description="React + TypeScript + TDesign Mobile React"
-              note="Active"
-            />
-            <Cell title="Template" description="__TEMPLATENAME__" note="Mobile" />
-          </CellGroup>
-        </section>
-        <section className="workspace-section" aria-labelledby="command-title">
-          <div className="section-title-row">
-            <div>
-              <p className="section-kicker">Quick start</p>
-              <h2 id="command-title">Development command</h2>
-            </div>
-          </div>
-          <div className="command-row">
-            <code>__DEVCOMMAND__</code>
-            <Tag theme="success" variant="light-outline">
-              Local
-            </Tag>
-          </div>
-        </section>
-        <section className="workspace-section" aria-labelledby="resources-title">
-          <div className="section-title-row">
-            <div>
-              <p className="section-kicker">Resources</p>
-              <h2 id="resources-title">Build from here</h2>
-            </div>
-          </div>
-          <CellGroup theme="card">
-            {resources.map((item) => (
-              <Cell
-                key={item.url}
-                title={item.title}
-                description={item.description}
-                arrow
-                hover
-                onClick={() => openLink(item.url, item.internal)}
-              />
+          <CellGroup bordered={false} className="tech-cells">
+            {techInfo.map((item) => (
+              <Cell key={item.label} title={item.label} note={item.value} />
             ))}
           </CellGroup>
+          <div className="resource-links">
+            {resources.map((item) => (
+              <Cell
+                key={item.label}
+                title={item.label}
+                arrow
+                hover
+                onClick={() => openLink(item.href, !item.external)}
+              />
+            ))}
+          </div>
         </section>
-        <div className="actions">
-          <Button
-            theme="primary"
-            size="large"
-            block
-            icon={<BookOpenIcon />}
-            onClick={() => openLink(resources[0].url)}
-          >
-            Open documentation
-          </Button>
-          <Button
-            variant="outline"
-            size="large"
-            block
-            icon={<LogoGithubIcon />}
-            onClick={() => openLink(resources[1].url)}
-          >
-            View on GitHub
-          </Button>
-        </div>
       </div>
+      <footer className="starter-footer">
+        <span>Powered by TDesign</span>
+        <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
+          组件文档 →
+        </a>
+      </footer>
     </main>
   )
 }

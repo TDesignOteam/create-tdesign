@@ -1,5 +1,12 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { AppIcon, CodeIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import {
+  AppIcon,
+  ChevronLeftIcon,
+  CodeIcon,
+  ComponentGridIcon,
+  MoonIcon,
+  SunnyIcon,
+} from 'tdesign-icons-vue-next'
 import {
   Button as TButton,
   Cell as TCell,
@@ -10,7 +17,6 @@ import {
   Paragraph as TypographyParagraph,
   Text as TypographyText,
   Title as TypographyTitle,
-  Typography,
 } from 'tdesign-mobile-vue'
 import packageJson from '../../package.json'
 import logoDark from '../assets/TDesign-logo_dark.png'
@@ -76,6 +82,15 @@ export default defineComponent(() => {
         fixed={false}
         left={() => (
           <div class="brand-lockup">
+            <button
+              class="back-button"
+              type="button"
+              aria-label="Back to home"
+              title="Back to home"
+              onClick={goHome}
+            >
+              <ChevronLeftIcon size="22px" />
+            </button>
             <img class="brand-logo" src={isDark.value ? logoDark : logoLight} alt="TDesign" />
           </div>
         )}
@@ -96,9 +111,7 @@ export default defineComponent(() => {
       />
       <section class="dependencies-hero">
         <div class="dependencies-width">
-          <span class="dependencies-kicker">
-            <Typography>Project manifest</Typography>
-          </span>
+          <TypographyText class="dependencies-kicker" theme="primary" content="Project manifest" />
           <TypographyTitle level="h1" content="Dependencies" />
           <div class="dependencies-copy">
             <TypographyParagraph content="Packages available in this starter, with the exact version ranges from package.json." />

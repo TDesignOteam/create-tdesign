@@ -36,6 +36,15 @@ onMounted(() => {
     <t-navbar class="brand-navbar" :fixed="false">
       <template #left>
         <div class="brand-lockup">
+          <button
+            class="back-button"
+            type="button"
+            aria-label="Back to home"
+            title="Back to home"
+            @click="goHome"
+          >
+            <ChevronLeftIcon size="22px" />
+          </button>
           <img class="brand-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
         </div>
       </template>
@@ -54,9 +63,9 @@ onMounted(() => {
     </t-navbar>
     <section class="dependencies-hero">
       <div class="dependencies-width">
-        <span class="dependencies-kicker">
-          <t-typography-text theme="primary">Project manifest</t-typography-text>
-        </span>
+        <t-typography-text class="dependencies-kicker" theme="primary">
+          Project manifest
+        </t-typography-text>
         <t-typography-title level="h1">Dependencies</t-typography-title>
         <div class="dependencies-copy">
           <t-typography-paragraph>

@@ -1,6 +1,13 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { AppIcon, CodeIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import {
+  AppIcon,
+  ChevronLeftIcon,
+  CodeIcon,
+  ComponentGridIcon,
+  MoonIcon,
+  SunnyIcon,
+} from 'tdesign-icons-vue-next'
 import packageJson from '../../package.json'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
@@ -37,6 +44,15 @@ onMounted(() => {
     <t-navbar class="brand-navbar" :fixed="false">
       <template #left>
         <div class="brand-lockup">
+          <button
+            class="back-button"
+            type="button"
+            aria-label="Back to home"
+            title="Back to home"
+            @click="goHome"
+          >
+            <ChevronLeftIcon size="22px" />
+          </button>
           <img class="brand-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
         </div>
       </template>
@@ -55,9 +71,9 @@ onMounted(() => {
     </t-navbar>
     <section class="dependencies-hero">
       <div class="dependencies-width">
-        <span class="dependencies-kicker">
-          <t-typography-text theme="primary">Project manifest</t-typography-text>
-        </span>
+        <t-typography-text class="dependencies-kicker" theme="primary">
+          Project manifest
+        </t-typography-text>
         <t-typography-title level="h1">Dependencies</t-typography-title>
         <div class="dependencies-copy">
           <t-typography-paragraph>

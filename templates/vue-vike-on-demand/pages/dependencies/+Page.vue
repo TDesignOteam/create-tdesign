@@ -137,8 +137,8 @@ const toggleTheme = () => {
 <style scoped>
 .dependencies-page {
   min-height: 100vh;
-  color: var(--starter-text);
-  background: var(--starter-bg);
+  color: var(--td-text-color-primary);
+  background: var(--td-bg-color-page);
 }
 .dependencies-workspace {
   width: 100%;
@@ -157,8 +157,8 @@ const toggleTheme = () => {
   border-radius: 8px;
   align-items: center;
   justify-content: center;
-  color: var(--starter-blue);
-  background: var(--starter-blue-soft);
+  color: var(--td-brand-color);
+  background: var(--td-brand-color-light);
   font-size: 25px;
 }
 .dependencies-summary {
