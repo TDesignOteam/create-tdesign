@@ -17,7 +17,6 @@ import {
   Paragraph as TypographyParagraph,
   Text as TypographyText,
   Title as TypographyTitle,
-  Typography,
 } from 'tdesign-mobile-vue'
 import packageJson from '../../package.json'
 import logoDark from '../assets/TDesign-logo_dark.png'
@@ -112,9 +111,7 @@ export default defineComponent(() => {
       />
       <section class="dependencies-hero">
         <div class="dependencies-width">
-          <span class="dependencies-kicker">
-            <Typography>Project manifest</Typography>
-          </span>
+          <TypographyText class="dependencies-kicker" theme="primary" content="Project manifest" />
           <TypographyTitle level="h1" content="Dependencies" />
           <div class="dependencies-copy">
             <TypographyParagraph content="Packages available in this starter, with the exact version ranges from package.json." />

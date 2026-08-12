@@ -71,9 +71,9 @@ onMounted(() => {
     </t-navbar>
     <section class="dependencies-hero">
       <div class="dependencies-width">
-        <span class="dependencies-kicker">
-          <t-typography-text theme="primary">Project manifest</t-typography-text>
-        </span>
+        <t-typography-text class="dependencies-kicker" theme="primary">
+          Project manifest
+        </t-typography-text>
         <t-typography-title level="h1">Dependencies</t-typography-title>
         <div class="dependencies-copy">
           <t-typography-paragraph>
