@@ -1,5 +1,12 @@
 import { useEffect, useState } from 'react'
-import { AppIcon, CodeIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
+import {
+  AppIcon,
+  ChevronLeftIcon,
+  CodeIcon,
+  ComponentGridIcon,
+  MoonIcon,
+  SunnyIcon,
+} from 'tdesign-icons-react'
 import { Button, Cell, CellGroup, Grid, GridItem, Navbar, Typography } from 'tdesign-mobile-react'
 import packageJson from '../../package.json'
 import logoDark from '../assets/TDesign-logo_dark.png'
@@ -60,6 +67,15 @@ export default function DependenciesPage() {
         fixed={false}
         left={
           <div className="brand-lockup">
+            <button
+              className="back-button"
+              type="button"
+              aria-label="Back to home"
+              title="Back to home"
+              onClick={() => window.location.assign('/')}
+            >
+              <ChevronLeftIcon size="22px" />
+            </button>
             <img className="brand-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
           </div>
         }

@@ -135,7 +135,7 @@ export default defineComponent(() => {
           <section class="chat-panel" aria-label="AI chat workspace">
             <div class="chat-panel-heading">
               <div>
-                <TBadge dot color="var(--starter-green)" />
+                <TBadge dot color="var(--td-success-color)" />
                 Assistant
               </div>
               <span>Streaming ready</span>

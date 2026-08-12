@@ -122,18 +122,26 @@ onMounted(() => {
 
 <style scoped>
 .intro-band {
-  color: #fff;
-  background: linear-gradient(135deg, #0052d9 0%, #1a6bff 100%);
+  color: var(--td-text-color-anti);
+  background: linear-gradient(
+    135deg,
+    var(--td-brand-color) 0%,
+    var(--td-brand-color-6) 100%
+  );
 }
 [theme-mode='dark'] .intro-band {
-  background: linear-gradient(135deg, #174b87 0%, #1a5fb4 100%);
+  background: linear-gradient(
+    135deg,
+    var(--td-brand-color-7) 0%,
+    var(--td-brand-color-6) 100%
+  );
 }
 .intro-content {
   display: flex;
   min-height: 140px;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--td-spacer-2);
   padding: 24px 16px;
 }
 .intro-content > div {
@@ -163,9 +171,9 @@ onMounted(() => {
 }
 .info-panel {
   overflow: hidden;
-  border: 1px solid var(--starter-border);
-  border-radius: 12px;
-  background: var(--starter-surface);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-large);
+  background: var(--td-bg-color-container);
 }
 .info-head {
   padding: 20px 18px 0;
@@ -178,7 +186,7 @@ onMounted(() => {
 }
 .info-subtitle {
   margin: 0;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
   line-height: 1.65;
 }
@@ -186,23 +194,23 @@ onMounted(() => {
   margin: 12px 18px 0;
 }
 .tech-cells :deep(.t-cell) {
-  background: var(--starter-surface);
+  background: var(--td-bg-color-container);
 }
 .tech-cells :deep(.t-cell__title-text) {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
 }
 .tech-cells :deep(.t-cell__note) {
-  color: var(--starter-text);
+  color: var(--td-text-color-primary);
   font-size: 13px;
   font-weight: 600;
 }
 .resource-links {
   margin: 6px 0 0;
-  border-top: 1px solid var(--starter-border);
+  border-top: 1px solid var(--td-component-border);
 }
 .resource-links .t-cell {
-  background: var(--starter-surface);
+  background: var(--td-bg-color-container);
 }
 .starter-footer {
   display: flex;
@@ -210,14 +218,14 @@ onMounted(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 4px 16px 30px;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .starter-footer a {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   text-decoration: none;
 }
 .starter-footer a:hover {
-  color: var(--starter-blue);
+  color: var(--td-brand-color);
 }
 </style>

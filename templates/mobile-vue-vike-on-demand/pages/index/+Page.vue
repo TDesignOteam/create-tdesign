@@ -9,6 +9,12 @@ const isDark = ref(false)
 const themeLabel = computed(() => (isDark.value ? 'Switch to light theme' : 'Switch to dark theme'))
 const logo = computed(() => (isDark.value ? logoDark : logoLight))
 const count = ref(0)
+const decrease = () => {
+  count.value -= 1
+}
+const increase = () => {
+  count.value += 1
+}
 
 const docsUrl = 'https://tdesign.tencent.com/mobile-vue/overview'
 const githubUrl = 'https://github.com/Tencent/tdesign-mobile-vue'
@@ -39,12 +45,6 @@ function openLink(url: string, internal = false) {
     return
   }
   window.open(url, '_blank', 'noopener,noreferrer')
-}
-const decrease = () => {
-  count.value -= 1
-}
-const increase = () => {
-  count.value += 1
 }
 onMounted(() => {
   const savedTheme = localStorage.getItem(STORAGE_KEY)
@@ -91,14 +91,14 @@ onMounted(() => {
       <section class="demo-panel" aria-label="交互示例">
         <div class="demo-head">
           <div class="demo-title">
-            <t-badge dot color="var(--starter-green)" />
+            <t-badge dot color="var(--td-success-color)" />
             示例
           </div>
           <span class="demo-subtitle">交互示例</span>
         </div>
         <div class="demo-stage">
           <div class="demo-card">
-            <t-avatar class="demo-mark" size="52px" shape="round" style="background: var(--starter-blue); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
+            <t-avatar class="demo-mark" size="52px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
             <h2>Hello, TDesign</h2>
             <p>点击按钮，体验这个模板中的基础交互。</p>
             <div class="counter" aria-label="计数器">
@@ -164,18 +164,26 @@ onMounted(() => {
 
 <style scoped>
 .intro-band {
-  color: #fff;
-  background: linear-gradient(135deg, #0052d9 0%, #1a6bff 100%);
+  color: var(--td-text-color-anti);
+  background: linear-gradient(
+    135deg,
+    var(--td-brand-color) 0%,
+    var(--td-brand-color-6) 100%
+  );
 }
 [theme-mode='dark'] .intro-band {
-  background: linear-gradient(135deg, #174b87 0%, #1a5fb4 100%);
+  background: linear-gradient(
+    135deg,
+    var(--td-brand-color-7) 0%,
+    var(--td-brand-color-6) 100%
+  );
 }
 .intro-content {
   display: flex;
   min-height: 140px;
   align-items: flex-end;
   justify-content: space-between;
-  gap: 16px;
+  gap: var(--td-spacer-2);
   padding: 24px 16px;
 }
 .intro-content > div {
@@ -205,10 +213,10 @@ onMounted(() => {
 }
 .demo-panel {
   overflow: hidden;
-  border: 1px solid var(--starter-border);
-  border-radius: 12px;
-  background: var(--starter-surface);
-  box-shadow: 0 14px 40px rgba(31, 45, 61, 0.08);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-large);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
 }
 .demo-head {
   display: flex;
@@ -217,7 +225,7 @@ onMounted(() => {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  border-bottom: 1px solid var(--starter-border);
+  border-bottom: 1px solid var(--td-component-border);
 }
 .demo-title {
   display: flex;
@@ -227,10 +235,10 @@ onMounted(() => {
   font-weight: 600;
 }
 .demo-title :deep(.t-badge) {
-  box-shadow: 0 0 0 3px var(--starter-green-soft);
+  box-shadow: 0 0 0 3px var(--td-success-color-light);
 }
 .demo-subtitle {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .demo-stage {
@@ -238,17 +246,17 @@ onMounted(() => {
   min-height: 320px;
   padding: 32px 18px;
   place-items: center;
-  background-color: var(--starter-surface-soft);
-  background-image: radial-gradient(var(--starter-border) 0.7px, transparent 0.7px);
+  background-color: var(--td-bg-color-secondarycontainer);
+  background-image: radial-gradient(var(--td-component-border) 0.7px, transparent 0.7px);
   background-size: 18px 18px;
 }
 .demo-card {
   width: min(100%, 360px);
   padding: 32px 24px 26px;
-  border: 1px solid var(--starter-border);
-  border-radius: 10px;
-  background: var(--starter-surface);
-  box-shadow: 0 16px 38px rgba(31, 45, 61, 0.1);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-default);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
   text-align: center;
 }
 .demo-mark {
@@ -261,7 +269,7 @@ onMounted(() => {
 }
 .demo-card p {
   margin: 0 0 22px;
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 13px;
   line-height: 1.65;
 }
@@ -276,9 +284,9 @@ onMounted(() => {
   height: 36px;
   padding: 0 12px;
   place-items: center;
-  border: 1px solid var(--starter-border);
-  border-radius: 6px;
-  background: var(--starter-surface-soft);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-default);
+  background: var(--td-bg-color-secondarycontainer);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 15px;
   font-weight: 600;
@@ -290,14 +298,14 @@ onMounted(() => {
 }
 .hint {
   margin-top: 20px;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .info-panel {
   overflow: hidden;
-  border: 1px solid var(--starter-border);
-  border-radius: 12px;
-  background: var(--starter-surface);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-large);
+  background: var(--td-bg-color-container);
 }
 .info-head {
   padding: 20px 18px 0;
@@ -310,7 +318,7 @@ onMounted(() => {
 }
 .info-subtitle {
   margin: 0;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
   line-height: 1.65;
 }
@@ -318,23 +326,23 @@ onMounted(() => {
   margin: 12px 18px 0;
 }
 .tech-cells :deep(.t-cell) {
-  background: var(--starter-surface);
+  background: var(--td-bg-color-container);
 }
 .tech-cells :deep(.t-cell__title-text) {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
 }
 .tech-cells :deep(.t-cell__note) {
-  color: var(--starter-text);
+  color: var(--td-text-color-primary);
   font-size: 13px;
   font-weight: 600;
 }
 .resource-links {
   margin: 6px 0 0;
-  border-top: 1px solid var(--starter-border);
+  border-top: 1px solid var(--td-component-border);
 }
 .resource-links .t-cell {
-  background: var(--starter-surface);
+  background: var(--td-bg-color-container);
 }
 .starter-footer {
   display: flex;
@@ -342,14 +350,14 @@ onMounted(() => {
   justify-content: space-between;
   gap: 12px;
   padding: 4px 16px 30px;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .starter-footer a {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   text-decoration: none;
 }
 .starter-footer a:hover {
-  color: var(--starter-blue);
+  color: var(--td-brand-color);
 }
 </style>

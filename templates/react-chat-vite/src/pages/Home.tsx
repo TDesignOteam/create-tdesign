@@ -129,7 +129,7 @@ export default function HomePage() {
           <section className="chat-panel" aria-label="AI chat workspace">
             <div className="chat-panel-heading">
               <div>
-                <Badge dot color="var(--starter-green)" />
+                <Badge dot color="var(--td-success-color)" />
                 Assistant
               </div>
               <span>Streaming ready</span>

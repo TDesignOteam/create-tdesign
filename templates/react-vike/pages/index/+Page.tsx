@@ -49,6 +49,12 @@ const resources = [
 export default function HomePage() {
   const [theme, setTheme] = useState<Theme>(getInitialTheme)
   const [count, setCount] = useState(0)
+  const decrease = () => {
+    setCount((c) => c - 1)
+  }
+  const increase = () => {
+    setCount((c) => c + 1)
+  }
   const isDark = theme === 'dark'
 
   useEffect(() => applyTheme(theme), [theme])
@@ -127,7 +133,7 @@ export default function HomePage() {
             header={
               <div className="demo-head">
                 <div className="demo-title">
-                  <Badge dot color="var(--starter-green)" />
+                  <Badge dot color="var(--td-success-color)" />
                   示例
                 </div>
                 <span className="demo-subtitle">交互示例</span>
@@ -136,31 +142,13 @@ export default function HomePage() {
           >
             <div className="demo-stage">
               <div className="demo-card">
-                <Avatar className="demo-mark" size="54px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
+                <Avatar className="demo-mark" size="54px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
                 <h2>Hello, TDesign</h2>
                 <p>点击按钮，体验这个模板中的基础交互。</p>
                 <Space size={12} align="center">
-                  <Button
-                    className="demo-button"
-                    shape="square"
-                    theme="primary"
-                    onClick={() => setCount((c) => c - 1)}
-                    aria-label="减少"
-                  >
-                    −
-                  </Button>
-                  <Tag className="count" size="large" theme="primary" variant="light">
-                    {count}
-                  </Tag>
-                  <Button
-                    className="demo-button"
-                    shape="square"
-                    theme="primary"
-                    onClick={() => setCount((c) => c + 1)}
-                    aria-label="增加"
-                  >
-                    +
-                  </Button>
+                  <Button theme="primary" size="large" shape="square" aria-label="减少" onClick={decrease}>−</Button>
+                  <Button variant="outline" size="large" disabled>{count}</Button>
+                  <Button theme="primary" size="large" shape="square" aria-label="增加" onClick={increase}>+</Button>
                 </Space>
                 <div className="hint">编辑首页文件并保存，查看热更新效果</div>
               </div>

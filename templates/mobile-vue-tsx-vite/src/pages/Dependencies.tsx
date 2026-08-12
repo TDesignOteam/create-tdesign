@@ -1,5 +1,12 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { AppIcon, CodeIcon, ComponentGridIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import {
+  AppIcon,
+  ChevronLeftIcon,
+  CodeIcon,
+  ComponentGridIcon,
+  MoonIcon,
+  SunnyIcon,
+} from 'tdesign-icons-vue-next'
 import {
   Button as TButton,
   Cell as TCell,
@@ -76,6 +83,15 @@ export default defineComponent(() => {
         fixed={false}
         left={() => (
           <div class="brand-lockup">
+            <button
+              class="back-button"
+              type="button"
+              aria-label="Back to home"
+              title="Back to home"
+              onClick={goHome}
+            >
+              <ChevronLeftIcon size="22px" />
+            </button>
             <img class="brand-logo" src={isDark.value ? logoDark : logoLight} alt="TDesign" />
           </div>
         )}

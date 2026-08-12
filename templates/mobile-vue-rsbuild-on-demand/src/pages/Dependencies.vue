@@ -36,6 +36,15 @@ onMounted(() => {
     <t-navbar class="brand-navbar" :fixed="false">
       <template #left>
         <div class="brand-lockup">
+          <button
+            class="back-button"
+            type="button"
+            aria-label="Back to home"
+            title="Back to home"
+            @click="goHome"
+          >
+            <ChevronLeftIcon size="22px" />
+          </button>
           <img class="brand-logo" :src="isDark ? logoDark : logoLight" alt="TDesign" />
         </div>
       </template>

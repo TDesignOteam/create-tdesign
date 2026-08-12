@@ -34,6 +34,12 @@ export default defineComponent(() => {
   )
   const logo = computed(() => (isDark.value ? logoDark : logoLight))
   const count = ref(0)
+  const decrease = () => {
+    count.value -= 1
+  }
+  const increase = () => {
+    count.value += 1
+  }
 
   const applyTheme = (dark: boolean) => {
     isDark.value = dark
@@ -50,12 +56,6 @@ export default defineComponent(() => {
       return
     }
     window.open(url, '_blank', 'noopener,noreferrer')
-  }
-  const decrease = () => {
-    count.value -= 1
-  }
-  const increase = () => {
-    count.value += 1
   }
 
   onMounted(() => {
@@ -108,14 +108,14 @@ export default defineComponent(() => {
         <section class="demo-panel" aria-label="交互示例">
           <div class="demo-head">
             <div class="demo-title">
-              <TBadge dot color="var(--starter-green)" />
+              <TBadge dot color="var(--td-success-color)" />
               示例
             </div>
             <span class="demo-subtitle">交互示例</span>
           </div>
           <div class="demo-stage">
             <div class="demo-card">
-              <TAvatar class="demo-mark" size="52px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
+              <TAvatar class="demo-mark" size="52px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
               <h2>Hello, TDesign</h2>
               <p>点击按钮，体验这个模板中的基础交互。</p>
               <div class="counter" aria-label="计数器">

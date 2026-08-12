@@ -162,49 +162,9 @@ const resources = [
 </template>
 
 <style scoped>
-:global(:root) {
-  color: #1d2129;
-  background: #f5f7fa;
-  color-scheme: light;
-  font-family:
-    Inter,
-    -apple-system,
-    BlinkMacSystemFont,
-    'Segoe UI',
-    sans-serif;
-  --starter-bg: #f5f7fa;
-  --starter-surface: #ffffff;
-  --starter-surface-soft: #f7f8fa;
-  --starter-text: #1d2129;
-  --starter-secondary: #5f6b7a;
-  --starter-muted: #8b96a5;
-  --starter-border: #dfe3e8;
-  --starter-blue: #0052d9;
-  --starter-blue-hover: #003cab;
-  --starter-blue-soft: #e8f1ff;
-  --starter-green: #078343;
-  --starter-green-soft: #e8f7ee;
-  --starter-shadow: 0 14px 40px rgba(31, 45, 61, 0.08);
-}
 
-:global(html[theme-mode='dark']) {
-  color: #f2f3f5;
-  background: #101214;
-  color-scheme: dark;
-  --starter-bg: #101214;
-  --starter-surface: #181b1f;
-  --starter-surface-soft: #20242a;
-  --starter-text: #f2f3f5;
-  --starter-secondary: #a6adb7;
-  --starter-muted: #7d8794;
-  --starter-border: #343a43;
-  --starter-blue: #4587ff;
-  --starter-blue-hover: #6ca0ff;
-  --starter-blue-soft: #1d2f50;
-  --starter-green: #4fc48d;
-  --starter-green-soft: #173a2a;
-  --starter-shadow: 0 18px 44px rgba(0, 0, 0, 0.24);
-}
+
+
 
 :global(*) {
   box-sizing: border-box;
@@ -213,7 +173,7 @@ const resources = [
   margin: 0;
   min-width: 320px;
   min-height: 100vh;
-  background: var(--starter-bg);
+  background: var(--td-bg-color-page);
 }
 :global(#app) {
   min-height: 100vh;
@@ -222,12 +182,12 @@ const resources = [
 .starter-page {
   min-height: 100vh;
   overflow-x: hidden;
-  color: var(--starter-text);
-  background: var(--starter-bg);
+  color: var(--td-text-color-primary);
+  background: var(--td-bg-color-page);
 }
 .topbar {
-  border-bottom: 1px solid var(--starter-border);
-  background: var(--starter-surface);
+  border-bottom: 1px solid var(--td-component-border);
+  background: var(--td-bg-color-container);
 }
 .topbar-inner {
   display: flex;
@@ -255,15 +215,15 @@ const resources = [
   margin: 0;
 }
 .brand-label {
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 13px;
 }
 .topbar :deep(.t-button) {
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
 }
 .topbar :deep(.t-button:hover) {
-  color: var(--starter-blue);
-  background: var(--starter-blue-soft);
+  color: var(--td-brand-color);
+  background: var(--td-brand-color-light);
 }
 
 .starter-content {
@@ -287,7 +247,7 @@ const resources = [
 }
 .intro p {
   margin: 0;
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 14px;
   line-height: 1.65;
 }
@@ -305,9 +265,9 @@ const resources = [
 .info-panel {
   display: flex;
   min-width: 0;
-  border-color: var(--starter-border);
+  border-color: var(--td-component-border);
   border-radius: 8px;
-  background: var(--starter-surface);
+  background: var(--td-bg-color-container);
   flex-direction: column;
 }
 .info-panel :deep(.t-card__header) {
@@ -319,7 +279,7 @@ const resources = [
   font-weight: 600;
 }
 .info-subtitle {
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 12px;
 }
 .info-panel :deep(.t-card__body) {
@@ -330,7 +290,7 @@ const resources = [
   flex-direction: column;
 }
 .info-panel :deep(.t-descriptions__label) {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 12px;
 }
 .info-panel :deep(.t-descriptions__content) {
@@ -350,9 +310,9 @@ const resources = [
   padding: 0 12px;
   align-items: center;
   justify-content: space-between;
-  border: 1px solid var(--starter-border);
+  border: 1px solid var(--td-component-border);
   border-radius: 5px;
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 12px;
 }
 .resource-link :deep(.t-link__content) {
@@ -362,7 +322,7 @@ const resources = [
   justify-content: space-between;
 }
 .resource-arrow {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
 }
 
 .starter-footer {
@@ -372,11 +332,11 @@ const resources = [
   padding: 0 24px 30px;
   align-items: center;
   justify-content: space-between;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .starter-footer :deep(.t-link) {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 

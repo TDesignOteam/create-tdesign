@@ -15,7 +15,7 @@ const increase = () => {
     <template #header>
       <div class="demo-head">
         <div class="demo-title">
-          <t-badge dot color="var(--starter-green)" />
+          <t-badge dot color="var(--td-success-color)" />
           示例
         </div>
         <span class="demo-subtitle">交互示例</span>
@@ -23,31 +23,13 @@ const increase = () => {
     </template>
     <div class="demo-stage">
       <div class="demo-card">
-        <t-avatar class="demo-mark" size="54px" shape="round" style="background: var(--starter-blue); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
+        <t-avatar class="demo-mark" size="54px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
         <h2>Hello, TDesign</h2>
         <p>点击按钮，体验这个模板中的基础交互。</p>
         <t-space :size="12" align="center">
-          <t-button
-            class="demo-button"
-            shape="square"
-            theme="primary"
-            @click="decrease"
-            aria-label="减少"
-          >
-            <template #icon>−</template>
-          </t-button>
-          <t-tag class="count" size="large" theme="primary" variant="light">
-            {{ count }}
-          </t-tag>
-          <t-button
-            class="demo-button"
-            shape="square"
-            theme="primary"
-            @click="increase"
-            aria-label="增加"
-          >
-            <template #icon>+</template>
-          </t-button>
+          <t-button theme="primary" size="large" shape="square" aria-label="减少" @click="decrease">−</t-button>
+          <t-button variant="outline" size="large" disabled>{{ count }}</t-button>
+          <t-button theme="primary" size="large" shape="square" aria-label="增加" @click="increase">+</t-button>
         </t-space>
         <div class="hint">编辑首页文件并保存，查看热更新效果</div>
       </div>
@@ -58,15 +40,15 @@ const increase = () => {
 <style scoped>
 .demo-panel {
   overflow: hidden;
-  border-color: var(--starter-border);
-  border-radius: 8px;
-  background: var(--starter-surface);
-  box-shadow: var(--starter-shadow);
+  border-color: var(--td-component-border);
+  border-radius: var(--td-radius-large);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
 }
 .demo-panel :deep(.t-card__header) {
   min-height: 56px;
   padding: 0 20px;
-  border-bottom: 1px solid var(--starter-border);
+  border-bottom: 1px solid var(--td-component-border);
 }
 .demo-head {
   display: flex;
@@ -82,10 +64,10 @@ const increase = () => {
   font-weight: 600;
 }
 .demo-title :deep(.t-badge) {
-  box-shadow: 0 0 0 3px var(--starter-green-soft);
+  box-shadow: 0 0 0 3px var(--td-success-color-light);
 }
 .demo-subtitle {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .demo-panel :deep(.t-card__body) {
@@ -96,17 +78,17 @@ const increase = () => {
   min-height: 430px;
   padding: 40px 24px;
   place-items: center;
-  background-color: var(--starter-surface-soft);
-  background-image: radial-gradient(var(--starter-border) 0.7px, transparent 0.7px);
+  background-color: var(--td-bg-color-secondarycontainer);
+  background-image: radial-gradient(var(--td-component-border) 0.7px, transparent 0.7px);
   background-size: 18px 18px;
 }
 .demo-card {
   width: min(100%, 440px);
   padding: 38px 32px 32px;
-  border: 1px solid var(--starter-border);
-  border-radius: 8px;
-  background: var(--starter-surface);
-  box-shadow: 0 16px 38px rgba(31, 45, 61, 0.1);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-default);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
   text-align: center;
 }
 .demo-mark {
@@ -119,23 +101,13 @@ const increase = () => {
 }
 .demo-card p {
   margin: 0 0 24px;
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 13px;
   line-height: 1.65;
 }
-.demo-button {
-  min-width: 36px;
-  width: 36px;
-  height: 36px;
-  font-size: 18px;
-}
-.count {
-  width: 64px;
-  text-align: center;
-}
 .hint {
   margin-top: 22px;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 

@@ -14,14 +14,14 @@ const increase = () => {
   <section class="demo-panel" aria-label="交互示例">
     <div class="demo-head">
       <div class="demo-title">
-        <t-badge dot color="var(--starter-green)" />
+        <t-badge dot color="var(--td-success-color)" />
         示例
       </div>
       <span class="demo-subtitle">交互示例</span>
     </div>
     <div class="demo-stage">
       <div class="demo-card">
-        <t-avatar class="demo-mark" size="52px" shape="round" style="background: var(--starter-blue); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
+        <t-avatar class="demo-mark" size="52px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
         <h2>Hello, TDesign</h2>
         <p>点击按钮，体验这个模板中的基础交互。</p>
         <div class="counter" aria-label="计数器">
@@ -56,10 +56,10 @@ const increase = () => {
 <style scoped>
 .demo-panel {
   overflow: hidden;
-  border: 1px solid var(--starter-border);
-  border-radius: 12px;
-  background: var(--starter-surface);
-  box-shadow: 0 14px 40px rgba(31, 45, 61, 0.08);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-large);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
 }
 .demo-head {
   display: flex;
@@ -68,7 +68,7 @@ const increase = () => {
   align-items: center;
   justify-content: space-between;
   gap: 8px;
-  border-bottom: 1px solid var(--starter-border);
+  border-bottom: 1px solid var(--td-component-border);
 }
 .demo-title {
   display: flex;
@@ -78,10 +78,10 @@ const increase = () => {
   font-weight: 600;
 }
 .demo-title :deep(.t-badge) {
-  box-shadow: 0 0 0 3px var(--starter-green-soft);
+  box-shadow: 0 0 0 3px var(--td-success-color-light);
 }
 .demo-subtitle {
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 .demo-stage {
@@ -89,17 +89,17 @@ const increase = () => {
   min-height: 320px;
   padding: 32px 18px;
   place-items: center;
-  background-color: var(--starter-surface-soft);
-  background-image: radial-gradient(var(--starter-border) 0.7px, transparent 0.7px);
+  background-color: var(--td-bg-color-secondarycontainer);
+  background-image: radial-gradient(var(--td-component-border) 0.7px, transparent 0.7px);
   background-size: 18px 18px;
 }
 .demo-card {
   width: min(100%, 360px);
   padding: 32px 24px 26px;
-  border: 1px solid var(--starter-border);
-  border-radius: 10px;
-  background: var(--starter-surface);
-  box-shadow: 0 16px 38px rgba(31, 45, 61, 0.1);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-default);
+  background: var(--td-bg-color-container);
+  box-shadow: var(--td-shadow-1);
   text-align: center;
 }
 .demo-mark {
@@ -112,7 +112,7 @@ const increase = () => {
 }
 .demo-card p {
   margin: 0 0 22px;
-  color: var(--starter-secondary);
+  color: var(--td-text-color-secondary);
   font-size: 13px;
   line-height: 1.65;
 }
@@ -127,9 +127,9 @@ const increase = () => {
   height: 36px;
   padding: 0 12px;
   place-items: center;
-  border: 1px solid var(--starter-border);
-  border-radius: 6px;
-  background: var(--starter-surface-soft);
+  border: 1px solid var(--td-component-border);
+  border-radius: var(--td-radius-default);
+  background: var(--td-bg-color-secondarycontainer);
   font-family: ui-monospace, SFMono-Regular, Menlo, monospace;
   font-size: 15px;
   font-weight: 600;
@@ -141,7 +141,7 @@ const increase = () => {
 }
 .hint {
   margin-top: 20px;
-  color: var(--starter-muted);
+  color: var(--td-text-color-placeholder);
   font-size: 11px;
 }
 </style>

@@ -38,8 +38,8 @@ body {
   margin: 0;
   min-height: 100vh;
   overflow-x: hidden;
-  background: var(--starter-bg, #f5f7fa);
-  color: var(--starter-text, #1d2129);
+  background: var(--td-bg-color-page, #f5f7fa);
+  color: var(--td-text-color-primary, #1d2129);
 }
 
 button,

@@ -55,6 +55,12 @@ export default defineComponent(() => {
   const isDark = computed(() => theme.value === 'dark')
   const logo = computed(() => (isDark.value ? logoDark : logoLight))
   const count = ref(0)
+  const decrease = () => {
+    count.value -= 1
+  }
+  const increase = () => {
+    count.value += 1
+  }
 
   applyTheme(theme.value)
 
@@ -62,13 +68,6 @@ export default defineComponent(() => {
     theme.value = isDark.value ? 'light' : 'dark'
     window.localStorage.setItem(themeKey, theme.value)
     applyTheme(theme.value)
-  }
-
-  const decrease = () => {
-    count.value -= 1
-  }
-  const increase = () => {
-    count.value += 1
   }
 
   return () => (
@@ -136,7 +135,7 @@ export default defineComponent(() => {
               header: () => (
                 <div class="demo-head">
                   <div class="demo-title">
-                    <TBadge dot color="var(--starter-green)" />
+                    <TBadge dot color="var(--td-success-color)" />
                     示例
                   </div>
                   <span class="demo-subtitle">交互示例</span>
@@ -145,35 +144,13 @@ export default defineComponent(() => {
               default: () => (
                 <div class="demo-stage">
                   <div class="demo-card">
-                    <TAvatar class="demo-mark" size="54px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
+                    <TAvatar class="demo-mark" size="54px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
                     <h2>Hello, TDesign</h2>
                     <p>点击按钮，体验这个模板中的基础交互。</p>
                     <TSpace size={12} align="center">
-                      <TButton
-                        class="demo-button"
-                        shape="square"
-                        theme="primary"
-                        onClick={decrease}
-                        aria-label="减少"
-                      >
-                        {{
-                          icon: () => '−',
-                        }}
-                      </TButton>
-                      <TTag class="count" size="large" theme="primary" variant="light">
-                        {count.value}
-                      </TTag>
-                      <TButton
-                        class="demo-button"
-                        shape="square"
-                        theme="primary"
-                        onClick={increase}
-                        aria-label="增加"
-                      >
-                        {{
-                          icon: () => '+',
-                        }}
-                      </TButton>
+                      <TButton theme="primary" size="large" shape="square" aria-label="减少" onClick={decrease}>−</TButton>
+                      <TButton variant="outline" size="large" disabled>{count.value}</TButton>
+                      <TButton theme="primary" size="large" shape="square" aria-label="增加" onClick={increase}>+</TButton>
                     </TSpace>
                     <div class="hint">编辑首页文件并保存，查看热更新效果</div>
                   </div>

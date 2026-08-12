@@ -92,14 +92,14 @@ export default function Page() {
         <section className="demo-panel" aria-label="交互示例">
           <div className="demo-head">
             <div className="demo-title">
-              <Badge dot color="var(--starter-green)" />
+              <Badge dot color="var(--td-success-color)" />
               示例
             </div>
             <span className="demo-subtitle">交互示例</span>
           </div>
           <div className="demo-stage">
             <div className="demo-card">
-              <Avatar className="demo-mark" size="52px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
+              <Avatar className="demo-mark" size="52px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
               <h2>Hello, TDesign</h2>
               <p>点击按钮，体验这个模板中的基础交互。</p>
               <div className="counter" aria-label="计数器">
