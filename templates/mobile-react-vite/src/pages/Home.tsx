@@ -116,14 +116,14 @@ export default function HomePage() {
       </section>
       <div className="content-width workspace">
         <Demo />
-        <section className="info-panel" aria-labelledby="info-title">
+        <section className="info-panel">
           <div className="info-head">
-            <Typography.Title className="info-title" level="h2" id="info-title">
+            <Typography.Title className="info-title" level="h2">
               技术信息
             </Typography.Title>
-            <Typography.Paragraph className="info-subtitle" theme="secondary">
+            <Typography.Text className="info-subtitle" theme="secondary">
               当前模板使用的构建工具与组件库
-            </Typography.Paragraph>
+            </Typography.Text>
           </div>
           <CellGroup bordered={false} className="tech-cells">
             {techInfo.map((item) => (

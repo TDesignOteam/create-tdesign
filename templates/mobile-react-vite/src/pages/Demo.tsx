@@ -30,9 +30,9 @@ export default function Demo() {
           <Typography.Title className="demo-card-title" level="h3">
             Hello, TDesign
           </Typography.Title>
-          <Typography.Paragraph className="demo-card-copy" theme="secondary">
+          <Typography.Text className="demo-card-copy" theme="secondary">
             点击按钮，体验这个模板中的基础交互。
-          </Typography.Paragraph>
+          </Typography.Text>
           <div className="counter" aria-label="计数器">
             <Button
               className="demo-button"
