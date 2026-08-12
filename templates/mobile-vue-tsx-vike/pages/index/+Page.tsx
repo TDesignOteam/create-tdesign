@@ -1,6 +1,7 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import { MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
+  Badge as TBadge,
   Button as TButton,
   Cell as TCell,
   CellGroup as TCellGroup,
@@ -11,29 +12,28 @@ import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 
 const STORAGE_KEY = 'tdesign-starter-theme'
-const resources = [
-  {
-    title: 'Mobile Vue documentation',
-    description: 'Components, design guidance, and API reference',
-    url: 'https://tdesign.tencent.com/mobile-vue/overview',
-  },
-  {
-    title: 'TDesign Mobile Vue on GitHub',
-    description: 'Source code, releases, and issue tracker',
-    url: 'https://github.com/Tencent/tdesign-mobile-vue',
-  },
-  {
-    title: 'Dependencies',
-    description: 'Review runtime and development package versions',
-    url: '/dependencies',
-    internal: true,
-  },
+const docsUrl = 'https://tdesign.tencent.com/mobile-vue/overview'
+const githubUrl = 'https://github.com/Tencent/tdesign-mobile-vue'
+
+const techInfo = [
+  { label: '构建工具', value: 'Vike' },
+  { label: '组件库', value: 'tdesign-mobile-vue' },
+  { label: '开发语言', value: 'TypeScript' },
 ]
+
+const resources = [
+  { label: '依赖清单', href: '/dependencies' },
+  { label: '组件文档', href: docsUrl, external: true },
+]
+
 export default defineComponent(() => {
   const isDark = ref(false)
   const themeLabel = computed(() =>
     isDark.value ? 'Switch to light theme' : 'Switch to dark theme',
   )
+  const logo = computed(() => (isDark.value ? logoDark : logoLight))
+  const count = ref(0)
+
   const applyTheme = (dark: boolean) => {
     isDark.value = dark
     document.documentElement.setAttribute('theme-mode', dark ? 'dark' : 'light')
@@ -50,12 +50,20 @@ export default defineComponent(() => {
     }
     window.open(url, '_blank', 'noopener,noreferrer')
   }
+  const decrease = () => {
+    count.value -= 1
+  }
+  const increase = () => {
+    count.value += 1
+  }
+
   onMounted(() => {
     const savedTheme = localStorage.getItem(STORAGE_KEY)
     applyTheme(
       savedTheme ? savedTheme === 'dark' : matchMedia('(prefers-color-scheme: dark)').matches,
     )
   })
+
   return () => (
     <main class="page-shell">
       <TNavbar
@@ -63,7 +71,7 @@ export default defineComponent(() => {
         fixed={false}
         left={() => (
           <div class="brand-lockup">
-            <img class="brand-logo" src={isDark.value ? logoDark : logoLight} alt="TDesign" />
+            <img class="brand-logo" src={logo.value} alt="TDesign" />
             <TTag class="template-tag" theme="primary" variant="light">
               __TEMPLATENAME__
             </TTag>
@@ -87,91 +95,84 @@ export default defineComponent(() => {
       <section class="intro-band">
         <div class="content-width intro-content">
           <div>
-            <p class="overline">Mobile starter workspace</p>
             <h1>__PROJECTNAME__</h1>
-            <p class="intro-copy">
-              A compact Vue 3, TSX, and Vike workspace with TDesign Mobile components and SSR-ready
-              defaults.
-            </p>
+            <p class="intro-copy">一个基于 TDesign 的简单交互示例。</p>
           </div>
-          <TTag theme="success" variant="light">
-            Ready
+          <TTag class="template-id" theme="primary" variant="light">
+            __TEMPLATENAME__
           </TTag>
         </div>
       </section>
       <div class="content-width workspace">
-        <section class="workspace-section" aria-labelledby="overview-title">
-          <div class="section-title-row">
-            <div>
-              <p class="section-kicker">Overview</p>
-              <h2 id="overview-title">Project status</h2>
+        <section class="demo-panel" aria-label="交互示例">
+          <div class="demo-head">
+            <div class="demo-title">
+              <TBadge dot color="var(--starter-green)" />
+              示例
             </div>
-            <span class="status-dot">Configured</span>
+            <span class="demo-subtitle">交互示例</span>
           </div>
-          <TCellGroup theme="card">
-            <TCell
-              title="UI foundation"
-              description="Vue 3 + TSX + Vike + TDesign Mobile Vue"
-              note="Active"
-            />
-            <TCell title="Template" description="__TEMPLATENAME__" note="Mobile" />
-          </TCellGroup>
+          <div class="demo-stage">
+            <div class="demo-card">
+              <span class="demo-mark">T</span>
+              <h2>Hello, TDesign</h2>
+              <p>点击按钮，体验这个模板中的基础交互。</p>
+              <div class="counter" aria-label="计数器">
+                <TButton
+                  class="demo-button"
+                  theme="primary"
+                  size="large"
+                  shape="square"
+                  aria-label="减少"
+                  onClick={decrease}
+                >
+                  −
+                </TButton>
+                <span class="count">{count.value}</span>
+                <TButton
+                  class="demo-button"
+                  theme="primary"
+                  size="large"
+                  shape="square"
+                  aria-label="增加"
+                  onClick={increase}
+                >
+                  +
+                </TButton>
+              </div>
+              <div class="hint">编辑首页文件并保存，查看热更新效果</div>
+            </div>
+          </div>
         </section>
-        <section class="workspace-section" aria-labelledby="command-title">
-          <div class="section-title-row">
-            <div>
-              <p class="section-kicker">Quick start</p>
-              <h2 id="command-title">Development command</h2>
-            </div>
+        <section class="info-panel" aria-labelledby="info-title">
+          <div class="info-head">
+            <h2 id="info-title">技术信息</h2>
+            <p class="info-subtitle">当前模板使用的构建工具与组件库</p>
           </div>
-          <div class="command-row">
-            <code>__DEVCOMMAND__</code>
-            <TTag theme="success" variant="light-outline">
-              Local
-            </TTag>
-          </div>
-        </section>
-        <section class="workspace-section" aria-labelledby="resources-title">
-          <div class="section-title-row">
-            <div>
-              <p class="section-kicker">Resources</p>
-              <h2 id="resources-title">Build from here</h2>
-            </div>
-          </div>
-          <TCellGroup theme="card">
-            {resources.map((item) => (
-              <TCell
-                key={item.url}
-                title={item.title}
-                description={item.description}
-                arrow
-                hover
-                onClick={() => openLink(item.url, item.internal)}
-              />
+          <TCellGroup bordered={false} class="tech-cells">
+            {techInfo.map((item) => (
+              <TCell key={item.label} title={item.label} note={item.value} />
             ))}
           </TCellGroup>
+          <div class="resource-links">
+            {resources.map((item) => (
+              <TCell
+                key={item.label}
+                title={item.label}
+                arrow
+                hover
+                onClick={() => openLink(item.href, !item.external)}
+              />
+            ))}
+          </div>
         </section>
-        <div class="actions">
-          <TButton
-            theme="primary"
-            size="large"
-            block
-            icon={() => <BookOpenIcon />}
-            onClick={() => openLink(resources[0].url)}
-          >
-            Open documentation
-          </TButton>
-          <TButton
-            variant="outline"
-            size="large"
-            block
-            icon={() => <LogoGithubIcon />}
-            onClick={() => openLink(resources[1].url)}
-          >
-            View on GitHub
-          </TButton>
-        </div>
       </div>
+      <footer class="starter-footer">
+        <span>Powered by TDesign</span>
+        <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
+          组件文档 →
+        </a>
+      </footer>
     </main>
   )
 })

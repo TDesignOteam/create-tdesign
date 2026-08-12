@@ -1,25 +1,24 @@
 import { computed, defineComponent, ref } from 'vue'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
-  AppIcon,
-  ArrowRightIcon,
-  BookOpenIcon,
-  BrowseIcon,
-  CheckCircleIcon,
-  ChevronRightIcon,
-  CodeIcon,
-  ComponentGridIcon,
-  LogoGithubIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
-import {
+  Badge as TBadge,
   Button as TButton,
   Card as TCard,
+  Content as TContent,
+  Footer as TFooter,
+  Header as THeader,
+  Descriptions as TDescriptions,
+  DescriptionsItem as TDescriptionsItem,
+  Divider as TDivider,
+  Layout as TLayout,
+  Link as TLink,
+  Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
 } from 'tdesign-vue-next'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
+import Demo from './Demo'
 
 type Theme = 'light' | 'dark'
 
@@ -40,25 +39,15 @@ const applyTheme = (theme: Theme) => {
   else document.documentElement.removeAttribute('theme-mode')
 }
 
-const overview = [
-  { icon: CodeIcon, label: 'Application', value: 'Vue 3 + TSX' },
-  { icon: AppIcon, label: 'Design system', value: 'TDesign Desktop' },
-  { icon: CheckCircleIcon, label: 'Workspace', value: 'Ready to develop' },
+const techInfo = [
+  { label: '构建工具', content: 'Vite' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
 ]
 
-const tasks = [
-  {
-    title: 'Start the development server',
-    detail: 'Run the generated command from your project directory.',
-  },
-  {
-    title: 'Shape the application shell',
-    detail: 'Edit src/pages/Home.tsx and the router to match your product.',
-  },
-  {
-    title: 'Build the first workflow',
-    detail: 'Compose TDesign components around a real user task.',
-  },
+const resources = [
+  { label: '依赖清单', href: './dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
 ]
 
 export default defineComponent(() => {
@@ -75,18 +64,23 @@ export default defineComponent(() => {
   }
 
   return () => (
-    <div class="starter-page">
-      <header class="topbar">
+    <TLayout class="starter-page">
+      <THeader class="topbar">
         <div class="topbar-inner">
-          <img class="brand-logo" src={logo.value} alt="TDesign" />
-          <div class="topbar-actions">
+          <div class="brand">
+            <img class="brand-logo" src={logo.value} alt="TDesign" />
+            <TDivider class="brand-divider" layout="vertical" />
+            <span class="brand-label">Project Starter</span>
+          </div>
+          <TSpace size={4}>
             <TTooltip content="Vue component documentation">
               <TButton
                 tag="a"
                 href={docsUrl}
                 shape="circle"
                 variant="text"
-                aria-label="Open Vue component documentation"
+                aria-label="组件文档"
+                {...({ target: '_blank', rel: 'noreferrer' } as object)}
               >
                 <BookOpenIcon />
               </TButton>
@@ -97,140 +91,85 @@ export default defineComponent(() => {
                 href={githubUrl}
                 shape="circle"
                 variant="text"
-                aria-label="Open TDesign Vue on GitHub"
+                aria-label="GitHub"
+                {...({ target: '_blank', rel: 'noreferrer' } as object)}
               >
                 <LogoGithubIcon />
               </TButton>
             </TTooltip>
-            <TTooltip content={isDark.value ? 'Switch to light theme' : 'Switch to dark theme'}>
+            <TTooltip content={isDark.value ? '切换为亮色主题' : '切换为暗色主题'}>
               <TButton
                 shape="circle"
                 variant="text"
-                aria-label={isDark.value ? 'Switch to light theme' : 'Switch to dark theme'}
+                aria-label={isDark.value ? '切换为亮色主题' : '切换为暗色主题'}
                 onClick={toggleTheme}
               >
                 {isDark.value ? <SunnyIcon /> : <MoonIcon />}
               </TButton>
             </TTooltip>
-          </div>
+          </TSpace>
         </div>
-      </header>
+      </THeader>
 
-      <main class="workspace">
-        <section class="welcome" aria-labelledby="starter-title">
-          <div class="welcome-copy">
-            <TTag theme="primary" variant="light">
-              __TEMPLATENAME__
-            </TTag>
-            <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
-            <p>
-              A focused starting point for building a reliable desktop application with TDesign.
-            </p>
+      <TContent class="starter-content">
+        <section class="intro">
+          <div>
+            <h1>__PROJECTNAME__</h1>
+            <p>一个基于 TDesign 的简单交互示例。</p>
           </div>
-          <a class="docs-action" href={docsUrl} target="_blank" rel="noreferrer">
-            Explore components <ArrowRightIcon />
-          </a>
-        </section>
-
-        <section class="command-panel" aria-label="Development command">
-          <span class="command-icon">
-            <CodeIcon />
-          </span>
-          <div class="command-copy">
-            <span>Development command</span>
-            <code>__DEVCOMMAND__</code>
-          </div>
-          <TTag class="ready-tag" theme="success" variant="light">
-            Ready
+          <TTag class="template-id" theme="primary" variant="light" size="large">
+            __TEMPLATENAME__
           </TTag>
         </section>
 
-        <section class="overview-grid" aria-label="Project overview">
-          {overview.map((item) => {
-            const ItemIcon = item.icon
-            return (
-              <TCard key={item.label} class="overview-card" bordered>
-                <span class="overview-icon">
-                  <ItemIcon />
-                </span>
-                <div>
-                  <p>{item.label}</p>
-                  <strong>{item.value}</strong>
-                </div>
-              </TCard>
-            )
-          })}
-        </section>
+        <div class="workspace">
+          <Demo />
 
-        <section class="work-grid">
-          <TCard
-            class="work-card"
-            title="Getting started"
-            bordered
-            actions={() => (
-              <span class="section-status">
-                <span class="status-dot" />
-                Project initialized
-              </span>
-            )}
-          >
-            <div class="task-list">
-              {tasks.map((task, index) => (
-                <div key={task.title} class="task-row">
-                  <span class="task-index">{index + 1}</span>
-                  <div>
-                    <strong>{task.title}</strong>
-                    <p>{task.detail}</p>
+          <TCard class="info-panel" bordered>
+            {{
+              title: () => <span class="info-title">技术信息</span>,
+              subtitle: () => <span class="info-subtitle">当前模板使用的构建工具与组件库</span>,
+              default: () => (
+                <>
+                  <TDescriptions column={1} bordered={false}>
+                    {techInfo.map((item) => (
+                      <TDescriptionsItem key={item.label} label={item.label}>
+                        {item.content}
+                      </TDescriptionsItem>
+                    ))}
+                  </TDescriptions>
+                  <div class="resource-links">
+                    {resources.map((item) => (
+                      <TLink
+                        class="resource-link"
+                        href={item.href}
+                        target={item.external ? '_blank' : undefined}
+                        {...({ rel: item.external ? 'noreferrer' : undefined } as object)}
+                        hover="color"
+                      >
+                        <span>{item.label}</span>
+                        <span class="resource-arrow">→</span>
+                      </TLink>
+                    ))}
                   </div>
-                </div>
-              ))}
-            </div>
+                </>
+              ),
+            }}
           </TCard>
+        </div>
+      </TContent>
 
-          <TCard class="work-card resources-card" title="Resources" bordered>
-            <a href="./dependencies">
-              <span class="resource-icon">
-                <ComponentGridIcon />
-              </span>
-              <span>
-                <strong>Dependencies</strong>
-                <small>Review runtime and development packages</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href={docsUrl} target="_blank" rel="noreferrer">
-              <span class="resource-icon">
-                <BookOpenIcon />
-              </span>
-              <span>
-                <strong>Component docs</strong>
-                <small>APIs, examples, and design guidance</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href={githubUrl} target="_blank" rel="noreferrer">
-              <span class="resource-icon">
-                <LogoGithubIcon />
-              </span>
-              <span>
-                <strong>GitHub repository</strong>
-                <small>Source, issues, and releases</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-              <span class="resource-icon resource-icon-green">
-                <BrowseIcon />
-              </span>
-              <span>
-                <strong>TDesign overview</strong>
-                <small>Explore the full design system</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-          </TCard>
-        </section>
-      </main>
-    </div>
+      <TFooter class="starter-footer">
+        <span>Powered by TDesign</span>
+        <TLink
+          href="https://tdesign.tencent.com/"
+          target="_blank"
+          hover="color"
+          {...({ rel: 'noreferrer' } as object)}
+        >
+          组件文档 →
+        </TLink>
+      </TFooter>
+    </TLayout>
   )
 })

@@ -4,6 +4,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [pluginReact()],
+  server: {
+    host: '0.0.0.0',
+  },
   source: {
     entry: {
       index: './src/main.tsx',

@@ -34,42 +34,45 @@ const toggleTheme = () => {
   applyTheme(theme.value)
 }
 
-const overview = [
-  { label: 'Application', value: 'Vue 3 + Vike' },
-  { label: 'Design system', value: 'TDesign Desktop' },
-  { label: 'Workspace', value: 'SSR ready' },
+const count = ref(0)
+const decrease = () => {
+  count.value -= 1
+}
+const increase = () => {
+  count.value += 1
+}
+
+const techInfo = [
+  { label: '构建工具', content: 'Vike' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
 ]
 
-const tasks = [
-  {
-    title: 'Start the development server',
-    detail: 'Run the generated command from your project directory.',
-  },
-  {
-    title: 'Shape the application shell',
-    detail: 'Edit pages/index/+Page.vue and the layout to match your product.',
-  },
-  {
-    title: 'Build the first workflow',
-    detail: 'Compose TDesign components around a real user task.',
-  },
+const resources = [
+  { label: '依赖清单', href: '/dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
 ]
 </script>
 
 <template>
-  <div class="starter-page">
-    <header class="topbar">
+  <t-layout class="starter-page">
+    <t-header class="topbar">
       <div class="topbar-inner">
-        <img class="brand-logo" :src="logo" alt="TDesign" />
-        <div class="topbar-actions">
+        <div class="brand">
+          <img class="brand-logo" :src="logo" alt="TDesign" />
+          <t-divider class="brand-divider" layout="vertical" />
+          <span class="brand-label">Project Starter</span>
+        </div>
+        <t-space :size="4">
           <t-tooltip content="Vue component documentation">
             <t-button
               tag="a"
               :href="docsUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open Vue component documentation"
+              aria-label="组件文档"
             >
               <BookOpenIcon />
             </t-button>
@@ -79,123 +82,119 @@ const tasks = [
               tag="a"
               :href="githubUrl"
               target="_blank"
+              rel="noreferrer"
               shape="circle"
               variant="text"
-              aria-label="Open TDesign Vue on GitHub"
+              aria-label="GitHub"
             >
               <LogoGithubIcon />
             </t-button>
           </t-tooltip>
-          <t-tooltip :content="isDark ? 'Switch to light theme' : 'Switch to dark theme'">
+          <t-tooltip :content="isDark ? '切换为亮色主题' : '切换为暗色主题'">
             <t-button
               shape="circle"
               variant="text"
-              :aria-label="isDark ? 'Switch to light theme' : 'Switch to dark theme'"
+              :aria-label="isDark ? '切换为亮色主题' : '切换为暗色主题'"
               @click="toggleTheme"
             >
               <SunnyIcon v-if="isDark" />
               <MoonIcon v-else />
             </t-button>
           </t-tooltip>
-        </div>
+        </t-space>
       </div>
-    </header>
+    </t-header>
 
-    <main class="workspace">
-      <section class="welcome" aria-labelledby="starter-title">
-        <div class="welcome-copy">
-          <t-tag theme="primary" variant="light">__TEMPLATENAME__</t-tag>
-          <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
-          <p>A focused starting point for building a reliable desktop application with TDesign.</p>
+    <t-content class="starter-content">
+      <section class="intro">
+        <div>
+          <h1>__PROJECTNAME__</h1>
+          <p>一个基于 TDesign 的简单交互示例。</p>
         </div>
-        <a class="docs-action" :href="docsUrl" target="_blank" rel="noreferrer">
-          Explore components
-          <ArrowRightIcon />
-        </a>
+        <t-tag class="template-id" theme="primary" variant="light" size="large">
+          __TEMPLATENAME__
+        </t-tag>
       </section>
 
-      <section class="command-panel" aria-label="Development command">
-        <span class="command-icon"><CodeIcon /></span>
-        <div class="command-copy">
-          <span>Development command</span>
-          <code>__DEVCOMMAND__</code>
-        </div>
-        <t-tag class="ready-tag" theme="success" variant="light">Ready</t-tag>
-      </section>
-
-      <section class="overview-grid" aria-label="Project overview">
-        <t-card
-          v-for="(item, index) in overview"
-          :key="item.label"
-          class="overview-card"
-          :bordered="true"
-        >
-          <span class="overview-icon">
-            <CodeIcon v-if="index === 0" />
-            <AppIcon v-else-if="index === 1" />
-            <CheckCircleIcon v-else />
-          </span>
-          <div>
-            <p>{{ item.label }}</p>
-            <strong>{{ item.value }}</strong>
-          </div>
-        </t-card>
-      </section>
-
-      <section class="work-grid">
-        <t-card class="work-card" title="Getting started" :bordered="true">
-          <template #actions>
-            <span class="section-status">
-              <span class="status-dot" />
-              Project initialized
-            </span>
-          </template>
-          <div class="task-list">
-            <div v-for="(task, index) in tasks" :key="task.title" class="task-row">
-              <span class="task-index">{{ index + 1 }}</span>
-              <div>
-                <strong>{{ task.title }}</strong>
-                <p>{{ task.detail }}</p>
+      <div class="workspace">
+        <t-card class="demo-panel" :bordered="true">
+          <template #header>
+            <div class="demo-head">
+              <div class="demo-title">
+                <t-badge dot color="var(--starter-green)" />
+                示例
               </div>
+              <span class="demo-subtitle">交互示例</span>
+            </div>
+          </template>
+          <div class="demo-stage">
+            <div class="demo-card">
+              <span class="demo-mark">T</span>
+              <h2>Hello, TDesign</h2>
+              <p>点击按钮，体验这个模板中的基础交互。</p>
+              <t-space :size="12" align="center">
+                <t-button
+                  class="demo-button"
+                  shape="square"
+                  theme="primary"
+                  @click="decrease"
+                  aria-label="减少"
+                >
+                  <template #icon>−</template>
+                </t-button>
+                <t-tag class="count" size="large" theme="primary" variant="light">
+                  {{ count }}
+                </t-tag>
+                <t-button
+                  class="demo-button"
+                  shape="square"
+                  theme="primary"
+                  @click="increase"
+                  aria-label="增加"
+                >
+                  <template #icon>+</template>
+                </t-button>
+              </t-space>
+              <div class="hint">编辑首页文件并保存，查看热更新效果</div>
             </div>
           </div>
         </t-card>
 
-        <t-card class="work-card resources-card" title="Resources" :bordered="true">
-          <a href="/dependencies">
-            <span class="resource-icon"><ComponentGridIcon /></span>
-            <span>
-              <strong>Dependencies</strong>
-              <small>Review runtime and development packages</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="docsUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><BookOpenIcon /></span>
-            <span>
-              <strong>Component docs</strong>
-              <small>APIs, examples, and design guidance</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a :href="githubUrl" target="_blank" rel="noreferrer">
-            <span class="resource-icon"><LogoGithubIcon /></span>
-            <span>
-              <strong>GitHub repository</strong>
-              <small>Source, issues, and releases</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
-          <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-            <span class="resource-icon resource-icon-green"><BrowseIcon /></span>
-            <span>
-              <strong>TDesign overview</strong>
-              <small>Explore the full design system</small>
-            </span>
-            <ChevronRightIcon />
-          </a>
+        <t-card class="info-panel" :bordered="true">
+          <template #title>
+            <span class="info-title">技术信息</span>
+          </template>
+          <template #subtitle>
+            <span class="info-subtitle">当前模板使用的构建工具与组件库</span>
+          </template>
+          <t-descriptions :column="1" :bordered="false">
+            <t-descriptions-item v-for="item in techInfo" :key="item.label" :label="item.label">
+              {{ item.content }}
+            </t-descriptions-item>
+          </t-descriptions>
+          <div class="resource-links">
+            <t-link
+              v-for="item in resources"
+              :key="item.label"
+              class="resource-link"
+              :href="item.href"
+              :target="item.external ? '_blank' : undefined"
+              :rel="item.external ? 'noreferrer' : undefined"
+              :hover="'color'"
+            >
+              <span>{{ item.label }}</span>
+              <span class="resource-arrow">→</span>
+            </t-link>
+          </div>
         </t-card>
-      </section>
-    </main>
-  </div>
+      </div>
+    </t-content>
+
+    <t-footer class="starter-footer">
+      <span>Powered by TDesign</span>
+      <t-link href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer" :hover="'color'">
+        组件文档 →
+      </t-link>
+    </t-footer>
+  </t-layout>
 </template>

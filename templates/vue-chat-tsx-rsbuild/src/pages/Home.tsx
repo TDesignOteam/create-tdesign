@@ -1,56 +1,67 @@
 import { computed, defineComponent, onBeforeUnmount, onMounted, ref } from 'vue'
-import { Chatbot } from '@tdesign-vue-next/chat'
 import {
-  BookOpenIcon,
-  ComponentGridIcon,
-  LogoGithubIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-vue-next'
-import type { AIMessageContent, ChatServiceConfig, SSEChunkData } from '@tdesign-vue-next/chat'
+  Badge as TBadge,
+  Button as TButton,
+  Card as TCard,
+  Content as TContent,
+  Footer as TFooter,
+  Header as THeader,
+  Descriptions as TDescriptions,
+  DescriptionsItem as TDescriptionsItem,
+  Divider as TDivider,
+  Layout as TLayout,
+  Link as TLink,
+  Space as TSpace,
+  Tag as TTag,
+  Tooltip as TTooltip,
+} from 'tdesign-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import 'tdesign-vue-next/es/style/index.css'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
+import Demo from './Demo'
 
-type ThemeMode = 'light' | 'dark'
+type Theme = 'light' | 'dark'
 
-const THEME_KEY = 'tdesign-chat-theme'
+const docsUrl = 'https://tdesign.tencent.com/chat/getting-started'
+const githubUrl = 'https://github.com/Tencent/tdesign'
+const themeKey = 'tdesign-chat-theme'
 
-const chatServiceConfig: ChatServiceConfig = {
-  endpoint: 'https://1257786608-9i9j1kpa67.ap-guangzhou.tencentscf.com/sse/normal',
-  stream: true,
-  onMessage: (chunk: SSEChunkData): AIMessageContent => {
-    const data = chunk.data as { msg?: string } | undefined
+const techInfo = [
+  { label: '构建工具', content: 'Rsbuild' },
+  { label: '组件库', content: 'tdesign-vue-next' },
+  { label: '开发语言', content: 'TypeScript' },
+]
 
-    return {
-      type: 'markdown',
-      data: data?.msg ?? '',
-    }
-  },
-}
+const resources = [
+  { label: '依赖清单', href: './dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
+]
 
 export default defineComponent(() => {
-  const theme = ref<ThemeMode>('light')
+  const theme = ref<Theme>('light')
   const isDark = computed(() => theme.value === 'dark')
+  const logo = computed(() => (isDark.value ? logoDark : logoLight))
   let colorScheme: MediaQueryList | undefined
 
-  const applyTheme = (value: ThemeMode) => {
+  const applyTheme = (value: Theme) => {
     theme.value = value
     document.documentElement.setAttribute('theme-mode', value)
   }
 
   const syncSystemTheme = (event: MediaQueryListEvent) => {
-    if (!localStorage.getItem(THEME_KEY)) applyTheme(event.matches ? 'dark' : 'light')
+    if (!localStorage.getItem(themeKey)) applyTheme(event.matches ? 'dark' : 'light')
   }
 
   const toggleTheme = () => {
     const nextTheme = isDark.value ? 'light' : 'dark'
-    localStorage.setItem(THEME_KEY, nextTheme)
+    localStorage.setItem(themeKey, nextTheme)
     applyTheme(nextTheme)
   }
 
   onMounted(() => {
     colorScheme = window.matchMedia('(prefers-color-scheme: dark)')
-    const savedTheme = localStorage.getItem(THEME_KEY)
+    const savedTheme = localStorage.getItem(themeKey)
     applyTheme(
       savedTheme === 'dark' || savedTheme === 'light'
         ? savedTheme
@@ -64,110 +75,121 @@ export default defineComponent(() => {
   onBeforeUnmount(() => colorScheme?.removeEventListener('change', syncSystemTheme))
 
   return () => (
-    <main class="app-shell">
-      <header class="app-header">
-        <div class="header-inner">
-          <a class="brand" href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-            <img class="brand-logo" src={isDark.value ? logoDark : logoLight} alt="TDesign" />
-            <span class="brand-divider" aria-hidden="true" />
-            <span class="product-name">AI Chat Starter</span>
-          </a>
-
-          <div class="template-tags" aria-label="Template status">
-            <span class="template-tag">__TEMPLATENAME__</span>
-            <span class="online-tag">
-              <i aria-hidden="true" />
-              Online
-            </span>
+    <TLayout class="starter-page">
+      <THeader class="topbar">
+        <div class="topbar-inner">
+          <div class="brand">
+            <img class="brand-logo" src={logo.value} alt="TDesign" />
+            <TDivider class="brand-divider" layout="vertical" />
+            <span class="brand-label">AI Chat Starter</span>
           </div>
-
-          <nav class="header-actions" aria-label="Resources">
-            <a class="nav-action" href="/dependencies">
-              <ComponentGridIcon />
-              <span>Dependencies</span>
-            </a>
-            <a
-              class="nav-action"
-              href="https://tdesign.tencent.com/chat/getting-started"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <BookOpenIcon />
-              <span>Docs</span>
-            </a>
-            <a
-              class="nav-action"
-              href="https://github.com/Tencent/tdesign"
-              target="_blank"
-              rel="noreferrer"
-            >
-              <LogoGithubIcon />
-              <span>GitHub</span>
-            </a>
-            <button
-              type="button"
-              class="theme-button"
-              aria-label={isDark.value ? 'Use light theme' : 'Use dark theme'}
-              title={isDark.value ? 'Use light theme' : 'Use dark theme'}
-              onClick={toggleTheme}
-            >
-              {isDark.value ? <SunnyIcon /> : <MoonIcon />}
-            </button>
-          </nav>
+          <TSpace size={4}>
+            <TTooltip content="组件文档">
+              <a
+                class="icon-link"
+                href={docsUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="组件文档"
+              >
+                <BookOpenIcon />
+              </a>
+            </TTooltip>
+            <TTooltip content="TDesign on GitHub">
+              <a
+                class="icon-link"
+                href={githubUrl}
+                target="_blank"
+                rel="noreferrer"
+                aria-label="GitHub"
+              >
+                <LogoGithubIcon />
+              </a>
+            </TTooltip>
+            <TTooltip content={isDark.value ? '切换为亮色主题' : '切换为暗色主题'}>
+              <TButton
+                shape="circle"
+                variant="text"
+                aria-label={isDark.value ? '切换为亮色主题' : '切换为暗色主题'}
+                onClick={toggleTheme}
+              >
+                {isDark.value ? <SunnyIcon /> : <MoonIcon />}
+              </TButton>
+            </TTooltip>
+          </TSpace>
         </div>
-      </header>
+      </THeader>
 
-      <div class="workspace-grid">
-        <section class="chat-panel" aria-label="AI chat workspace">
-          <div class="chat-panel-heading">
-            <div>
-              <span class="status-dot" aria-hidden="true" />
-              Assistant
-            </div>
-            <span>Streaming ready</span>
+      <TContent class="starter-content">
+        <section class="intro">
+          <div>
+            <h1>__PROJECTNAME__</h1>
+            <p>一个基于 TDesign Chat 的流式对话示例。</p>
           </div>
-          <div class="chatbot-host">
-            <Chatbot chatServiceConfig={chatServiceConfig} />
-          </div>
+          <TTag class="template-id" theme="primary" variant="light" size="large">
+            __TEMPLATENAME__
+          </TTag>
         </section>
 
-        <aside class="setup-panel">
-          <div class="setup-heading">
-            <span class="eyebrow">Starter configuration</span>
-            <h1>Build on a working chat foundation</h1>
-            <p>
-              Chatbot is connected to a streaming SSE service and maps each response to markdown.
-            </p>
-          </div>
-
-          <dl class="config-list">
-            <div>
-              <dt>Transport</dt>
-              <dd>SSE stream</dd>
+        <div class="workspace">
+          <section class="chat-panel" aria-label="AI chat workspace">
+            <div class="chat-panel-heading">
+              <div>
+                <TBadge dot color="var(--starter-green)" />
+                Assistant
+              </div>
+              <span>Streaming ready</span>
             </div>
-            <div>
-              <dt>Response</dt>
-              <dd>Markdown</dd>
+            <div class="chatbot-host">
+              <Demo />
             </div>
-            <div>
-              <dt>Service</dt>
-              <dd>
-                <span class="status-dot" aria-hidden="true" />
-                Remote endpoint
-              </dd>
-            </div>
-          </dl>
+          </section>
 
-          <div class="command-block">
-            <span>Start locally</span>
-            <code>__DEVCOMMAND__</code>
-          </div>
+          <TCard class="info-panel" bordered>
+            {{
+              title: () => <span class="info-title">技术信息</span>,
+              subtitle: () => <span class="info-subtitle">当前模板使用的构建工具与组件库</span>,
+              default: () => (
+                <div>
+                  <TDescriptions column={1} bordered={false}>
+                    {techInfo.map((item) => (
+                      <TDescriptionsItem key={item.label} label={item.label}>
+                        {item.content}
+                      </TDescriptionsItem>
+                    ))}
+                  </TDescriptions>
+                  <div class="resource-links">
+                    {resources.map((item) => (
+                      <TLink
+                        class="resource-link"
+                        href={item.href}
+                        target={item.external ? '_blank' : undefined}
+                        {...({ rel: item.external ? 'noreferrer' : undefined } as object)}
+                        hover="color"
+                      >
+                        <span>{item.label}</span>
+                        <span class="resource-arrow">→</span>
+                      </TLink>
+                    ))}
+                  </div>
+                </div>
+              ),
+            }}
+          </TCard>
+        </div>
+      </TContent>
 
-          <p class="setup-note">
-            Update <code>chatServiceConfig</code> when your model service is ready.
-          </p>
-        </aside>
-      </div>
-    </main>
+      <TFooter class="starter-footer">
+        <span>Powered by TDesign</span>
+        <TLink
+          href="https://tdesign.tencent.com/"
+          target="_blank"
+          hover="color"
+          {...({ rel: 'noreferrer' } as object)}
+        >
+          组件文档 →
+        </TLink>
+      </TFooter>
+    </TLayout>
   )
 })

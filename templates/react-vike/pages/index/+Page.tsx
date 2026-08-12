@@ -1,18 +1,17 @@
 import { useEffect, useState } from 'react'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import {
-  AppIcon,
-  ArrowRightIcon,
-  BookOpenIcon,
-  BrowseIcon,
-  CheckCircleIcon,
-  ChevronRightIcon,
-  CodeIcon,
-  ComponentGridIcon,
-  LogoGithubIcon,
-  MoonIcon,
-  SunnyIcon,
-} from 'tdesign-icons-react'
-import { Button, Card, Tag, Tooltip } from 'tdesign-react'
+  Badge,
+  Button,
+  Card,
+  Descriptions,
+  Divider,
+  Layout,
+  Link,
+  Space,
+  Tag,
+  Tooltip,
+} from 'tdesign-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 
@@ -22,69 +21,62 @@ const docsUrl = 'https://tdesign.tencent.com/react/overview'
 const githubUrl = 'https://github.com/Tencent/tdesign-react'
 const themeKey = 'tdesign-starter-theme'
 
+const getInitialTheme = (): Theme => {
+  if (typeof window === 'undefined') return 'light'
+  const savedTheme = window.localStorage.getItem(themeKey)
+  if (savedTheme === 'light' || savedTheme === 'dark') return savedTheme
+  return window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light'
+}
+
 const applyTheme = (theme: Theme) => {
+  if (typeof document === 'undefined') return
   if (theme === 'dark') document.documentElement.setAttribute('theme-mode', 'dark')
   else document.documentElement.removeAttribute('theme-mode')
 }
 
-const overview = [
-  { icon: CodeIcon, label: 'Application', value: 'React + Vike' },
-  { icon: AppIcon, label: 'Design system', value: 'TDesign Desktop' },
-  { icon: CheckCircleIcon, label: 'Workspace', value: 'SSR ready' },
+const techInfo = [
+  { label: '构建工具', content: 'Vike' },
+  { label: '组件库', content: 'tdesign-react' },
+  { label: '开发语言', content: 'TypeScript' },
 ]
 
-const tasks = [
-  {
-    title: 'Start the development server',
-    detail: 'Run the generated command from your project directory.',
-  },
-  {
-    title: 'Shape the application shell',
-    detail: 'Edit pages/index/+Page.tsx and the layout to match your product.',
-  },
-  {
-    title: 'Build the first workflow',
-    detail: 'Compose TDesign components around a real user task.',
-  },
+const resources = [
+  { label: '依赖清单', href: '/dependencies', external: false },
+  { label: '组件文档', href: docsUrl, external: true },
 ]
 
-export default function Page() {
-  const [theme, setTheme] = useState<Theme>('light')
+export default function HomePage() {
+  const [theme, setTheme] = useState<Theme>(getInitialTheme)
+  const [count, setCount] = useState(0)
   const isDark = theme === 'dark'
 
-  useEffect(() => {
-    const savedTheme = window.localStorage.getItem(themeKey)
-    const initialTheme =
-      savedTheme === 'light' || savedTheme === 'dark'
-        ? savedTheme
-        : window.matchMedia('(prefers-color-scheme: dark)').matches
-          ? 'dark'
-          : 'light'
-    setTheme(initialTheme)
-    applyTheme(initialTheme)
-  }, [])
+  useEffect(() => applyTheme(theme), [theme])
 
   const toggleTheme = () => {
     const nextTheme = isDark ? 'light' : 'dark'
     setTheme(nextTheme)
     window.localStorage.setItem(themeKey, nextTheme)
-    applyTheme(nextTheme)
   }
 
   return (
-    <div className="starter-page">
-      <header className="topbar">
+    <Layout className="starter-page">
+      <Layout.Header className="topbar">
         <div className="topbar-inner">
-          <img className="brand-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
-          <div className="topbar-actions">
+          <div className="brand">
+            <img className="brand-logo" src={isDark ? logoDark : logoLight} alt="TDesign" />
+            <Divider className="brand-divider" layout="vertical" />
+            <span className="brand-label">Project Starter</span>
+          </div>
+          <Space size={4}>
             <Tooltip content="React component documentation">
               <Button
                 tag="a"
                 href={docsUrl}
                 target="_blank"
+                rel="noreferrer"
                 shape="circle"
                 variant="text"
-                aria-label="Open React component documentation"
+                aria-label="组件文档"
               >
                 <BookOpenIcon />
               </Button>
@@ -94,142 +86,129 @@ export default function Page() {
                 tag="a"
                 href={githubUrl}
                 target="_blank"
+                rel="noreferrer"
                 shape="circle"
                 variant="text"
-                aria-label="Open TDesign React on GitHub"
+                aria-label="GitHub"
               >
                 <LogoGithubIcon />
               </Button>
             </Tooltip>
-            <Tooltip content={isDark ? 'Switch to light theme' : 'Switch to dark theme'}>
+            <Tooltip content={isDark ? '切换为亮色主题' : '切换为暗色主题'}>
               <Button
                 shape="circle"
                 variant="text"
-                aria-label={isDark ? 'Switch to light theme' : 'Switch to dark theme'}
+                aria-label={isDark ? '切换为亮色主题' : '切换为暗色主题'}
                 onClick={toggleTheme}
               >
                 {isDark ? <SunnyIcon /> : <MoonIcon />}
               </Button>
             </Tooltip>
-          </div>
+          </Space>
         </div>
-      </header>
+      </Layout.Header>
 
-      <main className="workspace">
-        <section className="welcome" aria-labelledby="starter-title">
-          <div className="welcome-copy">
-            <Tag theme="primary" variant="light">
-              __TEMPLATENAME__
-            </Tag>
-            <h1 id="starter-title">__PROJECTNAME__ is ready.</h1>
-            <p>
-              A focused starting point for building a reliable desktop application with TDesign.
-            </p>
+      <Layout.Content className="starter-content">
+        <section className="intro">
+          <div>
+            <h1>__PROJECTNAME__</h1>
+            <p>一个基于 TDesign 的简单交互示例。</p>
           </div>
-          <a className="docs-action" href={docsUrl} target="_blank" rel="noreferrer">
-            Explore components <ArrowRightIcon />
-          </a>
-        </section>
-
-        <section className="command-panel" aria-label="Development command">
-          <span className="command-icon">
-            <CodeIcon />
-          </span>
-          <div className="command-copy">
-            <span>Development command</span>
-            <code>__DEVCOMMAND__</code>
-          </div>
-          <Tag className="ready-tag" theme="success" variant="light">
-            Ready
+          <Tag className="template-id" theme="primary" variant="light" size="large">
+            __TEMPLATENAME__
           </Tag>
         </section>
 
-        <section className="overview-grid" aria-label="Project overview">
-          {overview.map((item) => {
-            const ItemIcon = item.icon
-            return (
-              <Card key={item.label} className="overview-card" bordered>
-                <span className="overview-icon">
-                  <ItemIcon />
-                </span>
-                <div>
-                  <p>{item.label}</p>
-                  <strong>{item.value}</strong>
-                </div>
-              </Card>
-            )
-          })}
-        </section>
-
-        <section className="work-grid">
+        <div className="workspace">
           <Card
-            className="work-card"
-            title="Getting started"
+            className="demo-panel"
             bordered
-            actions={
-              <span className="section-status">
-                <span className="status-dot" />
-                Project initialized
-              </span>
+            header={
+              <div className="demo-head">
+                <div className="demo-title">
+                  <Badge dot color="var(--starter-green)" />
+                  示例
+                </div>
+                <span className="demo-subtitle">交互示例</span>
+              </div>
             }
           >
-            <div className="task-list">
-              {tasks.map((task, index) => (
-                <div key={task.title} className="task-row">
-                  <span className="task-index">{index + 1}</span>
-                  <div>
-                    <strong>{task.title}</strong>
-                    <p>{task.detail}</p>
-                  </div>
-                </div>
-              ))}
+            <div className="demo-stage">
+              <div className="demo-card">
+                <span className="demo-mark">T</span>
+                <h2>Hello, TDesign</h2>
+                <p>点击按钮，体验这个模板中的基础交互。</p>
+                <Space size={12} align="center">
+                  <Button
+                    className="demo-button"
+                    shape="square"
+                    theme="primary"
+                    onClick={() => setCount((c) => c - 1)}
+                    aria-label="减少"
+                  >
+                    −
+                  </Button>
+                  <Tag className="count" size="large" theme="primary" variant="light">
+                    {count}
+                  </Tag>
+                  <Button
+                    className="demo-button"
+                    shape="square"
+                    theme="primary"
+                    onClick={() => setCount((c) => c + 1)}
+                    aria-label="增加"
+                  >
+                    +
+                  </Button>
+                </Space>
+                <div className="hint">编辑首页文件并保存，查看热更新效果</div>
+              </div>
             </div>
           </Card>
 
-          <Card className="work-card resources-card" title="Resources" bordered>
-            <a href="/dependencies">
-              <span className="resource-icon">
-                <ComponentGridIcon />
-              </span>
-              <span>
-                <strong>Dependencies</strong>
-                <small>Review runtime and development packages</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href={docsUrl} target="_blank" rel="noreferrer">
-              <span className="resource-icon">
-                <BookOpenIcon />
-              </span>
-              <span>
-                <strong>Component docs</strong>
-                <small>APIs, examples, and design guidance</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href={githubUrl} target="_blank" rel="noreferrer">
-              <span className="resource-icon">
-                <LogoGithubIcon />
-              </span>
-              <span>
-                <strong>GitHub repository</strong>
-                <small>Source, issues, and releases</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
-            <a href="https://tdesign.tencent.com/" target="_blank" rel="noreferrer">
-              <span className="resource-icon resource-icon-green">
-                <BrowseIcon />
-              </span>
-              <span>
-                <strong>TDesign overview</strong>
-                <small>Explore the full design system</small>
-              </span>
-              <ChevronRightIcon />
-            </a>
+          <Card
+            className="info-panel"
+            bordered
+            title={<span className="info-title">技术信息</span>}
+            subtitle={<span className="info-subtitle">当前模板使用的构建工具与组件库</span>}
+          >
+            <Descriptions column={1} bordered={false}>
+              {techInfo.map((item) => (
+                <Descriptions.DescriptionsItem key={item.label} label={item.label}>
+                  {item.content}
+                </Descriptions.DescriptionsItem>
+              ))}
+            </Descriptions>
+            <div className="resource-links">
+              {resources.map((item) => (
+                <Link
+                  className="resource-link"
+                  href={item.href}
+                  target={item.external ? '_blank' : undefined}
+                  {...({ rel: item.external ? 'noreferrer' : undefined } as object)}
+                  hover="color"
+                  key={item.label}
+                >
+                  <span>{item.label}</span>
+                  <span className="resource-arrow">→</span>
+                </Link>
+              ))}
+            </div>
           </Card>
-        </section>
-      </main>
-    </div>
+        </div>
+      </Layout.Content>
+
+      <Layout.Footer className="starter-footer">
+        <span>Powered by TDesign</span>
+        <Link
+          href="https://tdesign.tencent.com/"
+          target="_blank"
+          hover="color"
+          {...({ rel: 'noreferrer' } as object)}
+        >
+          组件文档 →
+        </Link>
+      </Layout.Footer>
+    </Layout>
   )
 }

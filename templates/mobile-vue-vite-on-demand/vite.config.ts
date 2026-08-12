@@ -6,6 +6,10 @@ import { TDesignResolver } from '@tdesign-vue-next/auto-import-resolver'
 import path from 'path'
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: true,
+  },
   plugins: [
     vue(),
     AutoImport({
@@ -17,7 +21,7 @@ export default defineConfig({
   ],
   resolve: {
     alias: {
-      '@': path.resolve(__dirname, 'src'),
+      '@': path.resolve(import.meta.dirname, 'src'),
     },
   },
 })

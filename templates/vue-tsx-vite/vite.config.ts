@@ -4,10 +4,14 @@ import vueJsx from '@vitejs/plugin-vue-jsx'
 import { resolve } from 'path'
 
 export default defineConfig({
+  server: {
+    host: '0.0.0.0',
+    allowedHosts: true,
+  },
   plugins: [vue(), vueJsx()],
   resolve: {
     alias: {
-      '@': resolve(__dirname, 'src'),
+      '@': resolve(import.meta.dirname, 'src'),
     },
   },
 })

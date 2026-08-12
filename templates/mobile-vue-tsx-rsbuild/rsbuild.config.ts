@@ -6,6 +6,9 @@ import path from 'path'
 
 export default defineConfig({
   plugins: [pluginBabel({ include: /\.(?:jsx|tsx)$/ }), pluginVue(), pluginVueJsx()],
+  server: {
+    host: '0.0.0.0',
+  },
   source: {
     entry: {
       index: './src/main.ts',

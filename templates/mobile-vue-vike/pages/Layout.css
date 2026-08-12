@@ -10,21 +10,29 @@
   color-scheme: light;
   --starter-page: #f3f5f7;
   --starter-surface: #fff;
+  --starter-surface-soft: #f7f8fa;
   --starter-border: #d9dee5;
   --starter-text: #1f2937;
+  --starter-secondary: #5f6b7a;
   --starter-muted: #647184;
   --starter-blue: #0052d9;
+  --starter-blue-soft: #e8f1ff;
   --starter-green: #16865c;
+  --starter-green-soft: #e6f6ee;
 }
 [theme-mode='dark'] {
   color-scheme: dark;
   --starter-page: #111820;
   --starter-surface: #1b252f;
+  --starter-surface-soft: #202831;
   --starter-border: #344252;
   --starter-text: #f1f4f8;
+  --starter-secondary: #a6adb7;
   --starter-muted: #a8b3c1;
   --starter-blue: #4587ee;
+  --starter-blue-soft: #1d2f50;
   --starter-green: #47ba87;
+  --starter-green-soft: #173426;
 }
 * {
   box-sizing: border-box;
@@ -175,21 +183,6 @@ h2 {
   font-size: 18px;
   line-height: 1.35;
   letter-spacing: 0;
-}
-.status-dot {
-  flex: none;
-  color: var(--starter-green);
-  font-size: 12px;
-  font-weight: 600;
-}
-.status-dot::before {
-  display: inline-block;
-  width: 7px;
-  height: 7px;
-  margin-right: 6px;
-  border-radius: 50%;
-  background: var(--starter-green);
-  content: '';
 }
 .t-cell-group--card {
   overflow: hidden;
