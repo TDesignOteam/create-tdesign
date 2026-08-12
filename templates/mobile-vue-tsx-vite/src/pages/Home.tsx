@@ -1,5 +1,5 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
-import { MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
   Cell as TCell,
   CellGroup as TCellGroup,
@@ -71,18 +71,40 @@ export default defineComponent(() => {
           </div>
         )}
         right={() => (
-          <button
-            class="theme-button"
-            type="button"
-            aria-label={themeLabel.value}
-            title={themeLabel.value}
-            onClick={(event) => {
-              event.stopPropagation()
-              toggleTheme()
-            }}
-          >
-            {isDark.value ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
-          </button>
+          <div class="navbar-actions">
+            <a
+              class="icon-button"
+              href={docsUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="组件文档"
+              title="组件文档"
+            >
+              <BookOpenIcon size="20px" />
+            </a>
+            <a
+              class="icon-button"
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <LogoGithubIcon size="20px" />
+            </a>
+            <button
+              class="theme-button"
+              type="button"
+              aria-label={themeLabel.value}
+              title={themeLabel.value}
+              onClick={(event) => {
+                event.stopPropagation()
+                toggleTheme()
+              }}
+            >
+              {isDark.value ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
+            </button>
+          </div>
         )}
       />
       <section class="intro-band">

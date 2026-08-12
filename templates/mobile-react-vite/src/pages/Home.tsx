@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MoonIcon, SunnyIcon } from 'tdesign-icons-react'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import { Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
 import Demo from './Demo'
 import logoDark from '../assets/TDesign-logo_dark.png'
@@ -63,18 +63,40 @@ export default function HomePage() {
           </div>
         }
         right={
-          <button
-            className="theme-button"
-            type="button"
-            aria-label={themeLabel}
-            title={themeLabel}
-            onClick={(event) => {
-              event.stopPropagation()
-              toggleTheme()
-            }}
-          >
-            {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
-          </button>
+          <div className="navbar-actions">
+            <a
+              className="icon-button"
+              href={docsUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="组件文档"
+              title="组件文档"
+            >
+              <BookOpenIcon size="20px" />
+            </a>
+            <a
+              className="icon-button"
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <LogoGithubIcon size="20px" />
+            </a>
+            <button
+              className="theme-button"
+              type="button"
+              aria-label={themeLabel}
+              title={themeLabel}
+              onClick={(event) => {
+                event.stopPropagation()
+                toggleTheme()
+              }}
+            >
+              {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
+            </button>
+          </div>
         }
       />
       <section className="intro-band">

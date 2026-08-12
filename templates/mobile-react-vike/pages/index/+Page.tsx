@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { MoonIcon, SunnyIcon } from 'tdesign-icons-react'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import { Avatar, Badge, Button, Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
@@ -63,18 +63,40 @@ export default function Page() {
           </div>
         }
         right={
-          <button
-            className="theme-button"
-            type="button"
-            aria-label={themeLabel}
-            title={themeLabel}
-            onClick={(event) => {
-              event.stopPropagation()
-              toggleTheme()
-            }}
-          >
-            {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
-          </button>
+          <div className="navbar-actions">
+            <a
+              className="icon-button"
+              href={docsUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="组件文档"
+              title="组件文档"
+            >
+              <BookOpenIcon size="20px" />
+            </a>
+            <a
+              className="icon-button"
+              href={githubUrl}
+              target="_blank"
+              rel="noreferrer"
+              aria-label="GitHub"
+              title="GitHub"
+            >
+              <LogoGithubIcon size="20px" />
+            </a>
+            <button
+              className="theme-button"
+              type="button"
+              aria-label={themeLabel}
+              title={themeLabel}
+              onClick={(event) => {
+                event.stopPropagation()
+                toggleTheme()
+              }}
+            >
+              {isDark ? <SunnyIcon size="20px" /> : <MoonIcon size="20px" />}
+            </button>
+          </div>
         }
       />
       <section className="intro-band">
@@ -99,7 +121,18 @@ export default function Page() {
           </div>
           <div className="demo-stage">
             <div className="demo-card">
-              <Avatar className="demo-mark" size="52px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
+              <Avatar
+                className="demo-mark"
+                size="52px"
+                shape="round"
+                style={{
+                  background: 'var(--td-brand-color)',
+                  color: 'var(--td-text-color-anti)',
+                  fontWeight: 800,
+                }}
+              >
+                T
+              </Avatar>
               <h2>Hello, TDesign</h2>
               <p>点击按钮，体验这个模板中的基础交互。</p>
               <div className="counter" aria-label="计数器">

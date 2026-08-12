@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 
@@ -64,16 +64,38 @@ onMounted(() => {
         </div>
       </template>
       <template #right>
-        <button
-          class="theme-button"
-          type="button"
-          :aria-label="themeLabel"
-          :title="themeLabel"
-          @click.stop="toggleTheme"
-        >
-          <SunnyIcon v-if="isDark" size="20px" />
-          <MoonIcon v-else size="20px" />
-        </button>
+        <div class="navbar-actions">
+          <a
+            class="icon-button"
+            :href="docsUrl"
+            target="_blank"
+            rel="noreferrer"
+            :aria-label="'组件文档'"
+            :title="'组件文档'"
+          >
+            <BookOpenIcon size="20px" />
+          </a>
+          <a
+            class="icon-button"
+            :href="githubUrl"
+            target="_blank"
+            rel="noreferrer"
+            :aria-label="'GitHub'"
+            :title="'GitHub'"
+          >
+            <LogoGithubIcon size="20px" />
+          </a>
+          <button
+            class="theme-button"
+            type="button"
+            :aria-label="themeLabel"
+            :title="themeLabel"
+            @click.stop="toggleTheme"
+          >
+            <SunnyIcon v-if="isDark" size="20px" />
+            <MoonIcon v-else size="20px" />
+          </button>
+        </div>
       </template>
     </t-navbar>
 
@@ -98,7 +120,18 @@ onMounted(() => {
         </div>
         <div class="demo-stage">
           <div class="demo-card">
-            <t-avatar class="demo-mark" size="52px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
+            <t-avatar
+              class="demo-mark"
+              size="52px"
+              shape="round"
+              style="
+                background: var(--td-brand-color);
+                color: var(--td-text-color-anti);
+                font-weight: 800;
+              "
+            >
+              T
+            </t-avatar>
             <h2>Hello, TDesign</h2>
             <p>点击按钮，体验这个模板中的基础交互。</p>
             <div class="counter" aria-label="计数器">
@@ -165,18 +198,10 @@ onMounted(() => {
 <style scoped>
 .intro-band {
   color: var(--td-text-color-anti);
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color) 0%, var(--td-brand-color-6) 100%);
 }
 [theme-mode='dark'] .intro-band {
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color-7) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color-7) 0%, var(--td-brand-color-6) 100%);
 }
 .intro-content {
   display: flex;

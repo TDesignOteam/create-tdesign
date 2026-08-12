@@ -40,7 +40,7 @@ code {
   background: var(--td-bg-color-container);
 }
 .brand-navbar .t-navbar__left {
-  max-width: calc(100% - 58px);
+  max-width: calc(100% - 140px);
 }
 .brand-lockup {
   display: flex;
@@ -83,6 +83,12 @@ code {
   overflow: hidden;
   white-space: nowrap;
 }
+.navbar-actions {
+  display: flex;
+  align-items: center;
+  gap: 4px;
+}
+.icon-button,
 .theme-button {
   display: grid;
   width: 40px;
@@ -95,6 +101,15 @@ code {
   background: var(--td-bg-color-container);
   cursor: pointer;
 }
+.icon-button {
+  text-decoration: none;
+}
+.icon-button:hover,
+.theme-button:hover {
+  color: var(--td-brand-color);
+  border-color: var(--td-brand-color);
+}
+.icon-button:focus-visible,
 .theme-button:focus-visible {
   outline: 2px solid var(--td-brand-color);
   outline-offset: 2px;
@@ -195,18 +210,10 @@ code {
 /* ---- Home ---- */
 .intro-band {
   color: var(--td-text-color-anti);
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color) 0%, var(--td-brand-color-6) 100%);
 }
 [theme-mode='dark'] .intro-band {
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color-7) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color-7) 0%, var(--td-brand-color-6) 100%);
 }
 .intro-content {
   display: flex;
@@ -306,5 +313,13 @@ code {
   }
   .template-tag {
     max-width: 84px;
+  }
+  .navbar-actions {
+    gap: 2px;
+  }
+  .navbar-actions .icon-button,
+  .navbar-actions .theme-button {
+    width: 34px;
+    height: 34px;
   }
 }

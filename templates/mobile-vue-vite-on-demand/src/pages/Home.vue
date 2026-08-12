@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, ref } from 'vue'
-import { MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
+import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import Demo from './Demo.vue'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -61,16 +61,38 @@ onMounted(() => {
         </div>
       </template>
       <template #right>
-        <button
-          class="theme-button"
-          type="button"
-          :aria-label="themeLabel"
-          :title="themeLabel"
-          @click.stop="toggleTheme"
-        >
-          <SunnyIcon v-if="isDark" size="20px" />
-          <MoonIcon v-else size="20px" />
-        </button>
+        <div class="navbar-actions">
+          <a
+            class="icon-button"
+            :href="docsUrl"
+            target="_blank"
+            rel="noreferrer"
+            :aria-label="'组件文档'"
+            :title="'组件文档'"
+          >
+            <BookOpenIcon size="20px" />
+          </a>
+          <a
+            class="icon-button"
+            :href="githubUrl"
+            target="_blank"
+            rel="noreferrer"
+            :aria-label="'GitHub'"
+            :title="'GitHub'"
+          >
+            <LogoGithubIcon size="20px" />
+          </a>
+          <button
+            class="theme-button"
+            type="button"
+            :aria-label="themeLabel"
+            :title="themeLabel"
+            @click.stop="toggleTheme"
+          >
+            <SunnyIcon v-if="isDark" size="20px" />
+            <MoonIcon v-else size="20px" />
+          </button>
+        </div>
       </template>
     </t-navbar>
 
@@ -123,18 +145,10 @@ onMounted(() => {
 <style scoped>
 .intro-band {
   color: var(--td-text-color-anti);
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color) 0%, var(--td-brand-color-6) 100%);
 }
 [theme-mode='dark'] .intro-band {
-  background: linear-gradient(
-    135deg,
-    var(--td-brand-color-7) 0%,
-    var(--td-brand-color-6) 100%
-  );
+  background: linear-gradient(135deg, var(--td-brand-color-7) 0%, var(--td-brand-color-6) 100%);
 }
 .intro-content {
   display: flex;
