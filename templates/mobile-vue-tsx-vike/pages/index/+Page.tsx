@@ -1,9 +1,6 @@
 import { computed, defineComponent, onMounted, ref } from 'vue'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
-  Avatar as TAvatar,
-  Badge as TBadge,
-  Button as TButton,
   Cell as TCell,
   CellGroup as TCellGroup,
   Navbar as TNavbar,
@@ -13,6 +10,7 @@ import {
 } from 'tdesign-mobile-vue'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
+import Demo from './Demo'
 
 const STORAGE_KEY = 'tdesign-starter-theme'
 const docsUrl = 'https://tdesign.tencent.com/mobile-vue/overview'
@@ -35,13 +33,6 @@ export default defineComponent(() => {
     isDark.value ? 'Switch to light theme' : 'Switch to dark theme',
   )
   const logo = computed(() => (isDark.value ? logoDark : logoLight))
-  const count = ref(0)
-  const decrease = () => {
-    count.value -= 1
-  }
-  const increase = () => {
-    count.value += 1
-  }
 
   const applyTheme = (dark: boolean) => {
     isDark.value = dark
@@ -131,61 +122,7 @@ export default defineComponent(() => {
         </div>
       </section>
       <div class="content-width workspace">
-        <section class="demo-panel" aria-label="交互示例">
-          <div class="demo-head">
-            <div class="demo-title">
-              <TBadge dot color="var(--td-success-color)" />
-              示例
-            </div>
-            <span class="demo-subtitle">交互示例</span>
-          </div>
-          <div class="demo-stage">
-            <div class="demo-card">
-              <TAvatar
-                class="demo-mark"
-                size="52px"
-                shape="round"
-                style={{
-                  background: 'var(--td-brand-color)',
-                  color: 'var(--td-text-color-anti)',
-                  fontWeight: 800,
-                }}
-              >
-                T
-              </TAvatar>
-              <TTitle class="demo-card-title" level="h3">
-                Hello, TDesign
-              </TTitle>
-              <TParagraph class="demo-card-copy" theme="secondary">
-                点击按钮，体验这个模板中的基础交互。
-              </TParagraph>
-              <div class="counter" aria-label="计数器">
-                <TButton
-                  class="demo-button"
-                  theme="primary"
-                  size="large"
-                  shape="square"
-                  aria-label="减少"
-                  onClick={decrease}
-                >
-                  −
-                </TButton>
-                <span class="count">{count.value}</span>
-                <TButton
-                  class="demo-button"
-                  theme="primary"
-                  size="large"
-                  shape="square"
-                  aria-label="增加"
-                  onClick={increase}
-                >
-                  +
-                </TButton>
-              </div>
-              <div class="hint">编辑首页文件并保存，查看热更新效果</div>
-            </div>
-          </div>
-        </section>
+        <Demo />
         <section class="info-panel" aria-labelledby="info-title">
           <div class="info-head">
             <TTitle class="info-title" level="h2" id="info-title">

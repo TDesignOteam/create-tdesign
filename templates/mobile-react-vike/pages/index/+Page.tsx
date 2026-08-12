@@ -1,17 +1,9 @@
 import { useEffect, useState } from 'react'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
-import {
-  Avatar,
-  Badge,
-  Button,
-  Cell,
-  CellGroup,
-  Navbar,
-  Tag,
-  Typography,
-} from 'tdesign-mobile-react'
+import { Cell, CellGroup, Navbar, Tag, Typography } from 'tdesign-mobile-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
+import Demo from './Demo'
 
 const STORAGE_KEY = 'tdesign-starter-theme'
 const docsUrl = 'https://tdesign.tencent.com/mobile-react/overview'
@@ -30,7 +22,6 @@ const resources = [
 
 export default function Page() {
   const [isDark, setIsDark] = useState(false)
-  const [count, setCount] = useState(0)
   const themeLabel = isDark ? 'Switch to light theme' : 'Switch to dark theme'
 
   function applyTheme(dark: boolean) {
@@ -124,61 +115,7 @@ export default function Page() {
         </div>
       </section>
       <div className="content-width workspace">
-        <section className="demo-panel" aria-label="交互示例">
-          <div className="demo-head">
-            <div className="demo-title">
-              <Badge dot color="var(--td-success-color)" />
-              示例
-            </div>
-            <span className="demo-subtitle">交互示例</span>
-          </div>
-          <div className="demo-stage">
-            <div className="demo-card">
-              <Avatar
-                className="demo-mark"
-                size="52px"
-                shape="round"
-                style={{
-                  background: 'var(--td-brand-color)',
-                  color: 'var(--td-text-color-anti)',
-                  fontWeight: 800,
-                }}
-              >
-                T
-              </Avatar>
-              <Typography.Title className="demo-card-title" level="h3">
-                Hello, TDesign
-              </Typography.Title>
-              <Typography.Paragraph className="demo-card-copy" theme="secondary">
-                点击按钮，体验这个模板中的基础交互。
-              </Typography.Paragraph>
-              <div className="counter" aria-label="计数器">
-                <Button
-                  className="demo-button"
-                  theme="primary"
-                  size="large"
-                  shape="square"
-                  aria-label="减少"
-                  onClick={() => setCount(count - 1)}
-                >
-                  −
-                </Button>
-                <span className="count">{count}</span>
-                <Button
-                  className="demo-button"
-                  theme="primary"
-                  size="large"
-                  shape="square"
-                  aria-label="增加"
-                  onClick={() => setCount(count + 1)}
-                >
-                  +
-                </Button>
-              </div>
-              <div className="hint">编辑首页文件并保存，查看热更新效果</div>
-            </div>
-          </div>
-        </section>
+        <Demo />
         <section className="info-panel" aria-labelledby="info-title">
           <div className="info-head">
             <Typography.Title className="info-title" level="h2" id="info-title">

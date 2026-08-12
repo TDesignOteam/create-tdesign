@@ -1,8 +1,6 @@
 import { computed, defineComponent, ref } from 'vue'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
-  Avatar as TAvatar,
-  Badge as TBadge,
   Button as TButton,
   Card as TCard,
   Content as TContent,
@@ -16,12 +14,12 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
-  TypographyParagraph as TParagraph,
   TypographyText as TText,
   TypographyTitle as TTitle,
 } from 'tdesign-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
+import Demo from './Demo'
 
 type Theme = 'light' | 'dark'
 
@@ -57,13 +55,6 @@ export default defineComponent(() => {
   const theme = ref<Theme>(getInitialTheme())
   const isDark = computed(() => theme.value === 'dark')
   const logo = computed(() => (isDark.value ? logoDark : logoLight))
-  const count = ref(0)
-  const decrease = () => {
-    count.value -= 1
-  }
-  const increase = () => {
-    count.value += 1
-  }
 
   applyTheme(theme.value)
 
@@ -137,67 +128,7 @@ export default defineComponent(() => {
         </section>
 
         <div class="workspace">
-          <TCard class="demo-panel" bordered>
-            {{
-              header: () => (
-                <div class="demo-head">
-                  <div class="demo-title">
-                    <TBadge dot color="var(--td-success-color)" />
-                    示例
-                  </div>
-                  <span class="demo-subtitle">交互示例</span>
-                </div>
-              ),
-              default: () => (
-                <div class="demo-stage">
-                  <div class="demo-card">
-                    <TAvatar
-                      class="demo-mark"
-                      size="54px"
-                      shape="round"
-                      style={{
-                        background: 'var(--td-brand-color)',
-                        color: 'var(--td-text-color-anti)',
-                        fontWeight: 800,
-                      }}
-                    >
-                      T
-                    </TAvatar>
-                    <TTitle class="demo-card-title" level="h3">
-                      Hello, TDesign
-                    </TTitle>
-                    <TParagraph class="demo-card-copy" theme="secondary">
-                      点击按钮，体验这个模板中的基础交互。
-                    </TParagraph>
-                    <TSpace size={12} align="center">
-                      <TButton
-                        theme="primary"
-                        size="large"
-                        shape="square"
-                        aria-label="减少"
-                        onClick={decrease}
-                      >
-                        −
-                      </TButton>
-                      <TButton variant="outline" size="large" disabled>
-                        {count.value}
-                      </TButton>
-                      <TButton
-                        theme="primary"
-                        size="large"
-                        shape="square"
-                        aria-label="增加"
-                        onClick={increase}
-                      >
-                        +
-                      </TButton>
-                    </TSpace>
-                    <div class="hint">编辑首页文件并保存，查看热更新效果</div>
-                  </div>
-                </div>
-              ),
-            }}
-          </TCard>
+          <Demo />
 
           <TCard class="info-panel" bordered>
             {{
