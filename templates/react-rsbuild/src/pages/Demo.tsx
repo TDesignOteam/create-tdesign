@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Badge, Button, Card, Space, Tag } from 'tdesign-react'
+import { Avatar, Badge, Button, Card, Space, Tag } from 'tdesign-react'
 
 export default function Demo() {
   const [count, setCount] = useState(0)
@@ -20,7 +20,7 @@ export default function Demo() {
     >
       <div className="demo-stage">
         <div className="demo-card">
-          <span className="demo-mark">T</span>
+          <Avatar className="demo-mark" size="54px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
           <h2>Hello, TDesign</h2>
           <p>点击按钮，体验这个模板中的基础交互。</p>
           <Space size={12} align="center">

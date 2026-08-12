@@ -192,16 +192,7 @@ body {
   text-align: center;
 }
 .demo-mark {
-  display: grid;
-  width: 54px;
-  height: 54px;
   margin: 0 auto 18px;
-  place-items: center;
-  color: #fff;
-  border-radius: 8px;
-  background: var(--starter-blue);
-  font-size: 25px;
-  font-weight: 800;
 }
 .demo-card h2 {
   margin: 0 0 8px;

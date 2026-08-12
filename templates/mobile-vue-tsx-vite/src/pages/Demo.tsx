@@ -1,5 +1,5 @@
 import { defineComponent, ref } from 'vue'
-import { Badge as TBadge, Button as TButton } from 'tdesign-mobile-vue'
+import { Avatar as TAvatar, Badge as TBadge, Button as TButton } from 'tdesign-mobile-vue'
 
 export default defineComponent(() => {
   const count = ref(0)
@@ -21,7 +21,7 @@ export default defineComponent(() => {
       </div>
       <div class="demo-stage">
         <div class="demo-card">
-          <span class="demo-mark">T</span>
+          <TAvatar class="demo-mark" size="52px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
           <h2>Hello, TDesign</h2>
           <p>点击按钮，体验这个模板中的基础交互。</p>
           <div class="counter" aria-label="计数器">

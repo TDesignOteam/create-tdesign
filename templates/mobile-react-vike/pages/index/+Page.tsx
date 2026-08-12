@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { MoonIcon, SunnyIcon } from 'tdesign-icons-react'
-import { Badge, Button, Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
+import { Avatar, Badge, Button, Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 
@@ -99,7 +99,7 @@ export default function Page() {
           </div>
           <div className="demo-stage">
             <div className="demo-card">
-              <span className="demo-mark">T</span>
+              <Avatar className="demo-mark" size="52px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
               <h2>Hello, TDesign</h2>
               <p>点击按钮，体验这个模板中的基础交互。</p>
               <div className="counter" aria-label="计数器">

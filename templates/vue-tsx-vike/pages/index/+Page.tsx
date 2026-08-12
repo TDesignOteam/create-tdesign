@@ -1,6 +1,7 @@
 import { computed, defineComponent, ref } from 'vue'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import {
+  Avatar as TAvatar,
   Badge as TBadge,
   Button as TButton,
   Card as TCard,
@@ -144,7 +145,7 @@ export default defineComponent(() => {
               default: () => (
                 <div class="demo-stage">
                   <div class="demo-card">
-                    <span class="demo-mark">T</span>
+                    <TAvatar class="demo-mark" size="54px" shape="round" style={{ background: 'var(--starter-blue)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
                     <h2>Hello, TDesign</h2>
                     <p>点击按钮，体验这个模板中的基础交互。</p>
                     <TSpace size={12} align="center">

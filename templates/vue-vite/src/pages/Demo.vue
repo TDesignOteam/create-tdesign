@@ -23,7 +23,7 @@ const increase = () => {
     </template>
     <div class="demo-stage">
       <div class="demo-card">
-        <span class="demo-mark">T</span>
+        <t-avatar class="demo-mark" size="54px" shape="round" style="background: var(--starter-blue); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
         <h2>Hello, TDesign</h2>
         <p>点击按钮，体验这个模板中的基础交互。</p>
         <t-space :size="12" align="center">
@@ -110,16 +110,7 @@ const increase = () => {
   text-align: center;
 }
 .demo-mark {
-  display: grid;
-  width: 54px;
-  height: 54px;
   margin: 0 auto 18px;
-  place-items: center;
-  color: #fff;
-  border-radius: 8px;
-  background: var(--starter-blue);
-  font-size: 25px;
-  font-weight: 800;
 }
 .demo-card h2 {
   margin: 0 0 8px;
