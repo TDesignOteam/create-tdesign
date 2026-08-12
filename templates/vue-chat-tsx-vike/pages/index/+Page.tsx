@@ -16,7 +16,6 @@ import {
   Tooltip as TTooltip,
 } from 'tdesign-vue-next'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
-import 'tdesign-vue-next/es/style/index.css'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
 import ClientOnlyChat from './ClientOnlyChat.vue'
