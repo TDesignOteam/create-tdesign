@@ -108,8 +108,10 @@ const resources = [
     <t-content class="starter-content">
       <section class="intro">
         <div>
-          <h1>__PROJECTNAME__</h1>
-          <p>一个基于 TDesign 的简单交互示例。</p>
+          <t-typography-title level="h1" class="intro-title">__PROJECTNAME__</t-typography-title>
+          <t-typography-text class="intro-copy" theme="secondary">
+            一个基于 TDesign 的简单交互示例。
+          </t-typography-text>
         </div>
         <t-tag class="template-id" theme="primary" variant="light" size="large">
           __TEMPLATENAME__
@@ -129,13 +131,44 @@ const resources = [
           </template>
           <div class="demo-stage">
             <div class="demo-card">
-              <t-avatar class="demo-mark" size="54px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
-              <h2>Hello, TDesign</h2>
-              <p>点击按钮，体验这个模板中的基础交互。</p>
+              <t-avatar
+                class="demo-mark"
+                size="54px"
+                shape="round"
+                style="
+                  background: var(--td-brand-color);
+                  color: var(--td-text-color-anti);
+                  font-weight: 800;
+                "
+              >
+                T
+              </t-avatar>
+              <t-typography-title class="demo-card-title" level="h3">
+                Hello, TDesign
+              </t-typography-title>
+              <t-typography-paragraph class="demo-card-copy" theme="secondary">
+                点击按钮，体验这个模板中的基础交互。
+              </t-typography-paragraph>
               <t-space :size="12" align="center">
-                <t-button theme="primary" size="large" shape="square" aria-label="减少" @click="decrease">−</t-button>
+                <t-button
+                  theme="primary"
+                  size="large"
+                  shape="square"
+                  aria-label="减少"
+                  @click="decrease"
+                >
+                  −
+                </t-button>
                 <t-button variant="outline" size="large" disabled>{{ count }}</t-button>
-                <t-button theme="primary" size="large" shape="square" aria-label="增加" @click="increase">+</t-button>
+                <t-button
+                  theme="primary"
+                  size="large"
+                  shape="square"
+                  aria-label="增加"
+                  @click="increase"
+                >
+                  +
+                </t-button>
               </t-space>
               <div class="hint">编辑首页文件并保存，查看热更新效果</div>
             </div>

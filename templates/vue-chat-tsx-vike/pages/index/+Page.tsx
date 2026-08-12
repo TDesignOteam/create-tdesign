@@ -14,6 +14,8 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
+  TypographyText as TText,
+  TypographyTitle as TTitle,
 } from 'tdesign-vue-next'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
@@ -122,8 +124,12 @@ export default defineComponent(() => {
       <TContent class="starter-content">
         <section class="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign Chat 的流式对话示例。</p>
+            <TTitle level="h1" class="intro-title">
+              __PROJECTNAME__
+            </TTitle>
+            <TText class="intro-copy" theme="secondary">
+              一个基于 TDesign Chat 的流式对话示例。
+            </TText>
           </div>
           <TTag class="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__

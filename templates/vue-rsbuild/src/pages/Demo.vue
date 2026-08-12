@@ -23,13 +23,30 @@ const increase = () => {
     </template>
     <div class="demo-stage">
       <div class="demo-card">
-        <t-avatar class="demo-mark" size="54px" shape="round" style="background: var(--td-brand-color); color: var(--td-text-color-anti); font-weight: 800">T</t-avatar>
-        <h2>Hello, TDesign</h2>
-        <p>点击按钮，体验这个模板中的基础交互。</p>
+        <t-avatar
+          class="demo-mark"
+          size="54px"
+          shape="round"
+          style="
+            background: var(--td-brand-color);
+            color: var(--td-text-color-anti);
+            font-weight: 800;
+          "
+        >
+          T
+        </t-avatar>
+        <t-typography-title class="demo-card-title" level="h3">Hello, TDesign</t-typography-title>
+        <t-typography-paragraph class="demo-card-copy" theme="secondary">
+          点击按钮，体验这个模板中的基础交互。
+        </t-typography-paragraph>
         <t-space :size="12" align="center">
-          <t-button theme="primary" size="large" shape="square" aria-label="减少" @click="decrease">−</t-button>
+          <t-button theme="primary" size="large" shape="square" aria-label="减少" @click="decrease">
+            −
+          </t-button>
           <t-button variant="outline" size="large" disabled>{{ count }}</t-button>
-          <t-button theme="primary" size="large" shape="square" aria-label="增加" @click="increase">+</t-button>
+          <t-button theme="primary" size="large" shape="square" aria-label="增加" @click="increase">
+            +
+          </t-button>
         </t-space>
         <div class="hint">编辑首页文件并保存，查看热更新效果</div>
       </div>
@@ -94,14 +111,12 @@ const increase = () => {
 .demo-mark {
   margin: 0 auto 18px;
 }
-.demo-card h2 {
+.demo-card-title {
   margin: 0 0 8px;
   font-size: 22px;
-  letter-spacing: 0;
 }
-.demo-card p {
+.demo-card-copy {
   margin: 0 0 24px;
-  color: var(--td-text-color-secondary);
   font-size: 13px;
   line-height: 1.65;
 }

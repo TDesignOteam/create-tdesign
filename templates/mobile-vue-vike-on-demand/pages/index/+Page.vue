@@ -102,8 +102,10 @@ onMounted(() => {
     <section class="intro-band">
       <div class="content-width intro-content">
         <div>
-          <h1>__PROJECTNAME__</h1>
-          <p class="intro-copy">一个基于 TDesign 的简单交互示例。</p>
+          <t-typography-title class="intro-title" level="h1">__PROJECTNAME__</t-typography-title>
+          <t-typography-paragraph class="intro-copy">
+            一个基于 TDesign 的简单交互示例。
+          </t-typography-paragraph>
         </div>
         <t-tag class="template-id" theme="primary" variant="light">__TEMPLATENAME__</t-tag>
       </div>
@@ -132,8 +134,12 @@ onMounted(() => {
             >
               T
             </t-avatar>
-            <h2>Hello, TDesign</h2>
-            <p>点击按钮，体验这个模板中的基础交互。</p>
+            <t-typography-title class="demo-card-title" level="h3">
+              Hello, TDesign
+            </t-typography-title>
+            <t-typography-paragraph class="demo-card-copy" theme="secondary">
+              点击按钮，体验这个模板中的基础交互。
+            </t-typography-paragraph>
             <div class="counter" aria-label="计数器">
               <t-button
                 class="demo-button"
@@ -164,8 +170,12 @@ onMounted(() => {
 
       <section class="info-panel" aria-labelledby="info-title">
         <div class="info-head">
-          <h2 id="info-title">技术信息</h2>
-          <p class="info-subtitle">当前模板使用的构建工具与组件库</p>
+          <t-typography-title id="info-title" class="info-title" level="h2">
+            技术信息
+          </t-typography-title>
+          <t-typography-paragraph class="info-subtitle" theme="secondary">
+            当前模板使用的构建工具与组件库
+          </t-typography-paragraph>
         </div>
         <t-cell-group :bordered="false" class="tech-cells">
           <t-cell
@@ -214,18 +224,16 @@ onMounted(() => {
 .intro-content > div {
   min-width: 0;
 }
-.intro-content h1 {
+.intro-title {
   margin: 0;
   overflow-wrap: anywhere;
   font-size: 28px;
   line-height: 1.2;
-  letter-spacing: 0;
 }
 .intro-copy {
   max-width: 560px;
   margin: 8px 0 0;
   color: rgba(255, 255, 255, 0.86);
-  font-size: 14px;
   line-height: 1.55;
 }
 .template-id {
@@ -287,14 +295,12 @@ onMounted(() => {
 .demo-mark {
   margin: 0 auto 16px;
 }
-.demo-card h2 {
+.demo-card-title {
   margin: 0 0 8px;
   font-size: 20px;
-  letter-spacing: 0;
 }
-.demo-card p {
+.demo-card-copy {
   margin: 0 0 22px;
-  color: var(--td-text-color-secondary);
   font-size: 13px;
   line-height: 1.65;
 }
@@ -335,15 +341,13 @@ onMounted(() => {
 .info-head {
   padding: 20px 18px 0;
 }
-.info-head h2 {
+.info-title {
   margin: 0 0 6px;
   font-size: 17px;
   line-height: 1.35;
-  letter-spacing: 0;
 }
 .info-subtitle {
   margin: 0;
-  color: var(--td-text-color-placeholder);
   font-size: 12px;
   line-height: 1.65;
 }

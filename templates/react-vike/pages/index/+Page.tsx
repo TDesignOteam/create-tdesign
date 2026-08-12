@@ -12,6 +12,7 @@ import {
   Space,
   Tag,
   Tooltip,
+  Typography,
 } from 'tdesign-react'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
@@ -118,8 +119,12 @@ export default function HomePage() {
       <Layout.Content className="starter-content">
         <section className="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign 的简单交互示例。</p>
+            <Typography.Title level="h1" className="intro-title">
+              __PROJECTNAME__
+            </Typography.Title>
+            <Typography.Text className="intro-copy" theme="secondary">
+              一个基于 TDesign 的简单交互示例。
+            </Typography.Text>
           </div>
           <Tag className="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__
@@ -142,13 +147,46 @@ export default function HomePage() {
           >
             <div className="demo-stage">
               <div className="demo-card">
-                <Avatar className="demo-mark" size="54px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
-                <h2>Hello, TDesign</h2>
-                <p>点击按钮，体验这个模板中的基础交互。</p>
+                <Avatar
+                  className="demo-mark"
+                  size="54px"
+                  shape="round"
+                  style={{
+                    background: 'var(--td-brand-color)',
+                    color: 'var(--td-text-color-anti)',
+                    fontWeight: 800,
+                  }}
+                >
+                  T
+                </Avatar>
+                <Typography.Title className="demo-card-title" level="h3">
+                  Hello, TDesign
+                </Typography.Title>
+                <Typography.Paragraph className="demo-card-copy" theme="secondary">
+                  点击按钮，体验这个模板中的基础交互。
+                </Typography.Paragraph>
                 <Space size={12} align="center">
-                  <Button theme="primary" size="large" shape="square" aria-label="减少" onClick={decrease}>−</Button>
-                  <Button variant="outline" size="large" disabled>{count}</Button>
-                  <Button theme="primary" size="large" shape="square" aria-label="增加" onClick={increase}>+</Button>
+                  <Button
+                    theme="primary"
+                    size="large"
+                    shape="square"
+                    aria-label="减少"
+                    onClick={decrease}
+                  >
+                    −
+                  </Button>
+                  <Button variant="outline" size="large" disabled>
+                    {count}
+                  </Button>
+                  <Button
+                    theme="primary"
+                    size="large"
+                    shape="square"
+                    aria-label="增加"
+                    onClick={increase}
+                  >
+                    +
+                  </Button>
                 </Space>
                 <div className="hint">编辑首页文件并保存，查看热更新效果</div>
               </div>

@@ -1,5 +1,5 @@
 import { useState } from 'react'
-import { Avatar, Badge, Button } from 'tdesign-mobile-react'
+import { Avatar, Badge, Button, Typography } from 'tdesign-mobile-react'
 
 export default function Demo() {
   const [count, setCount] = useState(0)
@@ -15,9 +15,24 @@ export default function Demo() {
       </div>
       <div className="demo-stage">
         <div className="demo-card">
-          <Avatar className="demo-mark" size="52px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</Avatar>
-          <h2>Hello, TDesign</h2>
-          <p>点击按钮，体验这个模板中的基础交互。</p>
+          <Avatar
+            className="demo-mark"
+            size="52px"
+            shape="round"
+            style={{
+              background: 'var(--td-brand-color)',
+              color: 'var(--td-text-color-anti)',
+              fontWeight: 800,
+            }}
+          >
+            T
+          </Avatar>
+          <Typography.Title className="demo-card-title" level="h3">
+            Hello, TDesign
+          </Typography.Title>
+          <Typography.Paragraph className="demo-card-copy" theme="secondary">
+            点击按钮，体验这个模板中的基础交互。
+          </Typography.Paragraph>
           <div className="counter" aria-label="计数器">
             <Button
               className="demo-button"

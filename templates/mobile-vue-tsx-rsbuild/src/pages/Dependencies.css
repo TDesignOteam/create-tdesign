@@ -19,7 +19,6 @@
   color: var(--td-text-color-primary);
   font-size: 28px;
   line-height: 1.2;
-  letter-spacing: 0;
 }
 .dependencies-kicker {
   display: block;
@@ -28,7 +27,6 @@
   font-size: 12px;
   font-weight: 600;
   line-height: 1.3;
-  letter-spacing: 0;
 }
 .dependencies-copy {
   max-width: 580px;

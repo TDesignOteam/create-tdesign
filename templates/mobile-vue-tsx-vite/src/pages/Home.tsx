@@ -5,6 +5,8 @@ import {
   CellGroup as TCellGroup,
   Navbar as TNavbar,
   Tag as TTag,
+  TypographyParagraph as TParagraph,
+  TypographyTitle as TTitle,
 } from 'tdesign-mobile-vue'
 import Demo from './Demo'
 import logoDark from '../assets/TDesign-logo_dark.png'
@@ -110,8 +112,10 @@ export default defineComponent(() => {
       <section class="intro-band">
         <div class="content-width intro-content">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p class="intro-copy">一个基于 TDesign 的简单交互示例。</p>
+            <TTitle class="intro-title" level="h1">
+              __PROJECTNAME__
+            </TTitle>
+            <TParagraph class="intro-copy">一个基于 TDesign 的简单交互示例。</TParagraph>
           </div>
           <TTag class="template-id" theme="primary" variant="light">
             __TEMPLATENAME__
@@ -122,8 +126,12 @@ export default defineComponent(() => {
         <Demo />
         <section class="info-panel" aria-labelledby="info-title">
           <div class="info-head">
-            <h2 id="info-title">技术信息</h2>
-            <p class="info-subtitle">当前模板使用的构建工具与组件库</p>
+            <TTitle class="info-title" level="h2" id="info-title">
+              技术信息
+            </TTitle>
+            <TParagraph class="info-subtitle" theme="secondary">
+              当前模板使用的构建工具与组件库
+            </TParagraph>
           </div>
           <TCellGroup bordered={false} class="tech-cells">
             {techInfo.map((item) => (

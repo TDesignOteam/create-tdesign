@@ -15,6 +15,8 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
+  TypographyText as TText,
+  TypographyTitle as TTitle,
 } from 'tdesign-vue-next'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -114,8 +116,12 @@ export default defineComponent(() => {
       <TContent class="starter-content">
         <section class="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign 的简单交互示例。</p>
+            <TTitle level="h1" class="intro-title">
+              __PROJECTNAME__
+            </TTitle>
+            <TText class="intro-copy" theme="secondary">
+              一个基于 TDesign 的简单交互示例。
+            </TText>
           </div>
           <TTag class="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__

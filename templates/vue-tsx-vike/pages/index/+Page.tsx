@@ -16,6 +16,9 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
+  TypographyParagraph as TParagraph,
+  TypographyText as TText,
+  TypographyTitle as TTitle,
 } from 'tdesign-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
 import logoLight from '../../src/assets/TDesign-logo_light.png'
@@ -121,8 +124,12 @@ export default defineComponent(() => {
       <TContent class="starter-content">
         <section class="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign 的简单交互示例。</p>
+            <TTitle level="h1" class="intro-title">
+              __PROJECTNAME__
+            </TTitle>
+            <TText class="intro-copy" theme="secondary">
+              一个基于 TDesign 的简单交互示例。
+            </TText>
           </div>
           <TTag class="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__
@@ -144,13 +151,46 @@ export default defineComponent(() => {
               default: () => (
                 <div class="demo-stage">
                   <div class="demo-card">
-                    <TAvatar class="demo-mark" size="54px" shape="round" style={{ background: 'var(--td-brand-color)', color: 'var(--td-text-color-anti)', fontWeight: 800 }}>T</TAvatar>
-                    <h2>Hello, TDesign</h2>
-                    <p>点击按钮，体验这个模板中的基础交互。</p>
+                    <TAvatar
+                      class="demo-mark"
+                      size="54px"
+                      shape="round"
+                      style={{
+                        background: 'var(--td-brand-color)',
+                        color: 'var(--td-text-color-anti)',
+                        fontWeight: 800,
+                      }}
+                    >
+                      T
+                    </TAvatar>
+                    <TTitle class="demo-card-title" level="h3">
+                      Hello, TDesign
+                    </TTitle>
+                    <TParagraph class="demo-card-copy" theme="secondary">
+                      点击按钮，体验这个模板中的基础交互。
+                    </TParagraph>
                     <TSpace size={12} align="center">
-                      <TButton theme="primary" size="large" shape="square" aria-label="减少" onClick={decrease}>−</TButton>
-                      <TButton variant="outline" size="large" disabled>{count.value}</TButton>
-                      <TButton theme="primary" size="large" shape="square" aria-label="增加" onClick={increase}>+</TButton>
+                      <TButton
+                        theme="primary"
+                        size="large"
+                        shape="square"
+                        aria-label="减少"
+                        onClick={decrease}
+                      >
+                        −
+                      </TButton>
+                      <TButton variant="outline" size="large" disabled>
+                        {count.value}
+                      </TButton>
+                      <TButton
+                        theme="primary"
+                        size="large"
+                        shape="square"
+                        aria-label="增加"
+                        onClick={increase}
+                      >
+                        +
+                      </TButton>
                     </TSpace>
                     <div class="hint">编辑首页文件并保存，查看热更新效果</div>
                   </div>

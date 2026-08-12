@@ -12,6 +12,8 @@ import {
   Space as TSpace,
   Tag as TTag,
   Tooltip as TTooltip,
+  TypographyText as TText,
+  TypographyTitle as TTitle,
 } from 'tdesign-vue-next'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-vue-next'
 import logoDark from '../../src/assets/TDesign-logo_dark.png'
@@ -125,8 +127,8 @@ const resources = [
     <TContent class="starter-content">
       <section class="intro">
         <div>
-          <h1>__PROJECTNAME__</h1>
-          <p>一个基于 TDesign Chat 的流式对话示例。</p>
+          <TTitle level="h1" class="intro-title">__PROJECTNAME__</TTitle>
+          <TText class="intro-copy" theme="secondary">一个基于 TDesign Chat 的流式对话示例。</TText>
         </div>
         <TTag class="template-id" theme="primary" variant="light" size="large">
           __TEMPLATENAME__
@@ -259,17 +261,14 @@ const resources = [
   justify-content: space-between;
   gap: 20px;
 }
-.intro h1 {
+.intro-title {
   margin: 0 0 8px;
   font-size: 30px;
   line-height: 1.3;
-  letter-spacing: 0;
   overflow-wrap: anywhere;
 }
-.intro p {
+.intro-copy {
   margin: 0;
-  color: var(--td-text-color-secondary);
-  font-size: 14px;
   line-height: 1.65;
 }
 .template-id {
@@ -442,7 +441,7 @@ const resources = [
   .intro {
     display: block;
   }
-  .intro h1 {
+  .intro-title {
     font-size: 26px;
   }
   .template-id {

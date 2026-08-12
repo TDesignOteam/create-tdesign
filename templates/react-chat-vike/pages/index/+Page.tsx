@@ -11,6 +11,7 @@ import {
   Space,
   Tag,
   Tooltip,
+  Typography,
 } from 'tdesign-react'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
 import 'tdesign-react/es/style/index.css'
@@ -118,8 +119,12 @@ export default function Page() {
       <Layout.Content className="starter-content">
         <section className="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign Chat 的流式对话示例。</p>
+            <Typography.Title level="h1" className="intro-title">
+              __PROJECTNAME__
+            </Typography.Title>
+            <Typography.Text className="intro-copy" theme="secondary">
+              一个基于 TDesign Chat 的流式对话示例。
+            </Typography.Text>
           </div>
           <Tag className="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__

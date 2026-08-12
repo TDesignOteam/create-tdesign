@@ -1,6 +1,6 @@
 import { useEffect, useState } from 'react'
 import { BookOpenIcon, LogoGithubIcon, MoonIcon, SunnyIcon } from 'tdesign-icons-react'
-import { Cell, CellGroup, Navbar, Tag } from 'tdesign-mobile-react'
+import { Cell, CellGroup, Navbar, Tag, Typography } from 'tdesign-mobile-react'
 import Demo from './Demo'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -102,8 +102,12 @@ export default function HomePage() {
       <section className="intro-band">
         <div className="content-width intro-content">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p className="intro-copy">一个基于 TDesign 的简单交互示例。</p>
+            <Typography.Title className="intro-title" level="h1">
+              __PROJECTNAME__
+            </Typography.Title>
+            <Typography.Paragraph className="intro-copy">
+              一个基于 TDesign 的简单交互示例。
+            </Typography.Paragraph>
           </div>
           <Tag className="template-id" theme="primary" variant="light">
             __TEMPLATENAME__
@@ -114,8 +118,12 @@ export default function HomePage() {
         <Demo />
         <section className="info-panel" aria-labelledby="info-title">
           <div className="info-head">
-            <h2 id="info-title">技术信息</h2>
-            <p className="info-subtitle">当前模板使用的构建工具与组件库</p>
+            <Typography.Title className="info-title" level="h2" id="info-title">
+              技术信息
+            </Typography.Title>
+            <Typography.Paragraph className="info-subtitle" theme="secondary">
+              当前模板使用的构建工具与组件库
+            </Typography.Paragraph>
           </div>
           <CellGroup bordered={false} className="tech-cells">
             {techInfo.map((item) => (

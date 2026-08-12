@@ -11,6 +11,7 @@ import {
   Space,
   Tag,
   Tooltip,
+  Typography,
 } from 'tdesign-react'
 import logoDark from '../assets/TDesign-logo_dark.png'
 import logoLight from '../assets/TDesign-logo_light.png'
@@ -111,8 +112,12 @@ export default function HomePage() {
       <Layout.Content className="starter-content">
         <section className="intro">
           <div>
-            <h1>__PROJECTNAME__</h1>
-            <p>一个基于 TDesign 的简单交互示例。</p>
+            <Typography.Title level="h1" className="intro-title">
+              __PROJECTNAME__
+            </Typography.Title>
+            <Typography.Text className="intro-copy" theme="secondary">
+              一个基于 TDesign 的简单交互示例。
+            </Typography.Text>
           </div>
           <Tag className="template-id" theme="primary" variant="light" size="large">
             __TEMPLATENAME__

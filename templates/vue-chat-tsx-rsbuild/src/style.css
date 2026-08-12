@@ -106,17 +106,14 @@ a {
   justify-content: space-between;
   gap: 20px;
 }
-.intro h1 {
+.intro-title {
   margin: 0 0 8px;
   font-size: 30px;
   line-height: 1.3;
-  letter-spacing: 0;
   overflow-wrap: anywhere;
 }
-.intro p {
+.intro-copy {
   margin: 0;
-  color: var(--td-text-color-secondary);
-  font-size: 14px;
   line-height: 1.65;
 }
 .template-id {
@@ -289,7 +286,7 @@ a {
   .intro {
     display: block;
   }
-  .intro h1 {
+  .intro-title {
     font-size: 26px;
   }
   .template-id {
