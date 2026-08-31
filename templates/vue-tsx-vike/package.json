@@ -10,11 +10,11 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "tdesign-icons-vue-next": "^0.4.10",
-    "tdesign-vue-next": "^1.20.6",
-    "vike": "0.4.262",
+    "tdesign-icons-vue-next": "^0.4.11",
+    "tdesign-vue-next": "^1.20.7",
+    "vike": "0.4.264",
     "vike-vue": "^0.9.13",
-    "vue": "^3.5.41"
+    "vue": "^3.5.42"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.8",
