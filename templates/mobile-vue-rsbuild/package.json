@@ -11,14 +11,14 @@
   },
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.11",
-    "tdesign-mobile-vue": "^1.16.1",
+    "tdesign-mobile-vue": "^1.16.2",
     "vue": "^3.5.42",
     "vue-router": "^5.3.1"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.2.3",
+    "@rsbuild/core": "^2.2.5",
     "@rsbuild/plugin-vue": "^2.0.1",
-    "@types/node": "^25.9.5",
+    "@types/node": "^25.9.6",
     "typescript": "^6.0.3",
     "vue-tsc": "^3.3.11"
   }
