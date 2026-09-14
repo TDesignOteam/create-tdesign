@@ -10,7 +10,7 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
-    "@tdesign-react/chat": "^1.0.2",
+    "@tdesign-react/chat": "^1.1.0",
     "react": "^19.2.8",
     "react-dom": "^19.2.8",
     "tdesign-icons-react": "^0.6.11",
