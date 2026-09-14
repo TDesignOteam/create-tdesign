@@ -18,9 +18,9 @@
     "tdesign-react": "^1.18.3"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.2.3",
+    "@rsbuild/core": "^2.2.5",
     "@rsbuild/plugin-react": "^2.1.0",
-    "@types/node": "^25.9.5",
+    "@types/node": "^25.9.6",
     "@types/react": "^19.2.18",
     "@types/react-dom": "^19.2.7",
     "typescript": "^6.0.3"
