@@ -14,7 +14,7 @@
     "react-dom": "^19.3.0",
     "react-router": "^8.3.1",
     "tdesign-icons-react": "^0.6.11",
-    "tdesign-react": "^1.18.3"
+    "tdesign-react": "^1.18.4"
   },
   "devDependencies": {
     "@types/node": "^25.9.8",
@@ -22,6 +22,6 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "^6.0.3",
-    "vite": "^8.3.0"
+    "vite": "^8.3.1"
   }
 }
