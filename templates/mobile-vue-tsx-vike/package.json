@@ -12,7 +12,7 @@
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.11",
     "tdesign-mobile-vue": "^1.16.2",
-    "vike": "0.4.266",
+    "vike": "0.4.267",
     "vike-vue": "^0.9.15",
     "vue": "^3.5.43"
   },
@@ -20,7 +20,7 @@
     "@vitejs/plugin-vue": "^6.0.9",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
     "typescript": "^6.0.3",
-    "vite": "^8.3.1",
-    "vue-tsc": "^3.3.11"
+    "vite": "^8.3.2",
+    "vue-tsc": "^3.3.12"
   }
 }

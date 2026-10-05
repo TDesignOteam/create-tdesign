@@ -44,7 +44,7 @@
   ],
   "devDependencies": {
     "@clack/prompts": "^1.8.1",
-    "@types/node": "^25.9.8",
+    "@types/node": "^25.9.9",
     "mri": "^1.2.0",
     "picocolors": "^1.1.1",
     "prettier": "^3.9.9",
