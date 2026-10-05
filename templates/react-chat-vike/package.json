@@ -15,7 +15,7 @@
     "react-dom": "^19.3.0",
     "tdesign-icons-react": "^0.6.11",
     "tdesign-react": "^1.18.4",
-    "vike": "0.4.266",
+    "vike": "0.4.267",
     "vike-react": "^0.6.29"
   },
   "devDependencies": {
@@ -23,6 +23,6 @@
     "@types/react-dom": "^19.3.0",
     "@vitejs/plugin-react": "^6.1.1",
     "typescript": "^6.0.3",
-    "vite": "^8.3.1"
+    "vite": "^8.3.2"
   }
 }

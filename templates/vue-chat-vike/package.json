@@ -12,15 +12,15 @@
   "dependencies": {
     "@tdesign-vue-next/chat": "^0.7.0",
     "tdesign-icons-vue-next": "^0.4.11",
-    "tdesign-vue-next": "^1.20.8",
-    "vike": "0.4.266",
+    "tdesign-vue-next": "^1.20.9",
+    "vike": "0.4.267",
     "vike-vue": "^0.9.15",
     "vue": "^3.5.43"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.9",
     "typescript": "^6.0.3",
-    "vite": "^8.3.1",
-    "vue-tsc": "^3.3.11"
+    "vite": "^8.3.2",
+    "vue-tsc": "^3.3.12"
   }
 }
