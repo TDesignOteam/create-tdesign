@@ -12,9 +12,9 @@
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.11",
     "tdesign-mobile-vue": "^1.16.2",
-    "vike": "0.4.267",
+    "vike": "0.4.268",
     "vike-vue": "^0.9.15",
-    "vue": "^3.5.43"
+    "vue": "^3.5.44"
   },
   "devDependencies": {
     "@vitejs/plugin-vue": "^6.0.10",

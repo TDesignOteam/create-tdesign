@@ -11,10 +11,10 @@
   },
   "dependencies": {
     "tdesign-icons-vue-next": "^0.4.11",
-    "tdesign-vue-next": "^1.20.9",
-    "vike": "0.4.267",
+    "tdesign-vue-next": "^1.20.10",
+    "vike": "0.4.268",
     "vike-vue": "^0.9.15",
-    "vue": "^3.5.43"
+    "vue": "^3.5.44"
   },
   "devDependencies": {
     "@tdesign-vue-next/auto-import-resolver": "^0.1.8",
