@@ -22,7 +22,7 @@
     "@tdesign-vue-next/auto-import-resolver": "^0.1.8",
     "@types/node": "^25.9.9",
     "typescript": "^6.0.3",
-    "vue-tsc": "^3.3.13",
+    "vue-tsc": "^3.3.14",
     "unplugin-auto-import": "^21.1.0",
     "unplugin-vue-components": "^32.1.0"
   }
