@@ -11,17 +11,17 @@
   },
   "dependencies": {
     "@tdesign-vue-next/chat": "^0.7.0",
-    "tdesign-icons-vue-next": "^0.4.11",
-    "tdesign-vue-next": "^1.20.10",
-    "vue": "^3.5.44",
+    "tdesign-icons-vue-next": "^0.4.12",
+    "tdesign-vue-next": "^1.20.11",
+    "vue": "^3.5.45",
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
     "@types/node": "^25.9.9",
-    "@vitejs/plugin-vue": "^6.0.10",
+    "@vitejs/plugin-vue": "^6.0.11",
     "@vitejs/plugin-vue-jsx": "^5.1.6",
     "typescript": "^6.0.3",
-    "vite": "^8.3.5",
+    "vite": "^8.3.8",
     "vue-tsc": "^3.3.14"
   }
 }
