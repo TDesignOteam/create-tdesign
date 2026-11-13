@@ -10,13 +10,13 @@
     "typecheck": "vue-tsc --noEmit"
   },
   "dependencies": {
-    "tdesign-icons-vue-next": "^0.4.11",
-    "tdesign-vue-next": "^1.20.10",
-    "vue": "^3.5.44",
+    "tdesign-icons-vue-next": "^0.4.12",
+    "tdesign-vue-next": "^1.20.11",
+    "vue": "^3.5.45",
     "vue-router": "^5.4.0"
   },
   "devDependencies": {
-    "@rsbuild/core": "^2.3.1",
+    "@rsbuild/core": "^2.3.2",
     "@rsbuild/plugin-babel": "^2.1.0",
     "@rsbuild/plugin-vue": "^2.0.1",
     "@rsbuild/plugin-vue-jsx": "^2.0.1",
